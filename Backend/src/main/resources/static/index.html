@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise Selector</title>
+    <style>
+        /* 전체 화면을 Flexbox로 중앙 정렬 */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        /* 그리드 컨테이너 설정 */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 200px);
+            grid-gap: 50px;
+        }
+        
+        /* 정사각형 버튼 스타일 */
+        .square {
+            width: 200px;
+            height: 200px;
+            background-color: #4CAF50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        /* 마우스 오버 시 색상 변경 */
+        .square:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        <a href="Exercise1.html" class="square">Exercise 1</a>
+        <a href="Exercise2.html" class="square">Exercise 2</a>
+        <a href="Exercise3.html" class="square">Exercise 3</a>
+        <a href="Exercise4.html" class="square">Exercise 4</a>
+        <a href="Exercise5.html" class="square">Exercise 5</a>
+        <a href="Exercise6.html" class="square">Exercise 6</a>
+    </div>
+</body>
+</html>
