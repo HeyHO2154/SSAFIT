@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.ssafit.mapper.VideoMapper">
+
+    <!-- 비디오 정보 조회 -->
+    <select id="getVideoById" resultType="com.example.ssafit.model.Video">
+        SELECT * FROM videos WHERE video_id = #{videoId}
+    </select>
+
+    <!-- 인기 있는 비디오 목록 조회 -->
+    <select id="getPopularVideos" resultType="com.example.ssafit.model.Video">
+        SELECT * FROM videos ORDER BY views DESC LIMIT 10
+    </select>
+
+	<!-- 부위별 비디오 목록 조회 -->
+    <select id="getVideosByCategory" resultType="com.example.ssafit.model.Video" parameterType = "String">
+        SELECT * FROM videos WHERE category = #{category}
+    </select>
+
+
+    <!-- 비디오 추가 -->
+    <insert id="addVideo" parameterType="com.example.ssafit.model.Video">
+        INSERT INTO videos (title, description, views, created_at)
+        VALUES (#{title}, #{description}, #{views}, #{createdAt})
+    </insert>
+
+    <!-- 비디오 정보 수정 -->
+    <update id="updateVideo" parameterType="com.example.ssafit.model.Video">
+        UPDATE videos SET title = #{title}, description = #{description}, view_count = #{viewCount}
+        WHERE video_id = #{videoId}
+    </update>
+
+    <!-- 비디오 삭제 -->
+    <delete id="deleteVideo" parameterType="int">
+        DELETE FROM videos WHERE video_id = #{videoId}
+    </delete>
+
+	<!-- 뷰 카운트 수정 -->
+	<update id="UpCount" parameterType="com.example.ssafit.model.Video">
+		UPDATE videos SET views = views+1 WHERE id = #{id}
+	</update>
+
+
+</mapper>

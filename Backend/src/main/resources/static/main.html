@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SSAFIT</title>
+  <!-- Vue.js 및 Axios를 CDN으로 로드 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>{{ message }}</h1>
+
+    <!-- 인기 동영상 가져오기 버튼 -->
+    <button @click="fetchPopularVideos">인기 영상 가져오기</button>
+
+    <!-- 카테고리 검색 필드와 버튼 -->
+    <input v-model="searchCategory" placeholder="부위 입력" />
+    <button @click="fetchVideosByCategory">부위별 영상 검색</button>
+
+    <!-- 인기 동영상 목록 -->
+    <h2>인기 영상</h2>
+    <ul>
+      <li v-for="video in videos" :key="video.id">
+        {{ video.title }} - 조회수 : {{ video.views }}
+      </li>
+    </ul>
+
+    <!-- 카테고리별 동영상 목록 -->
+    <h2>부위별 영상: {{ searchCategory }}</h2>
+    <ul>
+      <li v-for="video in categoryVideos" :key="video.id">
+        {{ video.title }} - 조회수: {{ video.views }}
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        message: "SSAFIT",
+        videos: [], // 인기 동영상 목록
+        searchCategory: "", // 검색할 카테고리 입력 값
+        categoryVideos: [] // 카테고리 검색 결과 목록
+      },
+      methods: {
+        // 인기 동영상 목록 가져오기
+        async fetchPopularVideos() {
+          try {
+            const response = await axios.get("/api/videos/popular");
+            this.videos = response.data;
+          } catch (error) {
+            console.error("Error fetching popular videos:", error);
+          }
+        },
+        // 카테고리별 동영상 목록 가져오기
+        async fetchVideosByCategory() {
+          try {
+            if (this.searchCategory.trim() === "") {
+              alert("Please enter a category to search.");
+              return;
+            }
+            const response = await axios.get(`/api/videos/category/${this.searchCategory}`);
+            this.categoryVideos = response.data;
+          } catch (error) {
+            console.error("Error fetching videos by category:", error);
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

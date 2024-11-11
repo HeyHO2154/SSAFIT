@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.ssafit.mapper.ReviewMapper">
+
+    <!-- 특정 비디오의 리뷰 목록을 가져오기 -->
+    <select id="getReviewsByVideoId" resultType="com.example.ssafit.model.Review">
+        SELECT * FROM reviews WHERE video_id = #{videoId}
+    </select>
+
+    <!-- 리뷰 추가 -->
+    <insert id="addReview" parameterType="com.example.ssafit.model.Review">
+        INSERT INTO reviews (video_id, user_id, content, created_at)
+        VALUES (#{videoId}, #{userId}, #{content}, #{createdAt})
+    </insert>
+
+    <!-- 리뷰 수정 -->
+    <update id="updateReview" parameterType="com.example.ssafit.model.Review">
+        UPDATE reviews SET content = #{content}, updated_at = #{updatedAt}
+        WHERE review_id = #{reviewId}
+    </update>
+
+    <!-- 리뷰 삭제 -->
+    <delete id="deleteReview" parameterType="int">
+        DELETE FROM reviews WHERE review_id = #{reviewId}
+    </delete>
+
+</mapper>
