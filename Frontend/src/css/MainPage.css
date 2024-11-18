@@ -1,0 +1,28 @@
+body {
+    margin: 0; /* 페이지 기본 여백 제거 */
+    background-color: #7D96F2; /* 파란색 배경 */
+  }
+  
+  .main-page {
+    position: absolute; /* 부모 요소 기준으로 위치 설정 */
+    left: 35%; /* 화면의 정중앙 기준 */
+    top: 55%; /* 화면의 정중앙 기준 */
+    transform: translate(-50%, -50%); /* 정확히 중앙으로 이동 */
+    width: 65vw; /* 창 너비의 80% */
+    height: 65vw; /* 너비와 동일한 비율로 높이 설정 (정사각형) */
+    max-width: 1200px; /* 최대 너비 제한 */
+    max-height: 1200px; /* 최대 높이 제한 */
+    background-image: url('@/assets/background.png'); /* 배경 이미지 */
+    background-size: cover; /* 컨테이너 크기에 맞춰 조정 */
+    background-repeat: no-repeat; /* 배경 이미지 반복 방지 */
+    background-position: center; /* 배경 이미지 중앙 정렬 */
+  }
+  
+  .character {
+    position: absolute; /* 부모 요소(.main-page)를 기준으로 위치 설정 */
+    left: 18%; /* 배경 너비의 16.67% 위치 */
+    top: 43%; /* 배경 높이의 41.67% 위치 */
+    width: 10%; /* 배경 너비의 10% */
+    height: auto; /* 비율에 따라 높이 자동 조정 */
+  }
+  
