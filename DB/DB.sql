@@ -15,6 +15,9 @@ CREATE TABLE videos (
     url VARCHAR(255) NOT NULL,
     views int default 0
 );
+
+UPDATE videos SET views = videos.views+1 WHERE videoId = "브베뮤직비디오 2 - 매일 같은 하루";
+
 INSERT INTO videos (videoId, category, url) VALUES 
 ('브베뮤직비디오 1 - 할수있어 넌 너니까 (선택 자막)', '브베', 'https://www.youtube.com/watch?v=2hMNx5PCpGg&list=PLPY5X004VxTr33YKUKV5cKlqqxzunyO7i'),
 ('브베뮤직비디오 2 - 매일 같은 하루', '브베', 'https://www.youtube.com/watch?v=xY4v7ZI2jsM'),

@@ -9,4 +9,6 @@ import com.example.ssafit.model.Video;
 @Mapper
 public interface VideoMapper {
 	List<Video> getAllVideo();
+	Video getVideo(Video video);
+	void addViews(Video video);
 }

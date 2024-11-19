@@ -49,6 +49,16 @@
       };
     },
     methods: {
+        async addVideoView(video) {
+            try {
+                await axios.post("http://localhost:8080/videos/addViews", {
+                    videoId: video.videoId,
+                    views: 1, // 현재 조회수에서 1 증가
+                });
+            } catch (error) {
+                console.error("Error updating views:", error);
+            }
+        },
       async fetchVideos() {
         try {
           const response = await axios.post("http://localhost:8080/videos/getAllVideos");
@@ -66,14 +76,14 @@
         }
         return `https://img.youtube.com/vi/${videoId}/0.jpg`;
         },
-        goToVideo(video) {
+        async goToVideo(video) {
+            await this.addVideoView(video); // 조회수 증가 API 호출
+            console.error(video);
             this.$router.push({
                 name: "VideoPage",
-                params: {
-                id: video.videoId, // 필수 경로 파라미터 전달
-                },
                 query: {
-                    url: video.url, // 추가적인 정보는 query로 전달
+                    videoId: video.videoId,
+                    url: video.url, 
                     category: video.category,
                     views: video.views
                 },

@@ -14,11 +14,11 @@ const routes = [
   { path: '/register', component: RegisterPage, name: 'Register' },
   { path: '/survey', component: SurveyPage, name: 'Survey' },
   {
-    path: '/video/:id',
+    path: '/video',
     component: VideoPage,
     name: 'VideoPage',
     props: route => ({
-      videoId: route.params.id,
+      videoId: route.query.videoId || '',
       videoUrl: route.query.url || '',
       category: route.query.category || '',
       views: route.query.views || '',

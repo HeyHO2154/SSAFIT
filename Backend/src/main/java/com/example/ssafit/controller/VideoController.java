@@ -40,6 +40,14 @@ public class VideoController {
         return ResponseEntity.ok(comments);
     }
    
+    @PostMapping("/addViews")
+    public ResponseEntity<Video> addViews(@RequestBody Video video) {
+    	System.out.println(video.getVideoId());
+    	System.out.println(video.getViews());
+    	Video videos = videoService.addViews(video);
+    	System.out.println(video.getViews());
+        return ResponseEntity.ok(videos);
+    }
     
     
     

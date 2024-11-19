@@ -80,9 +80,7 @@ export default {
       }
       return `https://img.youtube.com/vi/${videoId}/0.jpg`;
     },
-    goMainPage() {
-            this.$router.push({name: "Main",});
-        },
+    goMainPage() {this.$router.push({name: "Main",});},
   },
 };
 </script>

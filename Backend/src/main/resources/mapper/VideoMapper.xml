@@ -9,4 +9,12 @@
         SELECT * FROM videos
     </select>
 
+	<select id="getVideo" parameterType="com.example.ssafit.model.Video" resultType="com.example.ssafit.model.Video">
+		SELECT * FROM videos WHERE videoId = #{videoId}
+	</select>
+	
+	<update id="addViews" parameterType="com.example.ssafit.model.Video">
+		UPDATE videos SET views = videos.views + #{views} WHERE videoId = #{videoId}
+	</update>
+	
 </mapper>

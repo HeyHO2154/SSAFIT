@@ -17,4 +17,10 @@ public class VideoService {
     public List<Video> getAllVideo() {
     	return videoMapper.getAllVideo();
     }
+
+	public Video addViews(Video video) {
+		videoMapper.addViews(video);
+		return videoMapper.getVideo(video);
+	}
+    
 }
