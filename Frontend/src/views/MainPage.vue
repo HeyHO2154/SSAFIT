@@ -45,20 +45,25 @@
     name: "MainPage",
     data() {
       return {
-        videos: [], // 초기 데이터 비우기
+          videos: [], // 초기 데이터 비우기
       };
     },
     methods: {
-        async addVideoView(video) {
-            try {
-                await axios.post("http://localhost:8080/videos/addViews", {
-                    videoId: video.videoId,
-                    views: 1, // 현재 조회수에서 1 증가
-                });
-            } catch (error) {
-                console.error("Error updating views:", error);
-            }
-        },
+        addVideoView(video) {
+    return axios.post("http://localhost:8080/videos/addViews", {
+        videoId: video.videoId,
+        views: 1,
+    })
+    .then((response) => {
+        console.log("Response from addViews:", response.data); // 응답 데이터 확인
+        return response.data; // response.data를 반환
+    })
+    .catch((error) => {
+        console.error("Error in addVideoView:", error);
+        return video; // 에러 발생 시 기존 video 객체 반환
+    });
+},
+
       async fetchVideos() {
         try {
           const response = await axios.post("http://localhost:8080/videos/getAllVideos");
@@ -77,8 +82,9 @@
         return `https://img.youtube.com/vi/${videoId}/0.jpg`;
         },
         async goToVideo(video) {
-            await this.addVideoView(video); // 조회수 증가 API 호출
-            console.error(video);
+            console.log(video);
+            video = await this.addVideoView(video);
+            console.log(video);
             this.$router.push({
                 name: "VideoPage",
                 query: {

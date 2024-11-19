@@ -14,7 +14,7 @@
 	</select>
 	
 	<update id="addViews" parameterType="com.example.ssafit.model.Video">
-		UPDATE videos SET views = videos.views + #{views} WHERE videoId = #{videoId}
+		UPDATE videos SET views = views + #{views} WHERE videoId = #{videoId}
 	</update>
 	
 </mapper>

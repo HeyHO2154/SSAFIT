@@ -16,7 +16,6 @@
 }
 
 .youtube-header .logo img {
-  cursor: pointer;
   height: 40px;
 }
 
@@ -95,10 +94,9 @@
 }
 
 .video-card {
-  cursor: pointer;
   position: relative;
   width: 100%;
-  height: 80%;
+  height: 85%;
   padding-top: 0; /* 비율 유지 필요 없음 */
   overflow: hidden;
   border-radius: 8px; /* 모서리 둥글게 */
@@ -107,17 +105,13 @@
 
 .video-card img {
   width: 100%;
-  height: 66%;
+  height: 63%;
   object-fit: cover; /* 이미지를 컨테이너에 맞춤 */
 }
 
 .video-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.video-info {
-  padding: 2%;
 }
 
 .video-info h3 {

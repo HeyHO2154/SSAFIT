@@ -8,14 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.ssafit.model.Video;
 import com.example.ssafit.service.CommentService;
 import com.example.ssafit.service.VideoService;
-
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @CrossOrigin(origins = "http://localhost:3000") // 프론트엔드 포트를 지정	
 @RestController
@@ -43,7 +42,6 @@ public class VideoController {
     @PostMapping("/addViews")
     public ResponseEntity<Video> addViews(@RequestBody Video video) {
     	System.out.println(video.getVideoId());
-    	System.out.println(video.getViews());
     	Video videos = videoService.addViews(video);
     	System.out.println(video.getViews());
         return ResponseEntity.ok(videos);

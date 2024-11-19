@@ -23,7 +23,8 @@ INSERT INTO videos (videoId, category, url) VALUES
 ('브베뮤직비디오 2 - 매일 같은 하루', '브베', 'https://www.youtube.com/watch?v=xY4v7ZI2jsM'),
 ('브베뮤직비디오 3 - 힘찬 스텝, 하나! 둘! 셋! 넷!', '브베', 'https://www.youtube.com/watch?v=GDc_W-urbiQ'),
 ('브베뮤직비디오 4 - 발명가의 하루', '브베', 'https://www.youtube.com/watch?v=ehuOJmJMP8g'),
-('브베뮤직비디오 5 - 마음을 비우면 행복해져요', '브베', 'https://www.youtube.com/watch?v=nnfhy29sG7M');
+('브베뮤직비디오 5 - 마음을 비우면 행복해져요', '브베', 'https://www.youtube.com/watch?v=nnfhy29sG7M'),
+('The Amazing Digital Circus - Your New Home (Extended)', '음악', 'https://www.youtube.com/watch?v=Hk-p6xcDUVE');
 SELECT * FROM videos;
 
 CREATE TABLE comments (
