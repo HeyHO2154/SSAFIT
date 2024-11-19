@@ -1,7 +1,7 @@
 <template>
     <div class="youtube-main">
       <header class="youtube-header">
-        <div class="logo">
+        <div class="logo" @click="goMainPage()">
           <img src="@/assets/youtube-logo.png" alt="Logo" />
         </div>
         <div class="search-bar">
@@ -25,14 +25,13 @@
         </aside>
         <main class="main-content">
           <div class="video-grid">
-            <div class="video-card" v-for="video in videos" :key="video.videoId">
-              <!-- YouTube 썸네일 URL 생성 -->
-              <img :src="getThumbnailUrl(video.url)" alt="Thumbnail"/>
-              <div class="video-info">
-                <h3>{{ video.videoId }}</h3>
-                <p>조회수: {{ video.views }}</p>
-              </div>
-            </div>
+            <div class="video-card" v-for="video in videos" :key="video.videoId" @click="goToVideo(video)">
+                <img :src="getThumbnailUrl(video.url)" alt="Thumbnail" />
+                <div class="video-info">
+                  <h3>{{ video.videoId }}</h3>
+                  <p>조회수: {{ video.views }}</p>
+                </div>
+              </div>              
           </div>
         </main>
       </div>
@@ -52,7 +51,7 @@
     methods: {
       async fetchVideos() {
         try {
-          const response = await axios.post("http://localhost:8080/videos/getAllVideo");
+          const response = await axios.post("http://localhost:8080/videos/getAllVideos");
           this.videos = response.data; // 데이터를 저장
         } catch (error) {
           console.error("Error fetching videos:", error);
@@ -66,7 +65,21 @@
           return `https://img.youtube.com/vi/${videoId.substring(0, ampersandPosition)}/0.jpg`;
         }
         return `https://img.youtube.com/vi/${videoId}/0.jpg`;
-      },
+        },
+        goToVideo(video) {
+            this.$router.push({
+                name: "VideoPage",
+                params: {
+                id: video.videoId, // 필수 경로 파라미터 전달
+                },
+                query: {
+                    url: video.url, // 추가적인 정보는 query로 전달
+                    category: video.category,
+                    views: video.views
+                },
+            });
+        },
+        goMainPage() {this.$router.push({name: "Main",});},
     },
     mounted() {
       this.fetchVideos();

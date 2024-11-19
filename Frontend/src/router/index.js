@@ -13,8 +13,17 @@ const routes = [
   { path: '/login', component: LoginPage, name: 'Login' },
   { path: '/register', component: RegisterPage, name: 'Register' },
   { path: '/survey', component: SurveyPage, name: 'Survey' },
-    { path: '/video', component: VideoPage, name: 'Video' },
-    { path: '/video/:id', component: VideoPage, name: 'Video' },
+  {
+    path: '/video/:id',
+    component: VideoPage,
+    name: 'VideoPage',
+    props: route => ({
+      videoId: route.params.id,
+      videoUrl: route.query.url || '',
+      category: route.query.category || '',
+      views: route.query.views || '',
+    }),
+  },
   { path: '/mypage', component: MyPage, name: 'MyPage' },
   { path: '/customize', component: CharacterCustomizePage, name: 'Customize' },
 ];
