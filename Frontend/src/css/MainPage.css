@@ -1,28 +1,131 @@
-body {
-    margin: 0; /* 페이지 기본 여백 제거 */
-    background-color: #7D96F2; /* 파란색 배경 */
-  }
-  
-  .main-page {
-    position: absolute; /* 부모 요소 기준으로 위치 설정 */
-    left: 35%; /* 화면의 정중앙 기준 */
-    top: 55%; /* 화면의 정중앙 기준 */
-    transform: translate(-50%, -50%); /* 정확히 중앙으로 이동 */
-    width: 65vw; /* 창 너비의 80% */
-    height: 65vw; /* 너비와 동일한 비율로 높이 설정 (정사각형) */
-    max-width: 1200px; /* 최대 너비 제한 */
-    max-height: 1200px; /* 최대 높이 제한 */
-    background-image: url('@/assets/background.png'); /* 배경 이미지 */
-    background-size: cover; /* 컨테이너 크기에 맞춰 조정 */
-    background-repeat: no-repeat; /* 배경 이미지 반복 방지 */
-    background-position: center; /* 배경 이미지 중앙 정렬 */
-  }
-  
-  .character {
-    position: absolute; /* 부모 요소(.main-page)를 기준으로 위치 설정 */
-    left: 18%; /* 배경 너비의 16.67% 위치 */
-    top: 43%; /* 배경 높이의 41.67% 위치 */
-    width: 10%; /* 배경 너비의 10% */
-    height: auto; /* 비율에 따라 높이 자동 조정 */
-  }
-  
+.youtube-main {
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.youtube-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.youtube-header .logo img {
+  height: 40px;
+}
+
+.youtube-header .search-bar {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  margin: 0 20px;
+}
+
+.youtube-header .search-bar input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 3px 0 0 3px;
+  box-sizing: border-box;
+}
+
+.youtube-header .search-bar button {
+  padding: 8px;
+  background-color: #ddd;
+  border: 1px solid #ddd;
+  border-radius: 0 3px 3px 0;
+  cursor: pointer;
+}
+
+.youtube-header .user-icons button {
+  margin-left: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.youtube-content {
+  display: flex;
+  height: calc(100vh - 60px); /* Adjust height based on header */
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  margin: 10px 0;
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+.sidebar ul li:hover {
+  color: #0073e6;
+  font-weight: bold;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #ffffff; /* Content 배경 설정 */
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 카드 크기 조정 */
+  gap: 20px;
+}
+
+.video-card {
+  position: relative;
+  width: 100%;
+  height: 80%;
+  padding-top: 0; /* 비율 유지 필요 없음 */
+  overflow: hidden;
+  border-radius: 8px; /* 모서리 둥글게 */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.video-card img {
+  width: 100%;
+  height: 66%;
+  object-fit: cover; /* 이미지를 컨테이너에 맞춤 */
+}
+
+.video-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.video-info {
+  padding: 2%;
+}
+
+.video-info h3 {
+  font-size: 16px;
+  margin: 5px 0;
+  color: #333;
+}
+
+.video-info p {
+  font-size: 14px;
+  color: #777;
+  margin: 0;
+}
