@@ -1,49 +1,8 @@
 <template>
-<<<<<<< Updated upstream
     <div class="youtube-main">
       <header class="youtube-header">
         <div class="logo" @click="goMainPage()">
           <img src="@/assets/youtube-logo.png" alt="Logo" />
-=======
-  <div class="youtube-main">
-    <header class="youtube-header">
-      <div class="logo" @click="goMainPage()">
-        <img src="@/assets/youtube-logo.png" alt="Logo" />
-      </div>
-      <div class="search-bar">
-        <input
-          type="text"
-          placeholder="검색"
-          v-model="searchQuery"
-          @keypress.enter="searchVideos"
-        />
-        <button @click="searchVideos">🔍</button>
-      </div>
-      <div class="user-icons">
-        <button>🔔</button>
-        <button>🧑</button>
-      </div>
-    </header>
-    <div class="youtube-content">
-      <aside class="sidebar">
-        <ul>
-          <li @click="filterVideos('전체')">홈</li>
-          <li @click="filterVideos('인기')">추천 헬스 영상</li>
-          <li @click="filterVideos('구독')">팔로우</li>
-          <li @click="filterVideos('내 동영상')">찜한 동영상</li>
-        </ul>
-      </aside>
-      <main class="main-content">
-        <div class="category-filter">
-          <button
-            v-for="category in categories"
-            :key="category"
-            :class="{ active: selectedCategory === category }"
-            @click="filterVideos(category)"
-          >
-            {{ category }}
-          </button>
->>>>>>> Stashed changes
         </div>
         <div class="search-bar">
           <input type="text" placeholder="Search" />
@@ -77,7 +36,6 @@
         </main>
       </div>
     </div>
-<<<<<<< Updated upstream
   </template>
   
   <script>
@@ -89,33 +47,6 @@
       return {
           videos: [], // 초기 데이터 비우기
       };
-=======
-  </div>
-</template>
-
-<script>
-import axios from "axios";
-
-export default {
-  name: "MainPage",
-  data() {
-    return {
-      videos: [], // 모든 비디오 데이터를 저장
-      categories: ["전체", "등", "어깨", "팔", "하체", "복부", "가슴"], // 카테고리 목록
-      selectedCategory: "전체", // 현재 선택된 카테고리
-      searchQuery: "", // 검색어
-    };
-  },
-  computed: {
-    // 선택된 카테고리에 따라 비디오를 필터링
-    filteredVideos() {
-      if (this.selectedCategory === "전체") {
-        return this.videos; // 전체 카테고리일 경우 모든 비디오 반환
-      }
-      return this.videos.filter(
-        (video) => video.category === this.selectedCategory
-      );
->>>>>>> Stashed changes
     },
     methods: {
         addVideoView(video) {

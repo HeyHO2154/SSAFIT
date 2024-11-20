@@ -8,6 +8,14 @@
 	<select id="getAllVideo" resultType="com.example.ssafit.model.Video">
         SELECT * FROM videos
     </select>
+    
+	<select id="getSearchVideo" parameterType="String" resultType="com.example.ssafit.model.Video">
+	    SELECT * FROM videos WHERE videoId LIKE '%${videoId}%'
+	</select>
+    
+    <select id="getCategoryVideo" parameterType="com.example.ssafit.model.Video" resultType="com.example.ssafit.model.Video">
+        SELECT * FROM videos WHERE category = #{category}
+    </select>
 
 	<select id="getVideo" parameterType="com.example.ssafit.model.Video" resultType="com.example.ssafit.model.Video">
 		SELECT * FROM videos WHERE videoId = #{videoId}

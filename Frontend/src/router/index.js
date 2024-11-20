@@ -7,6 +7,7 @@ import SurveyPage from '../views/SurveyPage.vue';
 import VideoPage from '../views/VideoPage.vue';
 import MyPage from '../views/MyPage.vue';
 import CharacterCustomizePage from '../views/CharacterCustomizePage.vue';
+import SearchPage from '../views/SearchPage.vue'; // SearchPage 컴포넌트 추가
 
 const routes = [
   { path: '/', component: MainPage, name: 'Main' },
@@ -26,6 +27,14 @@ const routes = [
   },
   { path: '/mypage', component: MyPage, name: 'MyPage' },
   { path: '/customize', component: CharacterCustomizePage, name: 'Customize' },
+  { 
+    path: '/search',  // SearchPage 라우트 추가
+    component: SearchPage, 
+    name: 'SearchPage',
+    props: route => ({
+      searchQuery: route.query.q || ''
+    })
+  },
 ];
 
 const router = createRouter({

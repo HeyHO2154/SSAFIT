@@ -15,11 +15,16 @@ public class VideoService {
     @Autowired
     private VideoMapper videoMapper;
     
-    @Transactional
     public List<Video> getAllVideo() {
     	return videoMapper.getAllVideo();
     }
-
+    public List<Video> getCategoryVideo(Video video) {
+    	return videoMapper.getCategoryVideo(video);
+    }
+    public List<Video> getSearchVideo(String string){
+    	return videoMapper.getSearchVideo(string);
+    }
+    
     @Transactional
 	public Video addViews(Video video) {
 		videoMapper.addViews(video);

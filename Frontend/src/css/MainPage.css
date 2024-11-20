@@ -27,12 +27,8 @@ body, html {
 }
 
 .youtube-header .logo img {
-<<<<<<< Updated upstream
-  height: 40px;
-=======
   cursor: pointer;
   height: 90px;
->>>>>>> Stashed changes
 }
 
 .youtube-header .search-bar {
@@ -66,9 +62,7 @@ body, html {
   font-size: 18px;
 }
 
-<<<<<<< Updated upstream
-=======
-/* 카테고리 필터 */
+
 .category-filter {
   display: flex;
   justify-content: left;
@@ -95,8 +89,6 @@ body, html {
   background-color: #53535348;
 }
 
-/* 콘텐츠 스타일 */
->>>>>>> Stashed changes
 .youtube-content {
   display: flex;
   height: calc(100vh - 60px); /* Adjust height based on header */
@@ -138,14 +130,10 @@ body, html {
 /* 비디오 그리드 */
 .video-grid {
   display: grid;
-<<<<<<< Updated upstream
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 카드 크기 조정 */
   gap: 20px;
-=======
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   column-gap: 20px;
   row-gap: 10px;
->>>>>>> Stashed changes
 }
 
 /* 비디오 카드 */
@@ -155,12 +143,9 @@ body, html {
   height: auto; /* 비율 유지를 위한 자동 높이 */
   padding-top: 0;
   overflow: hidden;
-<<<<<<< Updated upstream
-  border-radius: 8px; /* 모서리 둥글게 */
+  cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-=======
   border-radius: 8px;
->>>>>>> Stashed changes
 }
 
 .video-card img {
