@@ -42,6 +42,7 @@ INSERT INTO videos (videoId, category, url) VALUES
 ('볼륨과 너비 둘 다 잡으려면 이렇게 가슴운동 해야합니다.', '가슴', 'https://www.youtube.com/watch?v=fpOlHY2W7bQ'),
 (':sports_medal:요일별운동:sports_medal: 수요일 탄력있는 가슴, 겨드랑이 군살타파! 가슴 운동루틴', '가슴', 'https://www.youtube.com/watch?v=-V-Rdcn_ok8'),
 ('Lv.4 10분 만에 집에서 가슴 작살내는 루틴 (누구나 쉽게 가능)', '가슴', 'https://www.youtube.com/watch?v=c_5ENJWekbQ'),
+('브베뮤직비디오 4 - 발명가의 하루', '브베', 'https://www.youtube.com/watch?v=ehuOJmJMP8g'),
 ('【가슴루틴】 가슴이 커지는 여자가슴 운동루틴! 헬스장 기구+덤벨 프로그램', '가슴', 'https://www.youtube.com/watch?v=TuqxAV6lzfg');
 
 CREATE TABLE comments (
