@@ -7,6 +7,13 @@
       <div class="search-bar">
         <input type="text" placeholder="Search" />
         <button>🔍</button>
+<<<<<<< Updated upstream
+=======
+      </div>
+      <div class="user-icons">
+        <button>🔔</button>
+        <button>🧑</button>
+>>>>>>> Stashed changes
       </div>
     </header>
     <div class="main-container">
@@ -30,7 +37,11 @@
         <!-- 영상 제목 및 설명 -->
         <div class="video-info">
           <h1 class="video-title">{{ videoId }}</h1>
+<<<<<<< Updated upstream
           <p class="video-description">카테고리 : {{ category }}  - 조회수 : {{ views }}</p>
+=======
+          <p class="video-description">카테고리 : {{ category }} - 조회수 : {{ views }}</p>
+>>>>>>> Stashed changes
         </div>
       </main>
       <aside class="related-videos">
@@ -66,12 +77,60 @@ export default {
       type: String,
       required: true,
     },
+<<<<<<< Updated upstream
     relatedVideos: {
       type: Array,
       default: () => [],
     },
   },
   methods: {
+=======
+  },
+  data() {
+    return {
+      relatedVideos: [], // 관련 영상 데이터를 저장
+    };
+  },
+  computed: {
+    // 현재 재생 중인 비디오를 제외한 관련 영상 목록 필터링
+    filteredRelatedVideos() {
+      return this.relatedVideos.filter(
+        (video) => video.videoId !== this.videoId
+      );
+    },
+  },
+  watch: {
+    // videoId가 변경될 때마다 관련 영상을 다시 로드
+    videoId: {
+      immediate: true,
+      handler() {
+        this.fetchRelatedVideos();
+      },
+    },
+  },
+  methods: {
+    async fetchRelatedVideos() {
+      try {
+        const videoData = {
+          videoUrl: this.videoUrl,
+          videoId: this.videoId,
+          category: this.category,
+          views: this.views,
+        };
+
+        // 백엔드 API 호출
+        const response = await axios.post(
+          "http://localhost:8080/videos/getCategoryVideo",
+          videoData
+        );
+
+        // 관련 영상 데이터를 랜덤으로 섞음
+        this.relatedVideos = response.data.sort(() => Math.random() - 0.5);
+      } catch (error) {
+        console.error("Error fetching related videos:", error);
+      }
+    },
+>>>>>>> Stashed changes
     getThumbnailUrl(videoUrl) {
       const videoId = videoUrl.split("v=")[1];
       const ampersandPosition = videoId.indexOf("&");

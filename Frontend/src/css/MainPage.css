@@ -1,14 +1,25 @@
+/* 기본 스타일 */
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* 가로 스크롤 방지 */
+  overflow-y: auto; /* 세로 스크롤은 브라우저 전체에서만 */
+}
+
 .youtube-main {
   font-family: Arial, sans-serif;
   color: #333;
+  margin: 0;
+  padding: 0;
 }
 
+/* 헤더 스타일 */
 .youtube-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  background-color: #f9f9f9;
+  background-color: #a4bedb;
   border-bottom: 1px solid #ddd;
   position: sticky;
   top: 0;
@@ -16,7 +27,12 @@
 }
 
 .youtube-header .logo img {
+<<<<<<< Updated upstream
   height: 40px;
+=======
+  cursor: pointer;
+  height: 90px;
+>>>>>>> Stashed changes
 }
 
 .youtube-header .search-bar {
@@ -50,6 +66,37 @@
   font-size: 18px;
 }
 
+<<<<<<< Updated upstream
+=======
+/* 카테고리 필터 */
+.category-filter {
+  display: flex;
+  justify-content: left;
+  margin: 15px 0;
+  gap: 15px;
+}
+
+.category-filter button {
+  padding: 10px 20px;
+  border: 0px solid #dddddd48;
+  border-radius: 12px;
+  cursor: pointer;
+  background-color: #f3f3f3;
+  font-size: 14px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.category-filter button.active {
+  background-color: black;
+  color: white;
+}
+
+.category-filter button:hover {
+  background-color: #53535348;
+}
+
+/* 콘텐츠 스타일 */
+>>>>>>> Stashed changes
 .youtube-content {
   display: flex;
   height: calc(100vh - 60px); /* Adjust height based on header */
@@ -57,7 +104,7 @@
 
 .sidebar {
   width: 200px;
-  background-color: #f9f9f9;
+  background-color: rgb(235, 242, 243);
   padding: 10px;
   border-right: 1px solid #ddd;
   box-sizing: border-box;
@@ -80,44 +127,56 @@
   font-weight: bold;
 }
 
+/* 메인 콘텐츠 */
 .main-content {
   flex-grow: 1;
   padding: 20px;
-  overflow-y: auto;
-  background-color: #ffffff; /* Content 배경 설정 */
+  overflow-y: visible; /* 자체 스크롤을 제거 */
+  background-color: #ffffff;
 }
 
+/* 비디오 그리드 */
 .video-grid {
   display: grid;
+<<<<<<< Updated upstream
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 카드 크기 조정 */
   gap: 20px;
+=======
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  column-gap: 20px;
+  row-gap: 10px;
+>>>>>>> Stashed changes
 }
 
+/* 비디오 카드 */
 .video-card {
   position: relative;
   width: 100%;
-  height: 85%;
-  padding-top: 0; /* 비율 유지 필요 없음 */
+  height: auto; /* 비율 유지를 위한 자동 높이 */
+  padding-top: 0;
   overflow: hidden;
+<<<<<<< Updated upstream
   border-radius: 8px; /* 모서리 둥글게 */
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+=======
+  border-radius: 8px;
+>>>>>>> Stashed changes
 }
 
 .video-card img {
   width: 100%;
-  height: 63%;
-  object-fit: cover; /* 이미지를 컨테이너에 맞춤 */
+  height: 56%;
+  object-fit: cover;
+  cursor: pointer;
+  
 }
 
-.video-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
 
 .video-info h3 {
   font-size: 16px;
   margin: 5px 0;
   color: #333;
+  cursor: pointer;
 }
 
 .video-info p {
