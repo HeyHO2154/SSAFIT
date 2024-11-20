@@ -11,4 +11,5 @@ public interface VideoMapper {
 	List<Video> getAllVideo();
 	Video getVideo(Video video);
 	void addViews(Video video);
+	List<Video> getCategoryVideo(Video video);
 }

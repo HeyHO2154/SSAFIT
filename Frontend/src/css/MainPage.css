@@ -16,6 +16,7 @@
 }
 
 .youtube-header .logo img {
+  cursor: pointer;
   height: 40px;
 }
 
@@ -48,6 +49,33 @@
   border: none;
   cursor: pointer;
   font-size: 18px;
+}
+
+.category-filter {
+  display: flex;
+  justify-content: left;
+  margin: 15px 0;
+  gap: 15px;
+}
+
+.category-filter button {
+  padding: 10px 20px;
+  border: 0px solid #dddddd48;
+  border-radius: 12px;
+  cursor: pointer;
+  background-color: #f3f3f3;
+  ;
+  font-size: 14px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.category-filter button.active {
+  background-color: black;
+  color: white;
+}
+
+.category-filter button:hover {
+  background-color: #53535348;
 }
 
 .youtube-content {
@@ -90,7 +118,8 @@
 .video-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 카드 크기 조정 */
-  gap: 20px;
+  column-gap: 20px;
+  row-gap: 10px; /* 세로 간격만 10px로 설정 */
 }
 
 .video-card {
@@ -99,6 +128,7 @@
   height: 85%;
   padding-top: 0; /* 비율 유지 필요 없음 */
   overflow: hidden;
+  cursor: pointer;
   border-radius: 8px; /* 모서리 둥글게 */
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }

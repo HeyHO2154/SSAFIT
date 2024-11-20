@@ -32,6 +32,11 @@ public class VideoController {
         List<Video> videos = videoService.getAllVideo(); // 여러 비디오를 반환한다고 가정
         return ResponseEntity.ok(videos); // ResponseEntity로 감싸서 반환
     }
+    @PostMapping("/getCategoryVideo")
+    public ResponseEntity<List<Video>> getCategoryVideo(@RequestBody Video video) {
+        List<Video> videos = videoService.getCategoryVideo(video); // 여러 비디오를 반환한다고 가정
+        return ResponseEntity.ok(videos); // ResponseEntity로 감싸서 반환
+    }
 
     @PostMapping("/getAllComments")
     public ResponseEntity<List<Comment>> getAllComments(@RequestBody Video video) {
@@ -41,9 +46,7 @@ public class VideoController {
    
     @PostMapping("/addViews")
     public ResponseEntity<Video> addViews(@RequestBody Video video) {
-    	System.out.println(video.getVideoId());
     	Video videos = videoService.addViews(video);
-    	System.out.println(video.getViews());
         return ResponseEntity.ok(videos);
     }
     

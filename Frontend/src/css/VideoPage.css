@@ -1,44 +1,54 @@
-.video-page {
-    font-family: Arial, sans-serif;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .video-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: #f9f9f9;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .video-header .logo img {
-    cursor: pointer;
-    height: 40px;
-  }
-  
-  .video-header .search-bar {
-    display: flex;
-    align-items: center;
-  }
-  
-  .video-header .search-bar input {
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 3px 0 0 3px;
-    width: 300px;
-  }
-  
-  .video-header .search-bar button {
-    padding: 8px;
-    border: none;
-    background-color: #0073e6;
-    color: #fff;
-    border-radius: 0 3px 3px 0;
-    cursor: pointer;
-  }
+.youtube-main {
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.youtube-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.youtube-header .logo img {
+  height: 40px;
+}
+
+.youtube-header .search-bar {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  margin: 0 20px;
+}
+
+.youtube-header .search-bar input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 3px 0 0 3px;
+  box-sizing: border-box;
+}
+
+.youtube-header .search-bar button {
+  padding: 8px;
+  background-color: #ddd;
+  border: 1px solid #ddd;
+  border-radius: 0 3px 3px 0;
+  cursor: pointer;
+}
+
+.youtube-header .user-icons button {
+  margin-left: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
   
   .main-container {
     display: flex;
@@ -78,7 +88,7 @@
   }
   
   .related-videos h2 {
-    font-size: 18px;
+    font-size: 22px;
     margin-bottom: 15px;
   }
   
@@ -97,14 +107,14 @@
   }
   
   .related-videos img {
-    width: 100px;
-    height: 60px;
+    width: 180px;
+    height: 120px;
     border-radius: 8px;
     margin-right: 10px;
   }
   
   .related-videos span {
-    font-size: 14px;
+    font-size: 16px;
     color: #555;
     flex: 1;
   }
