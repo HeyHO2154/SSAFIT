@@ -15,7 +15,7 @@
       </div>
       <div class="user-icons">
         <button>🔔</button>
-        <button>🧑</button>
+        <button @click="goLoginPage">🧑</button>
       </div>
     </header>
     <div class="youtube-content">
@@ -133,6 +133,9 @@ export default {
     goMainPage() {
       this.fetchVideos(); // 컴포넌트가 마운트되면 비디오 목록을 로드
       this.$router.push({ name: "Main" });
+    },
+    goLoginPage() {
+      this.$router.push({ name: "Login" });
     },
     searchVideos() {
       if (this.searchQuery.trim()) {

@@ -6,34 +6,28 @@
 <mapper namespace="com.example.ssafit.mapper.UserMapper">
 
 	<insert id="registerUser" parameterType="com.example.ssafit.model.User">
-        INSERT INTO users (username, password, email)
-        VALUES (#{username}, #{password}, #{email})
+        INSERT INTO users (userId, userPw, nickname)
+        VALUES (#{userId}, #{userPw}, #{nickname})
     </insert>
 
     <select id="login" parameterType="com.example.ssafit.model.User" resultType="com.example.ssafit.model.User">
-        SELECT * FROM users WHERE username = #{username} AND password = #{password}
+        SELECT * FROM users WHERE userId = #{userId} AND userPw = #{userPw}
     </select>
 
     <!-- 사용자 정보 조회 -->
-    <select id="getUserById" resultType="com.example.ssafit.model.User">
-        SELECT * FROM users WHERE user_id = #{userId}
+    <select id="getUserById" parameterType="com.example.ssafit.model.User" resultType="com.example.ssafit.model.User">
+        SELECT * FROM users WHERE userId = #{userId}
     </select>
-
-    <!-- 사용자 추가 -->
-    <insert id="addUser" parameterType="com.example.ssafit.model.User">
-        INSERT INTO users (username, email, password, created_at)
-        VALUES (#{username}, #{email}, #{password}, #{createdAt})
-    </insert>
 
     <!-- 사용자 정보 수정 -->
     <update id="updateUser" parameterType="com.example.ssafit.model.User">
-        UPDATE users SET email = #{email}, password = #{password}, updated_at = #{updatedAt}
-        WHERE user_id = #{userId}
+        UPDATE users SET nickname = #{nickname}, userPw = #{userPw}
+        WHERE userId = #{userId}
     </update>
 
     <!-- 사용자 삭제 -->
     <delete id="deleteUser" parameterType="int">
-        DELETE FROM users WHERE user_id = #{userId}
+        DELETE FROM users WHERE userId = #{userId}
     </delete>
 
 </mapper>

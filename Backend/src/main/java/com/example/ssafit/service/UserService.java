@@ -12,11 +12,15 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
 
-    public void register(User user) {
-        userMapper.registerUser(user);
+    public boolean register(User user) {
+    	if(userMapper.getUserById(user)==null) {
+    		userMapper.registerUser(user);
+    		return true;
+    	}
+    	return false;
     }
 
-    public User login(User loginRequest) {
-        return userMapper.login(loginRequest);
+    public User login(User user) {
+        return userMapper.login(user);
     }
 }

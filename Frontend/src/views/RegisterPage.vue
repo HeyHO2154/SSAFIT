@@ -1,30 +1,69 @@
 <template>
-    <div>
-      <h1>Register Page</h1>
-      <form @submit.prevent="handleRegister">
-        <input type="text" placeholder="Username" v-model="username" />
-        <input type="email" placeholder="Email" v-model="email" />
-        <input type="password" placeholder="Password" v-model="password" />
-        <button type="submit">Register</button>
-      </form>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'RegisterPage',
-    data() {
-      return {
-        username: '',
-        email: '',
-        password: '',
+  <div>
+    <h1>Register Page</h1>
+    <form @submit.prevent="handleRegister">
+      <input type="text" placeholder="아이디" v-model="userId" />
+      <input type="password" placeholder="비밀번호" v-model="userPw" />
+      <input type="text" placeholder="닉네임" v-model="nickname" />
+      <button type="submit">회원가입</button>
+    </form>
+    <p v-if="errorMessage" style="color: red;">{{ errorMessage }}</p>
+  </div>
+</template>
+
+<script>
+import axios from "axios";
+
+export default {
+  name: "RegisterPage",
+  data() {
+    return {
+      userId: "",
+      userPw: "",
+      nickname: "",
+      errorMessage: "", // 에러 메시지를 저장할 변수
+    };
+  },
+  methods: {
+  async handleRegister() {
+    try {
+      // user 객체 생성
+      const user = {
+        userId: this.userId,
+        userPw: this.userPw,
+        nickname: this.nickname,
       };
+
+      // POST 요청
+      const response = await axios.post(
+  "http://localhost:8080/users/register",
+  {
+    userId: user.userId,
+    userPw: user.userPw,
+    nickname: user.nickname,
+  },
+  {
+    headers: {
+      "Content-Type": "application/json",
     },
-    methods: {
-      handleRegister() {
-        console.log(`Username: ${this.username}, Email: ${this.email}`);
-      },
-    },
-  };
-  </script>
-  
+  }
+);
+
+
+      if (response.data) {
+        // 회원가입 성공 시 로그인 페이지로 이동
+        this.$router.push({ name: "Login" });
+      } else {
+        // 중복된 아이디 에러 메시지 표시
+        this.errorMessage = "중복된 아이디입니다. 다른 아이디를 사용해주세요.";
+      }
+    } catch (error) {
+      console.error("Error in handleRegister:", error);
+      this.errorMessage = "서버 요청 중 오류가 발생했습니다.";
+    }
+  },
+},
+
+
+};
+</script>
