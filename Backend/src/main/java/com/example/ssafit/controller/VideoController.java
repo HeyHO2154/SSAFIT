@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.ssafit.model.Video;
@@ -36,6 +37,11 @@ public class VideoController {
     public ResponseEntity<List<Video>> getCategoryVideo(@RequestBody Video video) {
         List<Video> videos = videoService.getCategoryVideo(video); // 여러 비디오를 반환한다고 가정
         return ResponseEntity.ok(videos); // ResponseEntity로 감싸서 반환
+    }
+    @PostMapping("/getSearchVideo")
+    public ResponseEntity<List<Video>> getSearchVideo(@RequestBody String searchString) {
+        List<Video> videos = videoService.getSearchVideo(searchString);
+        return ResponseEntity.ok(videos);
     }
 
     @PostMapping("/getAllComments")

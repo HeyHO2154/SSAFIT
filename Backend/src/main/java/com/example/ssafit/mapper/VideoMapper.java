@@ -12,4 +12,5 @@ public interface VideoMapper {
 	Video getVideo(Video video);
 	void addViews(Video video);
 	List<Video> getCategoryVideo(Video video);
+	List<Video> getSearchVideo(String string);
 }

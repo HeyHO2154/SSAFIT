@@ -1,12 +1,12 @@
 <template>
   <div class="youtube-main">
     <header class="youtube-header">
-      <div class="logo" @click="goMainPage()">
+      <div class="logo" @click="goMainPage">
         <img src="@/assets/youtube-logo.png" alt="Logo" />
       </div>
       <div class="search-bar">
-        <input type="text" placeholder="Search" />
-        <button>🔍</button>
+        <input type="text" placeholder="검색" v-model="searchQuery" @keyup.enter="searchVideos"/>
+        <button @click="searchVideos">🔍</button>
       </div>
       <div class="user-icons">
         <button>🔔</button>
@@ -14,19 +14,16 @@
       </div>
     </header>
 
-    
-
     <div class="youtube-content">
       <aside class="sidebar">
         <ul>
-          <li>Home</li>
-          <li>Trending</li>
-          <li>Subscriptions</li>
-          <li>Library</li>
+          <li>홈</li>
+          <li>인기 급상승</li>
+          <li>구독</li>
+          <li>내 동영상</li>
         </ul>
       </aside>
       <main class="main-content">
-        <!-- 카테고리 필터 -->
         <div class="category-filter">
           <button
             v-for="category in categories"
@@ -63,16 +60,16 @@ export default {
   name: "MainPage",
   data() {
     return {
-      videos: [], // 모든 비디오 데이터를 저장
-      categories: ["전체", "브베", "먹방", "아이돌", "음악"], // 카테고리 목록
-      selectedCategory: "전체", // 현재 선택된 카테고리
+      videos: [],
+      categories: ["전체", "브베", "먹방", "아이돌", "음악"],
+      selectedCategory: "전체",
+      searchQuery: "",
     };
   },
   computed: {
-    // 선택된 카테고리에 따라 비디오를 필터링
     filteredVideos() {
       if (this.selectedCategory === "전체") {
-        return this.videos; // 전체 카테고리일 경우 모든 비디오 반환
+        return this.videos;
       }
       return this.videos.filter(
         (video) => video.category === this.selectedCategory
@@ -85,13 +82,33 @@ export default {
         const response = await axios.post(
           "http://localhost:8080/videos/getAllVideos"
         );
-        this.videos = response.data.sort(() => Math.random() - 0.5); // 데이터를 랜덤으로 섞어서 저장
+        this.videos = response.data.sort(() => Math.random() - 0.5);
       } catch (error) {
-        console.error("Error fetching videos:", error);
+        console.error("Error fetching videos:", error.message);
+      }
+    },
+    async searchVideos() {
+      try {
+        if (!this.searchQuery.trim()) {
+          this.fetchVideos();
+          return;
+        }
+        const response = await axios.post(
+          "http://localhost:8080/videos/getSearchVideo",
+          this.searchQuery.trim(),
+          {
+            headers: {
+              "Content-Type": "text/plain",
+            },
+          }
+        );
+        this.videos = response.data;
+      } catch (error) {
+        console.error("Error searching videos:", error.message);
       }
     },
     filterVideos(category) {
-      this.selectedCategory = category; // 선택된 카테고리를 업데이트
+      this.selectedCategory = category;
     },
     addVideoView(video) {
       return axios
@@ -104,7 +121,7 @@ export default {
           return response.data;
         })
         .catch((error) => {
-          console.error("Error in addVideoView:", error);
+          console.error("Error in addVideoView:", error.message);
           return video;
         });
     },
@@ -120,9 +137,7 @@ export default {
       return `https://img.youtube.com/vi/${videoId}/0.jpg`;
     },
     async goToVideo(video) {
-      console.log(video);
       video = await this.addVideoView(video);
-      console.log(video);
       this.$router.push({
         name: "VideoPage",
         query: {
@@ -133,12 +148,14 @@ export default {
         },
       });
     },
-    goMainPage() {
-      this.$router.push({ name: "Main" });
+    async goMainPage() {
+      this.searchQuery = ""; // 검색어 초기화
+      this.selectedCategory = "전체"; // 카테고리 초기화
+      await this.fetchVideos(); // 전체 비디오 다시 로드
     },
   },
   mounted() {
-    this.fetchVideos(); // 컴포넌트가 마운트되면 비디오 목록을 로드
+    this.fetchVideos();
   },
 };
 </script>

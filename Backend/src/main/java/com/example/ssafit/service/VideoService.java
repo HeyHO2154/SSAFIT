@@ -21,6 +21,9 @@ public class VideoService {
     public List<Video> getCategoryVideo(Video video) {
     	return videoMapper.getCategoryVideo(video);
     }
+    public List<Video> getSearchVideo(String string){
+    	return videoMapper.getSearchVideo(string);
+    }
     
     @Transactional
 	public Video addViews(Video video) {
