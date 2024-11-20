@@ -74,7 +74,7 @@ export default {
   methods: {
     getThumbnailUrl(videoUrl) {
       const videoId = videoUrl.split("v=")[1];
-      const ampersandPosition = videoId.indexOf("&1");
+      const ampersandPosition = videoId.indexOf("&");
       if (ampersandPosition !== -1) {
         return `https://img.youtube.com/vi/${videoId.substring(0, ampersandPosition)}/0.jpg`;
       }
