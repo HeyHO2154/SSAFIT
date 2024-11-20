@@ -40,7 +40,9 @@ public class VideoController {
     }
     @PostMapping("/getSearchVideo")
     public ResponseEntity<List<Video>> getSearchVideo(@RequestBody String searchString) {
+    	System.out.println(searchString);
         List<Video> videos = videoService.getSearchVideo(searchString);
+        System.out.println(videos);
         return ResponseEntity.ok(videos);
     }
 

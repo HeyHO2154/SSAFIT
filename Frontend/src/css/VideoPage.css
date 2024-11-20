@@ -1,54 +1,44 @@
-.youtube-main {
-  font-family: Arial, sans-serif;
-  color: #333;
-}
-
-.youtube-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 20px;
-  background-color: #f9f9f9;
-  border-bottom: 1px solid #ddd;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.youtube-header .logo img {
-  height: 40px;
-}
-
-.youtube-header .search-bar {
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-  margin: 0 20px;
-}
-
-.youtube-header .search-bar input {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 3px 0 0 3px;
-  box-sizing: border-box;
-}
-
-.youtube-header .search-bar button {
-  padding: 8px;
-  background-color: #ddd;
-  border: 1px solid #ddd;
-  border-radius: 0 3px 3px 0;
-  cursor: pointer;
-}
-
-.youtube-header .user-icons button {
-  margin-left: 10px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-}
+.video-page {
+    font-family: Arial, sans-serif;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .video-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .video-header .logo img {
+    cursor: pointer;
+    height: 40px;
+  }
+  
+  .video-header .search-bar {
+    display: flex;
+    align-items: center;
+  }
+  
+  .video-header .search-bar input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 3px 0 0 3px;
+    width: 300px;
+  }
+  
+  .video-header .search-bar button {
+    padding: 8px;
+    border: none;
+    background-color: #0073e6;
+    color: #fff;
+    border-radius: 0 3px 3px 0;
+    cursor: pointer;
+  }
   
   .main-container {
     display: flex;
@@ -57,12 +47,12 @@
   
   .video-content {
     flex: 2;
-    margin-right: 20px;
+    margin-right: 0px;
   }
   
   .video-player iframe,
   .video-player video {
-    width: 100%;
+    width: 90%;
     height: 650px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -85,6 +75,7 @@
   
   .related-videos {
     flex: 0.8;
+    margin-left: 0; /* 왼쪽 여백 제거 */
   }
   
   .related-videos h2 {
@@ -107,11 +98,13 @@
   }
   
   .related-videos img {
-    width: 180px;
-    height: 120px;
+    width: 195px;
+    height: 110px;
     border-radius: 8px;
     margin-right: 10px;
+    object-fit: cover; /* 이미지의 검은 여백을 제거 */
   }
+  
   
   .related-videos span {
     font-size: 16px;

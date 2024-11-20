@@ -5,8 +5,13 @@
         <img src="@/assets/youtube-logo.png" alt="Logo" />
       </div>
       <div class="search-bar">
-        <input type="text" placeholder="Search" />
-        <button>🔍</button>
+        <input
+          type="text"
+          placeholder="검색"
+          v-model="searchQuery"
+          @keypress.enter="searchVideos"
+        />
+        <button @click="searchVideos">🔍</button>
       </div>
       <div class="user-icons">
         <button>🔔</button>
@@ -34,7 +39,9 @@
         <!-- 영상 제목 및 설명 -->
         <div class="video-info">
           <h1 class="video-title">{{ videoId }}</h1>
-          <p class="video-description">카테고리 : {{ category }} - 조회수 : {{ views }}</p>
+          <p class="video-description">
+            카테고리 : {{ category }} - 조회수 : {{ views }}
+          </p>
         </div>
       </main>
       <aside class="related-videos">
@@ -80,6 +87,7 @@ export default {
   data() {
     return {
       relatedVideos: [], // 관련 영상 데이터를 저장
+      searchQuery: "", // 검색어 입력 데이터
     };
   },
   computed: {
@@ -121,11 +129,19 @@ export default {
         console.error("Error fetching related videos:", error);
       }
     },
+    searchVideos() {
+      if (this.searchQuery.trim()) {
+        this.$router.push({ name: "SearchPage", query: { q: this.searchQuery } });
+      }
+    },
     getThumbnailUrl(videoUrl) {
       const videoId = videoUrl.split("v=")[1];
       const ampersandPosition = videoId ? videoId.indexOf("&") : -1;
       if (ampersandPosition !== -1) {
-        return `https://img.youtube.com/vi/${videoId.substring(0, ampersandPosition)}/0.jpg`;
+        return `https://img.youtube.com/vi/${videoId.substring(
+          0,
+          ampersandPosition
+        )}/0.jpg`;
       }
       return `https://img.youtube.com/vi/${videoId}/0.jpg`;
     },

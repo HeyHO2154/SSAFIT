@@ -1,11 +1,16 @@
 <template>
   <div class="youtube-main">
     <header class="youtube-header">
-      <div class="logo" @click="goMainPage">
+      <div class="logo" @click="goMainPage()">
         <img src="@/assets/youtube-logo.png" alt="Logo" />
       </div>
       <div class="search-bar">
-        <input type="text" placeholder="검색" v-model="searchQuery" @keyup.enter="searchVideos"/>
+        <input
+          type="text"
+          placeholder="검색"
+          v-model="searchQuery"
+          @keypress.enter="searchVideos"
+        />
         <button @click="searchVideos">🔍</button>
       </div>
       <div class="user-icons">
@@ -13,14 +18,13 @@
         <button>🧑</button>
       </div>
     </header>
-
     <div class="youtube-content">
       <aside class="sidebar">
         <ul>
-          <li>홈</li>
-          <li>인기 급상승</li>
-          <li>구독</li>
-          <li>내 동영상</li>
+          <li @click="filterVideos('전체')">홈</li>
+          <li @click="filterVideos('인기')">인기 급상승</li>
+          <li @click="filterVideos('구독')">구독</li>
+          <li @click="filterVideos('내 동영상')">내 동영상</li>
         </ul>
       </aside>
       <main class="main-content">
@@ -60,16 +64,17 @@ export default {
   name: "MainPage",
   data() {
     return {
-      videos: [],
-      categories: ["전체", "브베", "먹방", "아이돌", "음악"],
-      selectedCategory: "전체",
-      searchQuery: "",
+      videos: [], // 모든 비디오 데이터를 저장
+      categories: ["전체", "브베", "먹방", "아이돌", "음악"], // 카테고리 목록
+      selectedCategory: "전체", // 현재 선택된 카테고리
+      searchQuery: "", // 검색어
     };
   },
   computed: {
+    // 선택된 카테고리에 따라 비디오를 필터링
     filteredVideos() {
       if (this.selectedCategory === "전체") {
-        return this.videos;
+        return this.videos; // 전체 카테고리일 경우 모든 비디오 반환
       }
       return this.videos.filter(
         (video) => video.category === this.selectedCategory
@@ -82,48 +87,25 @@ export default {
         const response = await axios.post(
           "http://localhost:8080/videos/getAllVideos"
         );
-        this.videos = response.data.sort(() => Math.random() - 0.5);
+        this.videos = response.data.sort(() => Math.random() - 0.5); // 데이터를 랜덤으로 섞어서 저장
       } catch (error) {
-        console.error("Error fetching videos:", error.message);
-      }
-    },
-    async searchVideos() {
-      try {
-        if (!this.searchQuery.trim()) {
-          this.fetchVideos();
-          return;
-        }
-        const response = await axios.post(
-          "http://localhost:8080/videos/getSearchVideo",
-          this.searchQuery.trim(),
-          {
-            headers: {
-              "Content-Type": "text/plain",
-            },
-          }
-        );
-        this.videos = response.data;
-      } catch (error) {
-        console.error("Error searching videos:", error.message);
+        console.error("Error fetching videos:", error);
       }
     },
     filterVideos(category) {
-      this.selectedCategory = category;
+      this.selectedCategory = category; // 선택된 카테고리를 업데이트
     },
-    addVideoView(video) {
-      return axios
-        .post("http://localhost:8080/videos/addViews", {
-          videoId: video.videoId,
-          views: 1,
-        })
-        .then((response) => {
-          console.log("Response from addViews:", response.data);
-          return response.data;
-        })
-        .catch((error) => {
-          console.error("Error in addVideoView:", error.message);
-          return video;
-        });
+    async addVideoView(video) {
+      try {
+        const response = await axios.post(
+          "http://localhost:8080/videos/addViews",
+          { videoId: video.videoId, views: 1 }
+        );
+        return response.data;
+      } catch (error) {
+        console.error("Error in addVideoView:", error);
+        return video;
+      }
     },
     getThumbnailUrl(videoUrl) {
       const videoId = videoUrl.split("v=")[1];
@@ -148,14 +130,17 @@ export default {
         },
       });
     },
-    async goMainPage() {
-      this.searchQuery = ""; // 검색어 초기화
-      this.selectedCategory = "전체"; // 카테고리 초기화
-      await this.fetchVideos(); // 전체 비디오 다시 로드
+    goMainPage() {
+      this.$router.push({ name: "Main" });
+    },
+    searchVideos() {
+      if (this.searchQuery.trim()) {
+        this.$router.push({ name: "SearchPage", query: { q: this.searchQuery } });
+      }
     },
   },
   mounted() {
-    this.fetchVideos();
+    this.fetchVideos(); // 컴포넌트가 마운트되면 비디오 목록을 로드
   },
 };
 </script>

@@ -1,0 +1,108 @@
+.youtube-main {
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+  .youtube-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .youtube-content {
+    display: flex;
+    height: calc(100vh - 60px);
+  }
+  
+  .sidebar {
+    width: 200px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-right: 1px solid #ddd;
+    box-sizing: border-box;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar ul li {
+    margin: 10px 0;
+    padding: 5px 0;
+    cursor: pointer;
+  }
+  
+  .sidebar ul li:hover {
+    color: #0073e6;
+    font-weight: bold;
+  }
+  
+  .main-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  .video-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .video-item {
+    display: flex; /* Flexbox로 이미지와 텍스트를 가로로 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    gap: 15px; /* 이미지와 텍스트 간 간격 */
+    border-bottom: 0px solid #ddd; /* 구분선 제거 */
+    padding: 20px 0; /* 상하 여백을 추가하여 세로 크기 증가 */
+    min-height: 220px; /* 세로 크기 최소값 지정 */
+  }
+  
+  .thumbnail {
+    width: 480px; /* 썸네일 너비 */
+    height: 270px; /* 썸네일 높이 */
+    object-fit: cover; /* 검은 여백 제거 */
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .video-details {
+    cursor: pointer;
+    flex-grow: 1; /* 오른쪽 텍스트가 가로 공간을 채우도록 설정 */
+    display: flex;
+    flex-direction: column; /* 텍스트를 세로로 배치 */
+  }
+  
+  .video-title {
+    font-size: 18px;
+    margin: 5px 0;
+    font-weight: bold;
+    color: #222;
+  }
+  
+  .video-info {
+    font-size: 14px;
+    color: #555;
+    margin: 3px 0;
+  }
+  
+  .channel-name {
+    font-size: 14px;
+    font-weight: bold;
+    color: #666;
+  }
+  
+  .video-description {
+    font-size: 14px;
+    color: #777;
+    margin-top: 8px;
+  }
+  
