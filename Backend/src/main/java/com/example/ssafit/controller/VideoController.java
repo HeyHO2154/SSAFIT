@@ -17,7 +17,7 @@ import com.example.ssafit.model.Video;
 import com.example.ssafit.service.CommentService;
 import com.example.ssafit.service.VideoService;
 
-@CrossOrigin(origins = "http://70.12.50.104:3000") // 프론트엔드 포트를 지정	
+@CrossOrigin(origins = "http://localhost:3000") // 프론트엔드 포트를 지정	
 @RestController
 @RequestMapping("/videos")
 public class VideoController {
