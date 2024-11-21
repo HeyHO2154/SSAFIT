@@ -65,7 +65,7 @@ export default {
       return `https://img.youtube.com/vi/${videoId}/0.jpg`;
     },
     async goToVideo(video) {
-      video = await this.addVideoView(video);
+        video = await this.addVideoView(video);
       this.$router.push({
         name: "VideoPage",
         query: {
