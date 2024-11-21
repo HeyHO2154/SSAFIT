@@ -60,8 +60,8 @@ export default {
     color: #4B89DC;
     padding-left: 5%;
     padding-right: 5%;
-    padding-top: 1.8%;
-    padding-bottom: 1.8%;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
     display: flex;
     /* justify-content: space-between; */
     align-items: center;
