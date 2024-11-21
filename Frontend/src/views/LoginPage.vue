@@ -5,6 +5,7 @@
       <input type="text" placeholder="Username" v-model="username" />
       <input type="password" placeholder="Password" v-model="password" />
       <button type="submit">로그인</button>
+      <p v-if="errorMessage" style="color: red;">{{ errorMessage }}</p>
       <button @click="goRegisterPage">회원가입</button>
     </form>
   </div>
@@ -32,7 +33,7 @@ export default {
 
     // POST 요청
     const response = await axios.post(
-      "http://localhost:8080/users/login",
+      "http://70.12.50.104:8080/users/login",
       {
         userId: user.userId,
         userPw: user.userPw,

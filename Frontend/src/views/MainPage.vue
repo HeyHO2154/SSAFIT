@@ -64,13 +64,14 @@ import axios from "axios";
 export default {
   name: "MainPage",
   data() {
-    return {
-      videos: [], // 모든 비디오 데이터를 저장
-      categories: ["전체", "등", "어깨", "팔", "하체", "복부", "가슴"], // 카테고리 목록
-      selectedCategory: "전체", // 현재 선택된 카테고리
-      searchQuery: "", // 검색어
-    };
-  },
+  return {
+    videos: [],
+    categories: ["전체", "등", "어깨", "팔", "하체", "복부", "가슴"],
+    selectedCategory: "전체",
+    searchQuery: "",
+    isVideosLoaded: false, // 데이터를 불러왔는지 확인하는 플래그
+  };
+},
   computed: {
     // 선택된 카테고리에 따라 비디오를 필터링
     filteredVideos() {
@@ -84,22 +85,24 @@ export default {
   },
   methods: {
     async fetchVideos() {
-      try {
-        const response = await axios.post(
-          "http://localhost:8080/videos/getAllVideos"
-        );
-        this.videos = response.data.sort(() => Math.random() - 0.5); // 데이터를 랜덤으로 섞어서 저장
-      } catch (error) {
-        console.error("Error fetching videos:", error);
-      }
-    },
+    if (this.isVideosLoaded) return; // 이미 로드된 경우 중복 호출 방지
+    try {
+      const response = await axios.post(
+        "http://70.12.50.104:8080/videos/getAllVideos"
+      );
+      this.videos = response.data.sort(() => Math.random() - 0.5);
+      this.isVideosLoaded = true; // 로드 완료 상태로 변경
+    } catch (error) {
+      console.error("Error fetching videos:", error);
+    }
+  },
     filterVideos(category) {
       this.selectedCategory = category; // 선택된 카테고리를 업데이트
     },
     async addVideoView(video) {
       try {
         const response = await axios.post(
-          "http://localhost:8080/videos/addViews",
+          "http://70.12.50.104:8080/videos/addViews",
           { videoId: video.videoId, views: 1 }
         );
         return response.data;
@@ -132,9 +135,11 @@ export default {
       });
     },
     goMainPage() {
-      this.fetchVideos(); // 컴포넌트가 마운트되면 비디오 목록을 로드
-      this.$router.push({ name: "Main" });
-    },
+    if (!this.isVideosLoaded) {
+      this.fetchVideos(); // 비디오가 로드되지 않았을 때만 호출
+    }
+    this.$router.push({ name: "Main" });
+  },
     goLoginPage() {
       this.$router.push({ name: "Login" });
     },

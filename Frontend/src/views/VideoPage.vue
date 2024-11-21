@@ -119,7 +119,7 @@ export default {
 
         // 백엔드 API 호출
         const response = await axios.post(
-          "http://localhost:8080/videos/getCategoryVideo",
+          "http://70.12.50.104:8080/videos/getCategoryVideo",
           videoData
         );
 
@@ -163,7 +163,7 @@ export default {
       try {
         // 백엔드 API를 호출하여 조회수 증가
         const response = await axios.post(
-          "http://localhost:8080/videos/addView",
+          "http://70.12.50.104:8080/videos/addView",
           video
         );
         return response.data;
