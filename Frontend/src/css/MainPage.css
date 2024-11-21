@@ -1,17 +1,25 @@
+@font-face {
+  font-family: 'SBAggroB';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* 기본 스타일 */
 body, html {
   margin: 0;
   padding: 0;
   overflow-x: hidden; /* 가로 스크롤 방지 */
   overflow-y: auto; /* 세로 스크롤은 브라우저 전체에서만 */
+  font-family:SBAggroB, sans-serif;
 }
 
-.youtube-main {
+/* .youtube-main {
   font-family: Arial, sans-serif;
   color: #333;
   margin: 0;
   padding: 0;
-}
+} */
 
 /* 헤더 스타일 */
 .youtube-header {

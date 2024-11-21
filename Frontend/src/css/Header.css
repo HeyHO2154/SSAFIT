@@ -1,3 +1,11 @@
+
+@font-face {
+  font-family: 'SBAggroM';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff') format('woff');
+  font-weight: 300;
+  /* font-style: normal; */
+}
+
 .header {
     background-color: #333;
     color: #fff;
@@ -9,6 +17,7 @@
     /* justify-content: space-between; */
     align-items: center;
     height: 2px;
+    font-family:SBAggroM;
   }
   
   nav{
@@ -32,6 +41,7 @@
     cursor: pointer;
     margin-left: auto;
     padding: 0;
+    font-size: 13px;
   }
   
   a {
@@ -43,3 +53,6 @@
     color: #aaa;
   }
   
+  body{
+    
+  }

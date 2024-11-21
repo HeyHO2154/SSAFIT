@@ -52,6 +52,7 @@ export default {
 
       if (response.data) {
         // 회원가입 성공 시 로그인 페이지로 이동
+        // 회원가입 성공 팝업창
         this.$router.push({ name: "Login" });
       } else {
         // 중복된 아이디 에러 메시지 표시
