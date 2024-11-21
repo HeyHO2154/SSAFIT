@@ -32,79 +32,131 @@
     text-align: center;
   } */
   
+  /* 전체 로그인 폼 */
   .login-form {
     flex: 0 0 35%; /* 로그인 폼은 화면의 75% 차지 */
     background-color: #ffffff;
-    padding: 2rem;
+    padding: 3rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
+    /* box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1); */
     font-family: SBAggroM;
+    font-size: 1em;
+    color: #aab2bd;
+
   }
 
+  /* .login-form .login{
+    margin: 1em;
+  } */
+
+  /* 로그인 폼 전체 텍스트 */
   .login-form .login-text{
-    font-family: SBAggroB;
+    /* font-family: SBAggroM; */
+    font-size: 0.5em;
+    /* margin-bottom: 1em; */
+    /* text-align: left; */
+  }
+  
+  /* 로그인 */
+  .login-form h2 {   
+      font-family: SBAggroM;
+      margin-bottom: 1.5rem;
+      color: #1B1B1B;
+      font-size: 23px;
   }
 
-  .login-container {
-    display: flex;
-    flex-direction: row; /* 가로 배치 */
-    height: calc(100vh - 80px); /* 헤더 높이를 제외한 전체 화면 높이 */
-  }
-  
-  .login-illust {
-    flex: 0 0 65%;
-    background-color: #e0f7fa; /* 예시 배경 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .illustration img {
-    max-width: 80%;
-    height: auto;
-  }
-  
-  
-  .login-form h2 {
-    font-family: SBAggroB;
-    margin-bottom: 1rem;
+  /* 박스 안 아이디 비밀번호 */
+  .login-form #userID{
+    font-family: SBAggroM;
     color: #1B1B1B;
   }
-  
-  .login-form form {
-    width: 100%;
-    max-width: 300px;
+  .login-form #password{
+    font-family: SBAggroM;
+    color: #1B1B1B;
   }
-  
-  .login-form label {
-    display: block;
-    margin: 0.5rem 0 0.2rem;
-  }
-  
-  .login-form input {
-    width: 100%;
-    padding: 0.8rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .login-form button {
-    width: 100%;
-    padding: 0.8rem;
-    background-color: #4B89DC;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-  
-  .login-form button:hover {
-    background-color: #3d78c5;
-  }
-  
-  
+
+
+
+
+    
+    .login-form form {
+        width: 100%;
+        max-width: 300px;
+        
+    }
+    
+    .login-form label {
+        display: block;
+        margin: 3px;
+    }
+    
+    .login-form input {
+        width: 100%;
+        height: 40px;
+        padding: 0.8rem;
+        margin-bottom: 0.8em;
+        border: 1px solid #4B89DC;
+        border-radius: 15px;
+        
+    }
+    
+    /* 회원가입 있는 p태그 */
+    .login-form p {
+        /* display: flex;
+        justify-content: space-between;
+        align-items: center;  세로 정렬 */
+        font-size: 10px;
+        text-align: right;
+    }
+
+      /* 회원가입 글씨 */
+     .login-form .register{
+        color: #4B89DC;
+        cursor: pointer;
+    }
+
+    /* 로그인 버튼 */
+    .login-form button {
+        width: 100%;
+        padding: 0.8rem;
+        background-color: #4B89DC;
+        color: #fff;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-family: SBAggroM;
+        font-size: 13px;
+    }
+    
+    .login-form button:hover {
+        background-color: #3d78c5;
+
+    }
+    
+   
+    
+
+
+    /* 일러스트 자리 */
+    .login-container {
+      display: flex;
+      /* flex-direction: row; */
+      height: calc(100vh - 80px);
+    }
+    
+    .login-illust {
+      flex: 0 0 65%;
+      background-color: #e0f7fa; /* 예시 배경 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+     /* .illustration img {
+      max-width: 80%;
+      height: auto;
+    } */

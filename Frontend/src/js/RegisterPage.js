@@ -48,7 +48,11 @@ export default {
       console.error("Error in handleRegister:", error);
       this.errorMessage = "서버 요청 중 오류가 발생했습니다.";
     }
-  },
+    },
+    
+    goLoginPage() {
+      this.$router.push({ name: "Login" });
+    },
 },
 
 

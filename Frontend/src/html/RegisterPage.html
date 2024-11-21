@@ -1,10 +1,27 @@
 <div>
-    <h1>Register Page</h1>
-    <form @submit.prevent="handleRegister">
-      <input type="text" placeholder="아이디" v-model="userId" />
-      <input type="password" placeholder="비밀번호" v-model="userPw" />
-      <input type="text" placeholder="닉네임" v-model="nickname" />
-      <button type="submit">회원가입</button>
-    </form>
-    <p v-if="errorMessage" style="color: red;">{{ errorMessage }}</p>
-  </div>
+  <main class="login-container">
+      <div class="login-illust">
+          <img src="" alt="일러스트" />
+      </div>
+
+      <div class="login-form">
+          <h2 class="login">회원가입</h2>
+          <form @submit.prevent="handleRegister">
+              <label class="login-text" for="userID">아이디</label>
+              <input type="text" id="userID" placeholder="아이디" v-model="userId" />
+              <label class="login-text" for="password">비밀번호</label>
+              <input type="password" id="password" placeholder="비밀번호" v-model="userPw" />
+              <label class="login-text" for="nickname">닉네임</label>
+              <input type="text" id="nickname" placeholder="닉네임" v-model="nickname" />
+
+          <p>이미 회원이라면
+             <span class="register2" @click="goLoginPage">로그인</span>
+          </p>
+        
+          <br>
+          <button type="submit">회원가입</button>
+          </form>
+          <p v-if="errorMessage" style="color: red;">{{ errorMessage }}</p>
+      </div>
+  </main>
+</div>

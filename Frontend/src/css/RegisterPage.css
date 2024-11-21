@@ -1,0 +1,19 @@
+   /* 로그인 글씨 */
+   .login-form .register2{
+    color: #8CC051;
+    cursor: pointer;
+}
+
+    /* 회원가입 글씨 */
+    .login-form .register{
+        color: #4B89DC;
+        cursor: pointer;
+    }
+
+/* 박스 안 닉네임 */
+.login-form #nickname{
+    font-family: SBAggroM;
+    color: #1B1B1B;
+  }
+
+  
