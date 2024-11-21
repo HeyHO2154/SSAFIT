@@ -5,6 +5,7 @@
       <input type="text" placeholder="Username" v-model="username" />
       <input type="password" placeholder="Password" v-model="password" />
       <button type="submit">로그인</button>
+      <p v-if="errorMessage" style="color: red;">{{ errorMessage }}</p>
       <button @click="goRegisterPage">회원가입</button>
     </form>
   </div>
