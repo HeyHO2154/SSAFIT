@@ -1,11 +1,11 @@
 <template>
   <header class="header">
     <nav>
-        <div class="logo" @click="goMainPage()">
+        <div class="logo" @click="goMainPage">
          <img src="@/assets/youtube-logo.png" alt="Logo" />
         </div>
       <ul class="HeaderUl">
-        <li @click="goMyPage">마이페이지</li>
+        <li @click="goMainPage">마이페이지</li>
         <li @click="goLoginPage">로그인</li>
         <li>햄버거</li>
       </ul>
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
     name: 'MainHeader',
     methods: {
@@ -22,11 +24,24 @@ export default {
       this.fetchVideos(); // 컴포넌트가 마운트되면 비디오 목록을 로드
       this.$router.push({ name: "Main" });
     },
-    goMyPage() {
-        this.$router.push({ name: "MyPage" });
-    },
     goLoginPage() {
       this.$router.push({ name: "Login" });
+    },
+      async fetchVideos() {
+          const user = JSON.parse(sessionStorage.getItem("user"));
+      if (user) {
+        console.log("Logged in user:", user);
+      } else {
+        this.$router.push({ name: "Login" }); // 로그인이 안 되어 있으면 로그인 페이지로 이동
+      }
+      try {
+        const response = await axios.post(
+          "http://localhost:8080/videos/getAllVideos"
+        );
+        this.videos = response.data.sort(() => Math.random() - 0.5); // 데이터를 랜덤으로 섞어서 저장
+      } catch (error) {
+        console.error("Error fetching videos:", error);
+      }
     },
   },
 };
