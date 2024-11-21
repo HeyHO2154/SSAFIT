@@ -9,11 +9,14 @@ CREATE TABLE users (
     nickname VARCHAR(255) NOT NULL
 );
 
+SELECT * FROM users;
+
 CREATE TABLE videos (
     videoId VARCHAR(255) NOT NULL PRIMARY KEY,
     category VARCHAR(255) NOT NULL,
     url VARCHAR(255) NOT NULL,
-    views int default 0
+    views int default 0,
+    difficulty int default 0
 );
 
 UPDATE videos SET views = videos.views+1 WHERE videoId = "브베뮤직비디오 2 - 매일 같은 하루";
