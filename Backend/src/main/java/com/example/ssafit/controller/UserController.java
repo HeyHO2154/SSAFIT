@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.ssafit.model.User;
 import com.example.ssafit.service.UserService;
 
-@CrossOrigin(origins = "http://70.12.50.104:3000") 
+@CrossOrigin(origins = "http://http://70.12.50.104/:3000") 
 @RestController
 @RequestMapping("/users")
 public class UserController {
