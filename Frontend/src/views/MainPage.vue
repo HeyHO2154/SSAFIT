@@ -1,6 +1,6 @@
 <template>
   <div class="youtube-main">
-    <header class="youtube-header">
+    <!-- <header class="youtube-header">
       <div class="logo" @click="goMainPage()">
         <img src="@/assets/youtube-logo.png" alt="Logo" />
       </div>
@@ -18,7 +18,8 @@
         <button @click="goLoginPage">🧑</button>
         <button @click="goLoginPage">로그인</button>
       </div>
-    </header>
+    </header> -->
+
     <div class="youtube-content">
       <aside class="sidebar">
         <ul>
