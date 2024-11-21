@@ -87,8 +87,8 @@ export default {
     color: #aaa;
   }
   
-  body{
+  /* body{
     
-  }
+  } */
 
 </style>
