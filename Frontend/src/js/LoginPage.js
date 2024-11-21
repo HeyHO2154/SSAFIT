@@ -13,10 +13,9 @@ export default {
   methods: {
     async handleLogin() {
   try {
-    // user 객체 생성
     const user = {
-      userId: this.username, // usernaddme과 매핑
-      userPw: this.password, // password와 매핑
+      userId: this.username,
+      userPw: this.password,
     };
 
     // POST 요청
@@ -33,8 +32,11 @@ export default {
       }
       );
       
-    if (response.data.userId === user.userId) {
-      this.$router.push({ name: "Main" });
+      if (response.data.userId === user.userId) {
+        // 사용자 정보를 localStorage에 저장
+        sessionStorage.setItem("user", JSON.stringify(response.data));
+
+        this.$router.push({ name: "Main" });
     } else {
       this.errorMessage = "로그인 실패";
     }

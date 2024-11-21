@@ -1,0 +1,38 @@
+<div class="youtube-main">
+    <div class="youtube-content">
+      <aside class="sidebar">
+        <ul>
+          <li @click="filterVideos('전체')">홈</li>
+          <li @click="filterVideos('인기')">인기 급상승</li>
+          <li @click="filterVideos('구독')">구독</li>
+          <li @click="filterVideos('내 동영상')">내 동영상</li>
+        </ul>
+      </aside>
+      <main class="main-content">
+        <div class="category-filter">
+          <button
+            v-for="category in categories"
+            :key="category"
+            :class="{ active: selectedCategory === category }"
+            @click="filterVideos(category)"
+          >
+            {{ category }}
+          </button>
+        </div>
+        <div class="video-grid">
+          <div
+            class="video-card"
+            v-for="video in filteredVideos"
+            :key="video.videoId"
+            @click="goToVideo(video)"
+          >
+            <img :src="getThumbnailUrl(video.url)" alt="Thumbnail" />
+            <div class="video-info">
+              <h3>{{ video.videoId }}</h3>
+              <p>조회수: {{ video.views }}</p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>

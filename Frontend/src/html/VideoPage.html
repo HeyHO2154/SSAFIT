@@ -1,0 +1,90 @@
+<div class="video-page">
+    <header class="youtube-header">
+      <div class="logo" @click="goMainPage()">
+        <img src="@/assets/youtube-logo.png" alt="Logo" />
+      </div>
+      <div class="search-bar">
+        <input
+          type="text"
+          placeholder="검색"
+          v-model="searchQuery"
+          @keypress.enter="searchVideos"
+        />
+        <button @click="searchVideos">🔍</button>
+      </div>
+      <div class="user-icons">
+        <button>🔔</button>
+        <button>🧑</button>
+      </div>
+    </header>
+    <div class="main-container">
+      <main class="video-content">
+        <!-- 영상 플레이어 -->
+        <div class="video-player">
+          <template v-if="videoUrl.includes('youtube.com')">
+            <iframe
+              :src="`${videoUrl.replace('watch?v=', 'embed/')}?autoplay=1&mute=1`"
+              frameborder="0"
+              allowfullscreen
+            ></iframe>
+          </template>
+          <template v-else>
+            <video controls autoplay muted>
+              <source :src="videoUrl" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </template>
+        </div>
+        <!-- 영상 제목 및 설명 -->
+        <div class="video-info">
+          <h1 class="video-title">{{ videoId }}</h1>
+          <p class="video-description">
+            카테고리 : {{ category }} - 조회수 : {{ views }}
+          </p>
+        </div>
+
+        <!-- 댓글 영역 -->
+<div class="comments-section">
+  <h2>댓글</h2>
+  
+  <!-- 댓글 입력 -->
+  <div class="comment-input">
+    <div class="input-container">
+      <input
+        type="text"
+        v-model="newComment.username"
+        placeholder="사용자명"
+      />
+      <input
+        type="text"
+        v-model="newComment.content"
+        placeholder="댓글을 입력하세요"
+      />
+    </div>
+    <button @click="addComment">댓글 추가</button>
+  </div>
+  
+  <!-- 댓글 목록 -->
+  <ul>
+    <li v-for="(comment, index) in comments" :key="index">
+      <strong>{{ comment.username }}</strong>: {{ comment.content }}
+    </li>
+  </ul>
+</div>
+
+      </main>
+      <aside class="related-videos">
+        <h2>관련 영상</h2>
+        <ul>
+          <li
+            v-for="relatedVideo in filteredRelatedVideos"
+            :key="relatedVideo.videoId"
+            @click="goToVideo(relatedVideo)"
+          >
+            <img :src="getThumbnailUrl(relatedVideo.url)" alt="Thumbnail" />
+            <span>{{ relatedVideo.videoId }}</span>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </div>

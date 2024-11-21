@@ -3,17 +3,13 @@ import { createRouter, createWebHistory } from 'vue-router';
 import MainPage from '../views/MainPage.vue';
 import LoginPage from '../views/LoginPage.vue';
 import RegisterPage from '../views/RegisterPage.vue';
-import SurveyPage from '../views/SurveyPage.vue';
 import VideoPage from '../views/VideoPage.vue';
-import MyPage from '../views/MyPage.vue';
-import CharacterCustomizePage from '../views/CharacterCustomizePage.vue';
 import SearchPage from '../views/SearchPage.vue'; // SearchPage 컴포넌트 추가
 
 const routes = [
   { path: '/', component: MainPage, name: 'Main' },
   { path: '/login', component: LoginPage, name: 'Login' },
   { path: '/register', component: RegisterPage, name: 'Register' },
-  { path: '/survey', component: SurveyPage, name: 'Survey' },
   {
     path: '/video',
     component: VideoPage,
@@ -25,8 +21,6 @@ const routes = [
       views: route.query.views || '',
     }),
   },
-  { path: '/mypage', component: MyPage, name: 'MyPage' },
-  { path: '/customize', component: CharacterCustomizePage, name: 'Customize' },
   { 
     path: '/search',  // SearchPage 라우트 추가
     component: SearchPage, 
