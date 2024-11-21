@@ -43,6 +43,36 @@
             카테고리 : {{ category }} - 조회수 : {{ views }}
           </p>
         </div>
+
+        <!-- 댓글 영역 -->
+<div class="comments-section">
+  <h2>댓글</h2>
+  
+  <!-- 댓글 입력 -->
+  <div class="comment-input">
+    <div class="input-container">
+      <input
+        type="text"
+        v-model="newComment.username"
+        placeholder="사용자명"
+      />
+      <input
+        type="text"
+        v-model="newComment.content"
+        placeholder="댓글을 입력하세요"
+      />
+    </div>
+    <button @click="addComment">댓글 추가</button>
+  </div>
+  
+  <!-- 댓글 목록 -->
+  <ul>
+    <li v-for="(comment, index) in comments" :key="index">
+      <strong>{{ comment.username }}</strong>: {{ comment.content }}
+    </li>
+  </ul>
+</div>
+
       </main>
       <aside class="related-videos">
         <h2>관련 영상</h2>
@@ -88,6 +118,17 @@ export default {
     return {
       relatedVideos: [], // 관련 영상 데이터를 저장
       searchQuery: "", // 검색어 입력 데이터
+
+comments: [
+      { username: "User1", content: "정말 좋은 영상이에요!" },
+      { username: "User2", content: "유익한 정보 감사합니다!" },
+      { username: "User3", content: "재미있게 보고 갑니다." },
+    ],
+    newComment: {
+      username: "",
+      content: "",
+      },
+    
     };
   },
   computed: {
@@ -104,10 +145,39 @@ export default {
       immediate: true,
       handler() {
         this.fetchRelatedVideos();
+        this.fetchComments(); // 댓글 로드
       },
     },
   },
   methods: {
+    async addComment() {
+    if (this.newComment.username.trim() && this.newComment.content.trim()) {
+      try {
+        const response = await axios.post(
+          `http://localhost:8080/videos/${this.videoId}/comments`,
+          { ...this.newComment }
+        );
+        this.comments.push(response.data); // 저장된 댓글 추가
+        this.newComment.username = "";
+        this.newComment.content = "";
+      } catch (error) {
+        console.error("Error adding comment:", error);
+        alert("댓글 저장 중 문제가 발생했습니다!");
+      }
+    } else {
+      alert("사용자명과 댓글 내용을 입력해주세요!");
+    }
+  },
+  async fetchComments() {
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/videos/${this.videoId}/comments`
+      );
+      this.comments = response.data;
+    } catch (error) {
+      console.error("Error fetching comments:", error);
+    }
+  },
     async fetchRelatedVideos() {
       try {
         const videoData = {
