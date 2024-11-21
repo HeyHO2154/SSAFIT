@@ -1,0 +1,22 @@
+<div>
+
+    <main class="login-container">
+      <div class="login-illust">
+        <img src="" alt="" />
+      </div>
+    </main>
+
+    <div class="login-form">
+      <h2>로그인</h2>
+    <form @submit.prevent="handleLogin">
+      <label for="username">Username</label>
+      <input type="text" id="userID" placeholder="아이디" v-model="username" />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="비밀번호" v-model="password" />
+      
+      <button type="submit">로그인</button>
+      <button @click="goRegisterPage">회원가입</button>
+    </form>
+  </div>
+</div>
