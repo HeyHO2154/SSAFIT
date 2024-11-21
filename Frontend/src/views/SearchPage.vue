@@ -64,7 +64,7 @@
       async searchVideos() {
         try {
           const response = await axios.post(
-            "http://70.12.50.104:8080/videos/getSearchVideo",
+            "http://localhost:8080/videos/getSearchVideo",
             this.searchQuery,
             {
               headers: {
