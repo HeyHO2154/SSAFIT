@@ -16,6 +16,7 @@
       <div class="user-icons">
         <button>🔔</button>
         <button @click="goLoginPage">🧑</button>
+        <button @click="goLoginPage">로그인</button>
       </div>
     </header>
     <div class="youtube-content">
