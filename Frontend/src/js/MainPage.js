@@ -41,18 +41,6 @@ export default {
     filterVideos(category) {
       this.selectedCategory = category; // 선택된 카테고리를 업데이트
     },
-    async addVideoView(video) {
-      try {
-        const response = await axios.post(
-          "http://localhost:8080/videos/addViews",
-          { videoId: video.videoId, views: 1 }
-        );
-        return response.data;
-      } catch (error) {
-        console.error("Error in addVideoView:", error);
-        return video;
-      }
-    },
     getThumbnailUrl(videoUrl) {
       const videoId = videoUrl.split("v=")[1];
       const ampersandPosition = videoId.indexOf("&");
@@ -65,7 +53,6 @@ export default {
       return `https://img.youtube.com/vi/${videoId}/0.jpg`;
     },
     async goToVideo(video) {
-      video = await this.addVideoView(video);
       this.$router.push({
         name: "VideoPage",
         query: {

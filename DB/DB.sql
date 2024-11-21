@@ -9,8 +9,6 @@ CREATE TABLE users (
     nickname VARCHAR(255) NOT NULL
 );
 
-SELECT * FROM videos;
-
 CREATE TABLE videos (
     videoId VARCHAR(255) NOT NULL PRIMARY KEY,
     category VARCHAR(255) NOT NULL,
@@ -74,3 +72,5 @@ CREATE TABLE comments (
     contexts VARCHAR(255) NOT NULL,
     FOREIGN KEY (videoId) REFERENCES videos(videoId) ON DELETE CASCADE
 );
+
+SELECT * FROM videos;
