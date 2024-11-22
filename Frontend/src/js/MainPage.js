@@ -23,12 +23,12 @@ export default {
   },
   methods: {
     async fetchVideos() {
-          const user = JSON.parse(sessionStorage.getItem("user"));
-      if (user) {
-        console.log("Logged in user:", user);
-      } else {
-        this.$router.push({ name: "Login" }); // 로그인이 안 되어 있으면 로그인 페이지로 이동
-      }
+      //     const user = JSON.parse(sessionStorage.getItem("user"));
+      // if (user) {
+      //   console.log("Logged in user:", user);
+      // } else {
+      //   this.$router.push({ name: "Login" }); // 로그인이 안 되어 있으면 로그인 페이지로 이동
+      // }
       try {
         const response = await axios.post(
           "http://localhost:8080/videos/getAllVideos"
