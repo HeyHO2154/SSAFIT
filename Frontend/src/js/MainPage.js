@@ -4,6 +4,7 @@ export default {
   name: "MainPage",
   data() {
     return {
+      type: "어깨",
       videos: [], // 모든 비디오 데이터를 저장
       categories: ["전체", "등", "어깨", "팔", "하체", "복부", "가슴"], // 카테고리 목록
       selectedCategory: "전체", // 현재 선택된 카테고리
@@ -67,6 +68,24 @@ export default {
       }
       return `https://img.youtube.com/vi/${videoId}/0.jpg`;
     },
+    shoulder() {
+      this.type = "어깨";
+    },
+    arm() {
+      this.type = "팔";
+    },
+    chest() {
+      this.type = "가슴";
+    },
+    back() {
+      this.type = "등";
+    },
+    abdominal() {
+      this.type = "복부";
+    },
+    leg() {
+      this.type = "하체";
+    },
     async button1() {
       try {
         const response = await axios.post(
@@ -76,7 +95,7 @@ export default {
         let hsj = 0;
         //console.log(videos);
         for (let index = 0; index < videos.length; index++) {
-          if (videos[index].category == "어깨") {
+          if (videos[index].category == this.type) {
             //console.log(videos[index].category);
             hsj = index;
             break;
