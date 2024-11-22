@@ -67,6 +67,34 @@ export default {
       }
       return `https://img.youtube.com/vi/${videoId}/0.jpg`;
     },
+    async button1() {
+      try {
+        const response = await axios.post(
+          "http://localhost:8080/videos/getAllVideos"
+        );
+        let videos = response.data.sort(() => Math.random() - 0.5); // 데이터를 랜덤으로 섞어서 저장
+        let hsj = 0;
+        //console.log(videos);
+        for (let index = 0; index < videos.length; index++) {
+          if (videos[index].category == "어깨") {
+            //console.log(videos[index].category);
+            hsj = index;
+            break;
+          }
+        }
+        this.$router.push({
+          name: "VideoPage",
+          query: {
+            videoId: videos[hsj].videoId,
+            url: videos[hsj].url,
+            category: videos[hsj].category,
+            views: videos[hsj].views,
+          },
+        });
+      } catch (error) {
+        console.error("Error fetching videos:", error);
+      }
+    },
     async goToVideo(video) {
       this.$router.push({
         name: "VideoPage",
