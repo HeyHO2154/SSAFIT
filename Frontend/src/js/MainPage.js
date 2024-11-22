@@ -4,6 +4,8 @@ export default {
   name: "MainPage",
   data() {
     return {
+      username11: "", // 초기값 설정
+      isUserLoggedIn: false, // 사용자 로그인 상태
       type: "어깨",
       videos: [], // 모든 비디오 데이터를 저장
       categories: ["전체", "등", "어깨", "팔", "하체", "복부", "가슴"], // 카테고리 목록
@@ -31,7 +33,23 @@ export default {
       );
     },
   },
-
+  mounted() {
+    this.fetchVideos(); // 컴포넌트가 마운트되면 비디오 목록을 로드
+    const user = sessionStorage.getItem("user");
+    if (user) {
+      try {
+        const parsedUser = JSON.parse(user); // JSON 문자열 파싱
+        this.username11 = parsedUser.nickname; // nickname 값 설정
+        this.isUserLoggedIn = true; // 세션에 사용자 정보가 없는 경우
+      } catch (error) {
+        console.error("Failed to parse user data:", error);
+      }
+    } else {
+      console.error("No user found in sessionStorage.");
+      this.isUserLoggedIn = false; // 세션에 사용자 정보가 없는 경우
+    }
+    this.fetchVideos(); // 컴포넌트가 마운트되면 비디오 목록을 로드
+  },
   methods: {
     async fetchVideos() {
       //     const user = JSON.parse(sessionStorage.getItem("user"));
@@ -137,8 +155,5 @@ export default {
         this.$router.push({ name: "SearchPage", query: { q: this.searchQuery } });
       }
     },
-  },
-  mounted() {
-    this.fetchVideos(); // 컴포넌트가 마운트되면 비디오 목록을 로드
   },
 };

@@ -59,7 +59,8 @@
               <div class="avatar">
                   <img src="https://via.placeholder.com/96" alt="Profile Avatar" class="avatar-image">
               </div>
-              <h2 class="profile-name">닉네임</h2>
+              <h2 class="profile-name" v-if="isUserLoggedIn">{{ username11 }}</h2>
+              <h2 class="profile-name" v-else>로그인하세요</h2>
               <p class="profile-description">오늘부터 1일! 아자!</p>
               <div class="badge-container">
                   

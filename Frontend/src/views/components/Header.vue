@@ -41,6 +41,7 @@ export default {
       // 로그아웃 처리!
       sessionStorage.removeItem("user");
       this.isLoggedIn = false;
+      window.location.reload();
     },
     async fetchVideos() {
       const user = JSON.parse(sessionStorage.getItem("user"));
