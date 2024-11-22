@@ -1,172 +1,67 @@
-
-/* 기본 스타일 */
-body, html {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden; /* 가로 스크롤 방지 */
-  overflow-y: auto; /* 세로 스크롤은 브라우저 전체에서만 */
-
-}
-
-/* .youtube-main {
-  font-family: Arial, sans-serif;
-  color: #333;
-  margin: 0;
-  padding: 0;
-} */
-
-/* 헤더 스타일 */
-.youtube-header {
+.main-page {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 10px 20px;
-  background-color: #a4bedb;
-  border-bottom: 1px solid #ddd;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  margin: 20px;
+  gap: 20px;
 }
 
-.youtube-header .logo img {
+/* 비디오 구역 */
+.video-section {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+}
+.roadmap {
+  position: relative;
+}
+.roadmap img {
+  width: 100%;
+  height: auto;
+}
+.video-button {
+  position: absolute;
+  background-color: blue;
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
   cursor: pointer;
-  height: 90px;
+}
+.categories button {
+  margin: 5px;
+}
+.difficulty-nav span {
+  margin: 5px;
+  cursor: pointer;
 }
 
-.youtube-header .search-bar {
+/* 유저 구역 */
+.user-section {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  background-color: aqua;
+}
+.profile {
   display: flex;
   align-items: center;
-  flex-grow: 1;
-  margin: 0 20px;
 }
-
-.youtube-header .search-bar input {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 3px 0 0 3px;
-  box-sizing: border-box;
+.profile img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
-
-.youtube-header .search-bar button {
-  padding: 8px;
-  background-color: #ddd;
-  border: 1px solid #ddd;
-  border-radius: 0 3px 3px 0;
-  cursor: pointer;
-}
-
-.youtube-header .user-icons button {
-  margin-left: 10px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-}
-
-
-.category-filter {
+.stats {
   display: flex;
-  justify-content: left;
-  margin: 15px 0;
-  gap: 15px;
+  justify-content: space-between;
+  margin-top: 10px;
 }
-
-.category-filter button {
-  padding: 10px 20px;
-  border: 0px solid #dddddd48;
-  border-radius: 12px;
-  cursor: pointer;
-  background-color: #f3f3f3;
-  font-size: 14px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.category-filter button.active {
-  background-color: black;
-  color: white;
-}
-
-.category-filter button:hover {
-  background-color: #53535348;
-}
-
-.youtube-content {
-  display: flex;
-  height: calc(100vh - 60px); /* Adjust height based on header */
-}
-
-.sidebar {
-  width: 200px;
-  background-color: rgb(235, 242, 243);
+.lower-section {
+  margin-top: auto;
+  background-color: #f0f0f0;
   padding: 10px;
-  border-right: 1px solid #ddd;
-  box-sizing: border-box;
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar ul li {
-  margin: 10px 0;
-  padding: 5px 0;
-  cursor: pointer;
-}
-
-.sidebar ul li:hover {
-  color: #0073e6;
-  font-weight: bold;
-}
-
-/* 메인 콘텐츠 */
-.main-content {
-  flex-grow: 1;
-  padding: 20px;
-  overflow-y: visible; /* 자체 스크롤을 제거 */
-  background-color: #ffffff;
-}
-
-/* 비디오 그리드 */
-.video-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 카드 크기 조정 */
-  gap: 20px;
-  column-gap: 20px;
-  row-gap: 10px;
-}
-
-/* 비디오 카드 */
-.video-card {
-  position: relative;
-  width: 100%;
-  height: auto; /* 비율 유지를 위한 자동 높이 */
-  padding-top: 0;
-  overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border-radius: 8px;
-}
-
-.video-card img {
-  width: 100%;
-  height: 56%;
-  object-fit: cover;
-  cursor: pointer;
-}
-
-
-.video-info h3 {
-  font-size: 16px;
-  margin: 5px 0;
-  color: #333;
-  cursor: pointer;
-  cursor: pointer;
-}
-
-.video-info p {
-  font-size: 14px;
-  color: #777;
-  margin: 0;
+  text-align: center;
 }

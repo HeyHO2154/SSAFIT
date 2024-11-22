@@ -1,38 +1,38 @@
-<div class="youtube-main">
-    <div class="youtube-content">
-      <aside class="sidebar">
-        <ul>
-          <li @click="filterVideos('전체')">홈</li>
-          <li @click="filterVideos('인기')">인기 급상승</li>
-          <li @click="filterVideos('구독')">구독</li>
-          <li @click="filterVideos('내 동영상')">내 동영상</li>
-        </ul>
-      </aside>
-      <main class="main-content">
-        <div class="category-filter">
-          <button
-            v-for="category in categories"
-            :key="category"
-            :class="{ active: selectedCategory === category }"
-            @click="filterVideos(category)"
-          >
-            {{ category }}
-          </button>
-        </div>
-        <div class="video-grid">
-          <div
-            class="video-card"
-            v-for="video in filteredVideos"
-            :key="video.videoId"
-            @click="goToVideo(video)"
-          >
-            <img :src="getThumbnailUrl(video.url)" alt="Thumbnail" />
-            <div class="video-info">
-              <h3>{{ video.videoId }}</h3>
-              <p>조회수: {{ video.views }}</p>
-            </div>
-          </div>
-        </div>
-      </main>
+<div class="main-page">
+  <!-- 비디오 구역 -->
+  <div class="video-section">
+    <div class="roadmap">
+      <img src="" alt="Roadmap" />
+      <div class="video-button">Video 1</div>
+      <div class="video-button">Video 2</div>
+    </div>
+    <div class="categories">
+      <button>Shoulders</button>
+      <button>Arms</button>
+      <button>Chest</button>
+      <button>Legs</button>
+      <button>Back</button>
+    </div>
+    <div class="difficulty-nav">
+      <span>●</span>
+      <span>●</span>
+      <span>●</span>
     </div>
   </div>
+
+  <!-- 유저 구역 -->
+  <div class="user-section">
+    <div class="profile">
+      <img src="@/assets/youtube-logo.png" alt="Profile" />
+      <div>
+        <h3>User Name</h3>
+        <p>Welcome message here.</p>
+      </div>
+    </div>
+    <div class="stats">
+      <div>Followers: 10</div>
+      <div>Crew: Example Crew</div>
+    </div>
+    <div class="lower-section">Future Content Here</div>
+  </div>
+</div>
