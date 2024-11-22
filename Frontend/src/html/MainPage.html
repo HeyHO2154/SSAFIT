@@ -1,22 +1,40 @@
 <div class="main-page">
   <!-- 비디오 구역 -->
   <div class="video-section">
+    <!-- 로드맵 이미지 -->
     <div class="roadmap">
-      <img src="" alt="Roadmap" />
-      <div class="video-button">Video 1</div>
-      <div class="video-button">Video 2</div>
+      <div class="video-button1"></div>
+      <div class="video-button2"></div>
+      <div class="video-button3"></div>
+      <div class="video-button4"></div>
+      <div class="video-button5"></div>
+      <!-- O 누르는거에 따라 이미지 변경 -->
+      <img :src="currentImage" alt="Roadmap" />
     </div>
+
+    <!-- 비교하기 -->
+    <div>혼자</div>
+    <div>팔로우</div>
+    <div>크루</div>
+
+    <!-- 부위 -->
     <div class="categories">
-      <button>Shoulders</button>
-      <button>Arms</button>
-      <button>Chest</button>
-      <button>Legs</button>
-      <button>Back</button>
+      <button>어깨</button>
+      <button>팔</button>
+      <button>가슴</button>
+      <button>등</button>
+      <button>복부</button>
+      <button>하체</button>
     </div>
+    <!-- 이동 점 -->
     <div class="difficulty-nav">
-      <span>●</span>
-      <span>●</span>
-      <span>●</span>
+      <span 
+          v-for="(dot, index) in dots" 
+          :key="index" 
+          @click="changeBackground(index)" 
+          class="dot">
+          ●
+        </span>
     </div>
   </div>
 

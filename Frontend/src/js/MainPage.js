@@ -8,8 +8,17 @@ export default {
       categories: ["전체", "등", "어깨", "팔", "하체", "복부", "가슴"], // 카테고리 목록
       selectedCategory: "전체", // 현재 선택된 카테고리
       searchQuery: "", // 검색어
+
+      images: [
+        require('@/assets/1.png'),  // 첫 번째 이미지
+        require('@/assets/2.png'),  // 두 번째 이미지
+        require('@/assets/3.png')   // 세 번째 이미지
+      ],
+      currentImage: require('@/assets/1.png'),  // 기본 이미지
+      dots: [1, 2, 3],  // 점들 (배경 이미지를 바꿀 때 사용)
     };
   },
+
   computed: {
     // 선택된 카테고리에 따라 비디오를 필터링
     filteredVideos() {
@@ -21,6 +30,7 @@ export default {
       );
     },
   },
+
   methods: {
     async fetchVideos() {
       //     const user = JSON.parse(sessionStorage.getItem("user"));
@@ -38,6 +48,11 @@ export default {
         console.error("Error fetching videos:", error);
       }
     },
+    // 클릭한 점에 맞는 이미지로 배경 변
+    changeBackground(index) {
+      this.currentImage = this.images[index];
+    },
+
     filterVideos(category) {
       this.selectedCategory = category; // 선택된 카테고리를 업데이트
     },

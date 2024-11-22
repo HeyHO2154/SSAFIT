@@ -3,6 +3,11 @@
   justify-content: space-between;
   margin: 20px;
   gap: 20px;
+  flex-wrap: wrap; /* 화면 크기에 따라 자동으로 줄 바꿈 */
+  background-color: black;
+  padding-left: 4%;
+  padding-right: 4%;
+  padding-top: 2%;
 }
 
 /* 비디오 구역 */
@@ -10,58 +15,190 @@
   flex: 3;
   display: flex;
   flex-direction: column;
+  min-width: 300px; /* 최소 너비 설정 */
+  position: relative; /* 카테고리 버튼을 절대 위치로 설정할 공간 마련 */
 }
-.roadmap {
-  position: relative;
-}
-.roadmap img {
-  width: 100%;
-  height: auto;
-}
-.video-button {
+
+/* 비디오 버튼 기본 스타일 */
+.video-button1,
+.video-button2,
+.video-button3,
+.video-button4,
+.video-button5 {
   position: absolute;
   background-color: blue;
   color: white;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  width: 2.5vw;  /* 상대적인 크기 */
+  height: 2.5vw; /* 원형 버튼으로 유지 */
   text-align: center;
-  line-height: 30px;
+  line-height: 5vw;
   cursor: pointer;
+  z-index: 1; /* 버튼이 이미지 위에 오도록 설정 */
 }
+
+/* 버튼 위치 설정 */
+.video-button1 {
+  top: 10%;
+  left: 10%;
+}
+
+.video-button2 {
+  top: 20%;
+  left: 30%;
+}
+
+.video-button3 {
+  top: 40%;
+  left: 40%;
+}
+
+.video-button4 {
+  top: 60%;
+  left: 50%;
+}
+
+.video-button5 {
+  top: 80%;
+  left: 60%;
+}
+
+.roadmap {
+  position: relative; /* 버튼이 이미지 위에 배치될 수 있도록 설정 */
+  width: 100%;
+}
+
+.roadmap img {
+  width: 100%;
+  height: auto;
+  z-index: 0; /* 이미지가 버튼 아래로 가도록 설정 */
+}
+
+
+/* 카테고리 버튼을 비디오 구역 오른쪽에 배치 */
+.categories {
+  position: absolute;
+  /* top: 50%; */
+  right: 30px;
+  bottom: 60px;
+  transform: translateY(-50%); /* 중앙 정렬 */
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 10px; /* 버튼들 사이 간격 */
+}
+
 .categories button {
   margin: 5px;
 }
-.difficulty-nav span {
+
+/* 난이도 점 3개 가운데 정렬 */
+.difficulty-nav {
+  text-align: center;
+  margin-top: auto;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+
+
+.dot {
   margin: 5px;
   cursor: pointer;
 }
 
 /* 유저 구역 */
 .user-section {
-  flex: 2;
+  flex: 1;
   display: flex;
   flex-direction: column;
   background-color: aqua;
+  min-width: 300px; /* 최소 너비 설정 */
 }
+
 .profile {
   display: flex;
   align-items: center;
 }
+
 .profile img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   margin-right: 10px;
 }
+
 .stats {
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
 }
+
 .lower-section {
   margin-top: auto;
   background-color: #f0f0f0;
   padding: 10px;
   text-align: center;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .main-page {
+    flex-direction: column; /* 세로로 배치 */
+    gap: 10px;
+  }
+
+  .video-section,
+  .user-section {
+    flex: none;
+    width: 100%; /* 화면 너비를 100%로 설정 */
+  }
+
+  /* 버튼 크기와 위치를 화면에 맞게 조정 */
+  .video-button1,
+  .video-button2,
+  .video-button3,
+  .video-button4,
+  .video-button5 {
+    width: 5vw;  /* 화면 크기에 비례한 버튼 크기 */
+    height: 5vw;
+    line-height: 10vw; /* 글자가 버튼 중앙에 오도록 */
+  }
+
+  /* 버튼 위치도 비율에 맞게 조정 */
+  .video-button1 {
+    top: 15%;
+    left: 10%;
+  }
+
+  .video-button2 {
+    top: 25%;
+    left: 30%;
+  }
+
+  .video-button3 {
+    top: 45%;
+    left: 40%;
+  }
+
+  .video-button4 {
+    top: 65%;
+    left: 50%;
+  }
+
+  .video-button5 {
+    top: 85%;
+    left: 60%;
+  }
+
+  /* 카테고리 버튼 세로로 배치 */
+  .categories {
+    position: relative;
+    transform: none;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    right: 0px;
+    bottom: 0px;
+  }
 }
