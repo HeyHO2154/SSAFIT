@@ -1,15 +1,35 @@
+@font-face {
+  font-family: 'SBAggroM';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff') format('woff');
+  font-weight: 300;
+  /* font-style: normal; */
+}
+
+@font-face {
+  font-family: 'SBAggroB';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 .main-container {
   display: flex;
-  height: 100vh;
-  font-family: Arial, sans-serif;
+  height: 88vh;
+  /* font-family: Arial, sans-serif; */
+  font-family: SBAggroM;
+  padding: 1rem 5rem 1rem  5rem ;
+
 }
 
 .category-section {
-  width: 150px;
+  width: 200px;
   display: flex;
   flex-direction: column;
   padding: 20px;
-  background-color: #f0f0f0;
+  /* background-color: #f0f0f0; */
+  padding-top: 30rem;        /* 버튼을 하단으로 밀어냄 */
+  
 }
 
 .category-section button {
@@ -18,6 +38,17 @@
   border: none;
   background-color: #fff;
   cursor: pointer;
+  border-radius: 12px;
+  width: 5rem;
+  height: 2rem;
+  
+  align-self: flex-end;    /* 버튼을 오른쪽으로 정렬 */
+  font-family: SBAggroM;
+  font-size: 0.9em;
+  display: flex;               /* 플렉스 박스 설정 */
+  justify-content: center;     /* 수평 방향 중앙 정렬 */
+  align-items: center;
+  border: 1px solid #007bff;
 }
 
 .category-section button.active {
@@ -25,14 +56,18 @@
   color: white;
 }
 
+
+/* 로드맵 구역 */
 .main-roadmap-section {
   flex-grow: 1;
+  padding-bottom: 80px;
   padding: 20px;
+  
   position: relative;
 }
 
 .roadmap-container {
-  height: 300px;
+  height: 700px;
   position: relative;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -44,16 +79,18 @@
   left: 10px;
   font-size: 24px;
   font-weight: bold;
+  margin: 10px;
 }
 
 .circle-button {
-  width: 30px;
-  height: 30px;
+  width: 40px;  /* 버튼의 크기 */
+  height: 40px;
   border-radius: 50%;
   background-color: #ccc;
   position: absolute;
-  top: 50%;
+  top: 10%;  /* 버튼이 로드맵의 상단에서 10% 정도 내려오도록 설정 */
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .circle-button.active {
@@ -105,80 +142,173 @@
   background-color: #007bff;
 }
 
+
+/* 비교하기 구역 */
 .compare-section {
   position: absolute;
   bottom: 20px;
   right: 20px;
 }
 
+/* 비교하기 버튼 비활성화 */
 .compare-section button {
   padding: 10px 20px;
   background-color: #007bff;
   color: white;
   border: none;
   cursor: pointer;
+  border-radius: 12px;
+  font-family: SBAggroM;
 }
 
+/* 비교하기 버튼 활성화 */
 .compare-section button.active {
   background-color: #0056b3;
+  font-family: SBAggroM;
 }
 
 .compare-options {
-  margin-top: 10px;
+  display: flex;          /* Flexbox 설정으로 가로 정렬 */
+  flex-direction: row;    /* 가로(row) 방향으로 정렬 */
+  align-items: center;    /* 수직 중앙 정렬 */
+  gap: 10px;              /* 텍스트 간의 간격 설정 */
+  margin-top: 0;
+  margin-right: 10px;
+  position: absolute;
+  top: 50%;
+  right: 110%;
+  transform: translateY(-50%);
+  font-size: 0.9em;
 }
 
 .compare-options span {
-  margin-right: 10px;
+  margin-right: 0;    /* 불필요한 오른쪽 여백 제거 */
+  display: inline;
+  white-space: nowrap;
+}
+
+.upper-section{
+  border: 1px solid #4B89DC;  /* 테두리의 너비, 스타일, 색상 지정 */
+  padding: 20px;              /* 내부 여백 추가로 요소가 테두리와 떨어지도록 설정 */
+  border-radius: 10px; 
 }
 
 .user-section {
-  width: 300px;
+  position: relative;  /* 내부 요소들의 절대 위치 기준점 설정 */
+  width: 250px;
   padding: 20px;
-  background-color: #f9f9f9;
+  /* background-color: #f9f9f9; */
+  border-left: 1px solid #4B89DC;
+  min-width: 250px;  /* 사용자 구역의 최소 너비를 200px로 지정 */
 }
 
+/* 사용자 구역 상단 구역 */
 .upper-section {
   margin-bottom: 20px;
+  padding-bottom: 0px;
+  height: 300px;
+
 }
 
 .profile-section {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+
 }
 
+/* 프로필 이미지 */
 .profile-image {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 }
 
 .user-info {
   text-align: left;
+
 }
 
+.user-info p {
+  margin: 2px 0; /* 닉네임과 메시지 사이의 간격을 줄임 */
+  
+}
+
+.user-info span {
+  margin: 5px 0; /* 닉네임과 메시지 사이의 간격을 줄임 */
+  font-size: 20px;
+}
+
+/* 팔로우 크루 구역 */
 .follow-crew-section {
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
+  border-top: 1px solid #4B89DC;
+  padding: 12px 10px 10px 10px;
+  height: 55px;
+
 }
 
+.follow-crew-section .follow{
+  /* margin-right: 6rem; */
+  padding-right: 3.5rem;
+  border-right: 1px solid #4B89DC;
+}
+
+.follow-crew-section .crew{
+  margin-left: 1rem;
+
+}
+
+.follow-crew-section h3 {
+  font-size: 12px;       /* 글씨 크기 줄이기 */
+  color: #4B89DC;        /* 글씨 색 변경 */
+  margin-bottom: 10px;
+  margin: 5px 0;
+}
+
+.follow-crew-section p {
+  font-size: 18px;       /* 글씨 크기 줄이기 */
+  /* color: #4B89DC; */
+  margin: 5px 0;
+}
+
+
+/* 사용자 구역 하단 구역 */
 .lower-section {
   background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  transition: max-height 0.3s ease;
+  border: 1px solid #4B89DC;
+  /* transition: max-height 0.5s ease; */
   overflow: hidden;
+  border-radius: 10px; 
+  position: absolute;  /* 절대 위치로 설정 */
+  bottom: 0;           /* 부모 요소의 하단에 위치 */
+  left: 0;             /* 왼쪽 정렬 */
+  right: 0;            /* 오른쪽 정렬 */
+  max-height: 40px;    /* 기본 상태에서는 접혀 있도록 최대 높이 제한 */
+  margin: 20px;
+  padding: 15px;
 }
 
 .lower-section.collapsed {
-  max-height: 50px;
+  max-height: 200px;  /* 펼쳐졌을 때 최대 높이 설정 (필요에 따라 조정 가능) */
 }
+
+
 
 .notification-header {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
+  height: 20px;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #4B89DC;
+  position: relative; /* 삼각형 토글 버튼의 위치를 설정하기 위한 기준점 */
+}
+
+.notification-header p{
+  margin-right: 15px;
 }
 
 .notification-icon {
@@ -196,6 +326,10 @@
 }
 
 .toggle-notifications {
+  position: absolute;  /* 절대 위치 설정 */
+  right: 0;            /* 부모 요소의 오른쪽 끝에 배치 */
+  top: 25%;            /* 수직 중앙 정렬 */
+  transform: translateY(-50%); /* 정확히 중앙에 맞추기 위해 이동 */
   background: none;
   border: none;
   cursor: pointer;
@@ -204,7 +338,7 @@
 .notification-item {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .notification-icon {
@@ -215,11 +349,19 @@
   margin-right: 10px;
 }
 
+/*  */
 .notification-content {
-  flex-grow: 1;
+  display: flex;          /* Flexbox 사용 */
+  flex-direction: column; /* 요소들을 세로 방향으로 배치 */
+  flex-grow: 1;           /* 남은 공간을 차지하도록 설정 */
 }
 
+
 .notification-tag {
-  font-weight: bold;
-  margin-right: 5px;
+ font-size: 12px;       /* 글씨 크기 줄이기 */
+  color: #4B89DC;        /* 글씨 색 변경 */
+  margin-bottom: 10px 0px;
+  margin: 0px;
 }
+
+

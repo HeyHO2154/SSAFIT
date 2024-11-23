@@ -1,94 +1,149 @@
-<div class="main-container">
-  <!-- Left Section: Category -->
-  <div class="category-section">
-    <button 
-      v-for="category in categories" 
-      :key="category"
-      @click="selectCategory(category)"
-      :class="{ active: selectedCategory === category }"
-    >
-      {{ category }}
-    </button>
-  </div>
-
-  <!-- Middle Section: Main Roadmap -->
-  <div class="main-roadmap-section">
-    <div class="roadmap-container" :style="{ backgroundColor: roadmapBackgrounds[currentLevel - 1] }">
-      <div class="level-indicator">Lv.{{ currentLevel }}</div>
-      <div 
-        v-for="n in 6" 
-        :key="n" 
-        class="circle-button"
-        :class="{ active: n <= currentLevel, disabled: n > currentLevel + 1 }"
-        @mouseover="showVideoInfo(n)"
-        @mouseleave="hideVideoInfo"
-        @click="goToVideo(n)"
-      ></div>
-      <div class="character" :style="{ left: `${(currentLevel - 1) * 20}%` }"></div>
-      <div v-if="showingVideoInfo" class="video-info">
-        <p>{{ currentVideoInfo }}</p>
-        <button @click="goToVideo(currentVideoLevel)" :disabled="currentVideoLevel > currentLevel + 1">Go to video</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../css/MainPage.css">
+  <link rel="stylesheet" href="../css/header.css">
+  
+  <header class="header">
+    <nav>
+      <div class="logo" @click="goMainPage">
+        <img src="@/assets/youtube-logo.png" alt="Logo" />
       </div>
+      <ul class="HeaderUl">
+        <li @click="goMainPage">마이페이지</li>
+        <li v-if="isLoggedIn" @click="logout">로그아웃</li>
+        <li v-else @click="goLoginPage">로그인</li>
+        <li>햄버거</li>
+      </ul>
+    </nav>
+  </header>
+
+</head>
+<body>
+  
+  <div id="app">
+    <div class="main-container">
+    <!-- 카테고리 구역 -->
+    <div class="category-section">
+      <button 
+        v-for="category in categories" 
+        :key="category"
+        @click="selectCategory(category)"
+        :class="{ active: selectedCategory === category }"
+      >
+        {{ category }}
+      </button>
     </div>
-    <div class="roadmap-navigation">
-      <div 
-        v-for="n in 3" 
-        :key="n" 
-        class="nav-dot"
-        :class="{ active: currentLevel === n }"
-        @click="changeLevel(n)"
-      ></div>
+  
+    <!-- 메인 구역 : 로드맵 -->
+<div class="main-roadmap-section">
+  <div class="roadmap-container" :style="{ backgroundColor: roadmapBackgrounds[currentLevel - 1] }">
+    <div class="level-indicator">Lv.{{ currentLevel }}</div>
+    
+    <!-- circle-button 들을 추가로 표시 -->
+    <div 
+    v-for="n in 6" 
+    :key="n" 
+    class="circle-button"
+    :class="{ active: n <= currentLevel, disabled: n > currentLevel + 1 }"
+    :style="{ left: `${(n - 1) * 15}%`, top: '20%' }" 
+    @mouseover="showVideoInfo(n, $event)"
+    @mouseleave="hideVideoInfo"
+    @click="handleButtonClick(n)"
+  ></div>
+
+    <div class="character" :style="{ left: `${(currentLevel - 1) * 20}%` }"></div>
+    <div v-if="showingVideoInfo" class="video-info">
+      <p>{{ currentVideoInfo }}</p>
+      <button @click="goToVideo(currentVideoLevel)" :disabled="currentVideoLevel > currentLevel + 1">Go to video</button>
     </div>
+
     <div class="compare-section">
-      <button @click="toggleCompare" :class="{ active: showingCompare }">Compare</button>
+      <button @click="toggleCompare" :class="{ active: showingCompare }">비교하기</button>
       <div v-if="showingCompare" class="compare-options">
-        <span>Alone</span>
-        <span>Follow</span>
-        <span>Crew</span>
+        <span>혼자</span>
+        <span>팔로우</span>
+        <span>크루</span>
       </div>
     </div>
+
   </div>
 
-  <!-- Right Section: User -->
-  <div class="user-section">
-    <div class="upper-section">
-      <div class="profile-section">
-        <img src="/placeholder.svg?height=100&width=100" alt="User profile" class="profile-image">
-        <div class="user-info">
-          <p><strong>nickname</strong> MY</p>
-          <p>{{ userMessage }}</p>
+  <div class="roadmap-navigation">
+    <div 
+      v-for="n in 3" 
+      :key="n" 
+      class="nav-dot"
+      :class="{ active: currentLevel === n }"
+      @click="changeLevel(n)"
+    ></div>
+  </div>
+</div>
+  
+    <!-- 사용자 구역 -->
+    <div class="user-section">
+      <div class="upper-section">
+        <div class="profile-section">
+          <img src="../assets/프로필.PNG" alt="User profile" class="profile-image">
+          <div class="user-info">
+            <p><span>닉네임</span> MY</p>
+            <p>{{ userMessage }}</p>
+          </div>
         </div>
-      </div>
-      <div class="follow-crew-section">
-        <div class="follow">
-          <h3>Follow</h3>
-          <p>{{ followers }}</p>
-        </div>
-        <div class="crew">
-          <h3>Crew</h3>
-          <p>{{ crewName }}</p>
-        </div>
-      </div>
-    </div>
-    <div class="lower-section" :class="{ 'collapsed': notificationsCollapsed }">
-      <div class="notification-header">
-        <h3>Notification</h3>
-        <div class="notification-icon">
-          <span v-if="hasNewNotifications" class="new-notification"></span>
-        </div>
-        <button @click="toggleNotifications" class="toggle-notifications">
-          {{ notificationsCollapsed ? '▼' : '▲' }}
-        </button>
-      </div>
-      <div v-if="!notificationsCollapsed" class="notification-history">
-        <div v-for="notification in notifications" :key="notification.id" class="notification-item">
-          <div class="notification-icon"></div>
-          <div class="notification-content">
-            <span class="notification-tag">{{ notification.tag }}</span>
-            <span class="notification-user">{{ notification.user }}</span>
+        <div class="follow-crew-section">
+          <div class="follow">
+            <h3>팔로우</h3>
+            <p>{{ followers }}명</p>
+          </div>
+          <div class="crew">
+            <h3>크루</h3>
+            <p>{{ crewName }}</p>
           </div>
         </div>
       </div>
+
+
+      <div class="lower-section" :class="{ 'collapsed': !notificationsCollapsed }">
+        <div class="notification-header">
+          <p>알림</p>
+          <div class="notification-icon">
+            <span v-if="hasNewNotifications" class="new-notification"></span>
+          </div>
+          <button @click="toggleNotifications" class="toggle-notifications">
+            {{ notificationsCollapsed ? '▼' : '▲' }}
+          </button>
+        </div>
+        <div v-show="!notificationsCollapsed" class="notification-history">
+          <div v-for="notification in notifications" :key="notification.id" class="notification-item">
+            <div class="notification-icon"></div>
+            <div class="notification-content">
+              <span class="notification-tag">{{ notification.tag }}</span>
+              <span class="notification-user">{{ notification.user }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+
     </div>
   </div>
+
 </div>
+  <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="../js/MainPage.js"></script> -->
+
+  <!-- Vue.js CDN 불러오기 -->
+  <script src="https://unpkg.com/vue@3"></script>
+
+  <!-- JavaScript 파일 불러오기 -->
+  <!-- <script src="../js/MainPage.js"></script> -->
+  <script type="module" src="../js/MainPage.js"></script>
+
+  
+</body>
+</html>
+
