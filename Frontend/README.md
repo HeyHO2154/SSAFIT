@@ -1,4 +1,4 @@
-# frontend
+# ssafit
 
 ## Project setup
 ```

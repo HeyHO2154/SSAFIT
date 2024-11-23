@@ -13,6 +13,7 @@ public class UserService {
     private UserMapper userMapper;
 
     public boolean register(User user) {
+    	System.out.println(user);
     	if(userMapper.getUserById(user)==null) {
     		userMapper.registerUser(user);
     		return true;

@@ -1,151 +1,116 @@
-
 <div class="video-page">
-    <!-- <header class="youtube-header">
-      <div class="logo" @click="goMainPage()">
-        <img src="@/assets/youtube-logo.png" alt="Logo" />
-      </div>
-      <div class="search-bar">
-        <input
-          type="text"
-          placeholder="검색"
-          v-model="searchQuery"
-          @keypress.enter="searchVideos"
-        />
-        <button @click="searchVideos">🔍</button>
-      </div>
-      <div class="user-icons">
-        <button>🔔</button>
-        <button>🧑</button>
-      </div>
-    </header> -->
+  <!-- Header 주석 처리됨 -->
 
-    <div class="main-container">
-      <main class="video-content">
-        <!-- 영상 플레이어 -->
-        <div class="video-player">
-          <template v-if="videoUrl.includes('youtube.com')">
-            <iframe
-              :src="`${videoUrl.replace('watch?v=', 'embed/')}?autoplay=1&mute=1`"
-              frameborder="0"
-              allowfullscreen
-            ></iframe>
-          </template>
-          <template v-else>
-            <video controls autoplay muted>
-              <source :src="videoUrl" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </template>
-        </div>
-        <!-- 영상 제목 및 설명 -->
-        <div class="video-info">
-          <h1 class="video-title">{{ videoId }}</h1>
-          <p class="video-description">
-            카테고리 : {{ category }} - 조회수 : {{ views }}
-          </p>
-        </div>
+  <div class="main-container">
+    <main class="video-content">
+      <!-- 영상 플레이어 -->
+      <div class="video-player">
+        <template v-if="videoUrl.includes('youtube.com')">
+          <iframe
+            :src="`${videoUrl.replace('watch?v=', 'embed/')}?autoplay=1&mute=1`"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </template>
+        <template v-else>
+          <video controls autoplay muted>
+            <source :src="videoUrl" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </template>
+      </div>
 
-        <!-- 댓글 영역 -->
-<div class="comments-section">
-  <h2>댓글</h2>
-  
-  <!-- 댓글 입력 -->
-  <div class="comment-input">
-    <div class="input-container">
-      <!-- <input
-        type="text"
-        v-model="newComment.username"
-        placeholder="사용자명"
-      /> -->
-      <input
-        type="text"
-        v-model="newComment.content"
-        placeholder="댓글을 입력하세요"
-      />
-    </div>
-    <button @click="addComment">댓글 추가</button>
+      <!-- 영상 제목 및 설명 -->
+      <div class="video-info">
+        <h1 class="video-title">{{ videoId }}</h1>
+        <p class="video-description">
+          카테고리 : {{ category }} - 조회수 : {{ views }}
+        </p>
+      </div>
+
+      <!-- 댓글 영역 -->
+      <div class="comments-section">
+        <h2>댓글</h2>
+        <div class="comment-input">
+          <div class="input-container">
+            <input
+              type="text"
+              v-model="newComment.content"
+              placeholder="댓글을 입력하세요"
+            />
+          </div>
+          <button @click="addComment">댓글 추가</button>
+        </div>
+        <ul>
+          <li v-for="(comment, index) in comments" :key="index">
+            <strong>{{ comment.username }}</strong>: {{ comment.content }}
+          </li>
+        </ul>
+      </div>
+
+      <!-- Main content -->
+      <div class="main-content">
+        <div class="card main-card"></div>
+        <div class="content-section">
+          <div class="title-section">
+            <h2>제목입니다만 볼만하려나요??? 그럼 직접 하면가</h2>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="heart-icon"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+              ></path>
+            </svg>
+          </div>
+          <p class="category-info">카테고리: 기술 조회수: 1564</p>
+          <div class="comment-input">
+            <input
+              type="text"
+              placeholder="빨리 말해준 설마하면 세상쉬운"
+              class="input-field"
+            />
+            <button class="submit-button">작성하기</button>
+          </div>
+          <div class="comment">
+            <div class="avatar"></div>
+            <p>
+              이영상으로 운동하다가 죽을 뻔했어요 몸일주천했다 전시할 하아야너느
+              하고 틀어야겠어요
+            </p>
+          </div>
+          <div class="comment">
+            <div class="avatar"></div>
+            <p>
+              이영상으로 운동하다가 죽을 뻔했어요 몸일주천했다 전시할 하아야너느
+              하고 틀어야겠어요
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right sidebar -->
+      <div class="right-sidebar">
+        <div
+          v-for="(sidebarItem, index) in 6"
+          :key="index"
+          class="sidebar-card"
+        >
+          <div class="card-image"></div>
+          <div class="card-content">
+            <p class="card-title">어깨운동 이걸빨요</p>
+            <p class="card-subtitle">액호프라이즈 · 4개월</p>
+          </div>
+        </div>
+      </div>
+    </main>
   </div>
-  
-  <!-- 댓글 목록 -->
-  <ul>
-    <li v-for="(comment, index) in comments" :key="index">
-      <strong>{{ comment.username }}</strong>: {{ comment.content }}
-    </li>
-  </ul>
 </div>
-            <!-- Main content -->
-            <div class="main-content">
-                <div class="card main-card"></div>
-                <div class="content-section">
-                    <div class="title-section">
-                        <h2>제목입니다만 볼만하려나요??? 그럼 직접 하면가</h2>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="heart-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                        </svg>
-                    </div>
-                    <p class="category-info">카테고리: 기술 조회수: 1564</p>
-                    <div class="comment-input">
-                        <input type="text" placeholder="빨리 말해준 설마하면 세상쉬운" class="input-field">
-                        <button class="submit-button">작성하기</button>
-                    </div>
-                    <div class="comment">
-                        <div class="avatar"></div>
-                        <p>이영상으로 운동하다가 죽을 뻔했어요 몸일주천했다 전시할 하아야너느 하고 틀어야겠어요</p>
-                    </div>
-                    <div class="comment">
-                        <div class="avatar"></div>
-                        <p>이영상으로 운동하다가 죽을 뻔했어요 몸일주천했다 전시할 하아야너느 하고 틀어야겠어요</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right sidebar -->
-            <div class="right-sidebar">
-                <div class="sidebar-card">
-                    <div class="card-image"></div>
-                    <div class="card-content">
-                        <p class="card-title">어깨운동 이걸빨요</p>
-                        <p class="card-subtitle">액호프라이즈 · 4개월</p>
-                    </div>
-                </div>
-                <div class="sidebar-card">
-                    <div class="card-image"></div>
-                    <div class="card-content">
-                        <p class="card-title">어깨운동 이걸빨요</p>
-                        <p class="card-subtitle">액호프라이즈 · 4개월</p>
-                    </div>
-                </div>
-                <div class="sidebar-card">
-                    <div class="card-image"></div>
-                    <div class="card-content">
-                        <p class="card-title">어깨운동 이걸빨요</p>
-                        <p class="card-subtitle">액호프라이즈 · 4개월</p>
-                    </div>
-                </div>
-                <div class="sidebar-card">
-                    <div class="card-image"></div>
-                    <div class="card-content">
-                        <p class="card-title">어깨운동 이걸빨요</p>
-                        <p class="card-subtitle">액호프라이즈 · 4개월</p>
-                    </div>
-                </div>
-                <div class="sidebar-card">
-                    <div class="card-image"></div>
-                    <div class="card-content">
-                        <p class="card-title">어깨운동 이걸빨요</p>
-                        <p class="card-subtitle">액호프라이즈 · 4개월</p>
-                    </div>
-                </div>
-                <div class="sidebar-card">
-                    <div class="card-image"></div>
-                    <div class="card-content">
-                        <p class="card-title">어깨운동 이걸빨요</p>
-                        <p class="card-subtitle">액호프라이즈 · 4개월</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
-

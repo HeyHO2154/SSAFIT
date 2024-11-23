@@ -9,6 +9,8 @@ CREATE TABLE users (
     nickname VARCHAR(255) NOT NULL
 );
 
+SELECT * FROM users;
+
 CREATE TABLE videos (
     videoId VARCHAR(255) NOT NULL PRIMARY KEY,
     category VARCHAR(255) NOT NULL,
