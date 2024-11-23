@@ -1,85 +1,94 @@
-<div class="main-page">
-  <!-- 비디오 구역 -->
-  <div class="video-section">
-    <!-- 로드맵 이미지 -->
-    <div class="roadmap">
-      <div class="video-button1" @click="button1"></div>
-      <div class="video-button2" @click="button2"></div>
-      <div class="video-button3" @click="button3"></div>
-      <div class="video-button4" @click="button4"></div>
-      <div class="video-button5" @click="button5"></div>
-      <!-- O 누르는거에 따라 이미지 변경 -->
-      <img :src="currentImage" alt="Roadmap" />
-    </div>
+<div class="main-container">
+  <!-- Left Section: Category -->
+  <div class="category-section">
+    <button 
+      v-for="category in categories" 
+      :key="category"
+      @click="selectCategory(category)"
+      :class="{ active: selectedCategory === category }"
+    >
+      {{ category }}
+    </button>
+  </div>
 
-    <!-- 비교하기 -->
-    <div>혼자</div>
-    <div>팔로우</div>
-    <div>크루</div>
-
-    <!-- 부위 -->
-    <div class="categories">
-      <button @click="shoulder">어깨</button>
-      <button @click="arm">팔</button>
-      <button @click="chest">가슴</button> 
-      <button @click="back">등</button> 
-      <button @click="abdominal">복부</button>
-      <button @click="leg">하체</button> 
+  <!-- Middle Section: Main Roadmap -->
+  <div class="main-roadmap-section">
+    <div class="roadmap-container" :style="{ backgroundColor: roadmapBackgrounds[currentLevel - 1] }">
+      <div class="level-indicator">Lv.{{ currentLevel }}</div>
+      <div 
+        v-for="n in 6" 
+        :key="n" 
+        class="circle-button"
+        :class="{ active: n <= currentLevel, disabled: n > currentLevel + 1 }"
+        @mouseover="showVideoInfo(n)"
+        @mouseleave="hideVideoInfo"
+        @click="goToVideo(n)"
+      ></div>
+      <div class="character" :style="{ left: `${(currentLevel - 1) * 20}%` }"></div>
+      <div v-if="showingVideoInfo" class="video-info">
+        <p>{{ currentVideoInfo }}</p>
+        <button @click="goToVideo(currentVideoLevel)" :disabled="currentVideoLevel > currentLevel + 1">Go to video</button>
+      </div>
     </div>
-    <!-- 이동 점 -->
-    <div class="difficulty-nav">
-      <span 
-          v-for="(dot, index) in dots" 
-          :key="index" 
-          @click="changeBackground(index)" 
-          class="dot">
-          ●
-        </span>
+    <div class="roadmap-navigation">
+      <div 
+        v-for="n in 3" 
+        :key="n" 
+        class="nav-dot"
+        :class="{ active: currentLevel === n }"
+        @click="changeLevel(n)"
+      ></div>
+    </div>
+    <div class="compare-section">
+      <button @click="toggleCompare" :class="{ active: showingCompare }">Compare</button>
+      <div v-if="showingCompare" class="compare-options">
+        <span>Alone</span>
+        <span>Follow</span>
+        <span>Crew</span>
+      </div>
     </div>
   </div>
 
-  <!-- 유저 구역 -->
-  <!-- <div class="user-section">
-    <div class="profile">
-      <img src="@/assets/youtube-logo.png" alt="Profile" />
-      <div>
-        <h3>User Name</h3>
-        <p>Welcome message here.</p>
+  <!-- Right Section: User -->
+  <div class="user-section">
+    <div class="upper-section">
+      <div class="profile-section">
+        <img src="/placeholder.svg?height=100&width=100" alt="User profile" class="profile-image">
+        <div class="user-info">
+          <p><strong>nickname</strong> MY</p>
+          <p>{{ userMessage }}</p>
+        </div>
+      </div>
+      <div class="follow-crew-section">
+        <div class="follow">
+          <h3>Follow</h3>
+          <p>{{ followers }}</p>
+        </div>
+        <div class="crew">
+          <h3>Crew</h3>
+          <p>{{ crewName }}</p>
+        </div>
       </div>
     </div>
-    <div class="stats">
-      <div>Followers: 10</div>
-      <div>Crew: Example Crew</div>
-    </div> -->
-
-    <!-- new -->
-    <div class="user-section">
-      <div class="profile-card">
-          <div class="profile-content">
-              <div class="avatar">
-                  <img src="https://via.placeholder.com/96" alt="Profile Avatar" class="avatar-image">
-              </div>
-              <h2 class="profile-name" v-if="isUserLoggedIn">{{ username11 }}</h2>
-              <h2 class="profile-name" v-else>로그인하세요</h2>
-              <p class="profile-description">오늘부터 1일! 아자!</p>
-              <div class="badge-container">
-                  
-                  <span class="badge badge-secondary">팔로우
-                    <br>
-                    <p>80명</p>
-                  </span>
-
-                  <span class="badge badge-outline">운동복서
-                    <br>
-                    <p>크크루삥뽕</p>
-                  </span>
-              </div>
+    <div class="lower-section" :class="{ 'collapsed': notificationsCollapsed }">
+      <div class="notification-header">
+        <h3>Notification</h3>
+        <div class="notification-icon">
+          <span v-if="hasNewNotifications" class="new-notification"></span>
+        </div>
+        <button @click="toggleNotifications" class="toggle-notifications">
+          {{ notificationsCollapsed ? '▼' : '▲' }}
+        </button>
+      </div>
+      <div v-if="!notificationsCollapsed" class="notification-history">
+        <div v-for="notification in notifications" :key="notification.id" class="notification-item">
+          <div class="notification-icon"></div>
+          <div class="notification-content">
+            <span class="notification-tag">{{ notification.tag }}</span>
+            <span class="notification-user">{{ notification.user }}</span>
           </div>
+        </div>
       </div>
-
-      <br>
-    <div class="lower-section">Future Content Here</div>
     </div>
-
-
+  </div>
 </div>

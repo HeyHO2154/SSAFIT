@@ -1,159 +1,82 @@
-import axios from "axios";
+import { ref } from 'vue'
 
 export default {
-  name: "MainPage",
-  data() {
-    return {
-      username11: "", // 초기값 설정
-      isUserLoggedIn: false, // 사용자 로그인 상태
-      type: "어깨",
-      videos: [], // 모든 비디오 데이터를 저장
-      categories: ["전체", "등", "어깨", "팔", "하체", "복부", "가슴"], // 카테고리 목록
-      selectedCategory: "전체", // 현재 선택된 카테고리
-      searchQuery: "", // 검색어
+  setup() {
+    const categories = ['어깨', 'back', 'chest', 'arms', 'abdomen', 'lower body']
+    const selectedCategory = ref('shoulders')
+    const currentLevel = ref(3)
+    const showingVideoInfo = ref(false)
+    const currentVideoInfo = ref('')
+    const currentVideoLevel = ref(1)
+    const showingCompare = ref(false)
+    const notificationsCollapsed = ref(false)
+    const userMessage = ref('Hello, welcome to my profile!')
+    const followers = ref(80)
+    const crewName = ref('운동부자')
+    const hasNewNotifications = ref(true)
 
-      images: [
-        require('@/assets/1.png'),  // 첫 번째 이미지
-        require('@/assets/2.png'),  // 두 번째 이미지
-        require('@/assets/3.png')   // 세 번째 이미지
-      ],
-      currentImage: require('@/assets/1.png'),  // 기본 이미지
-      dots: [1, 2, 3],  // 점들 (배경 이미지를 바꿀 때 사용)
-    };
-  },
+    const roadmapBackgrounds = ['#e6f2ff', '#fff2e6', '#e6ffe6']
 
-  computed: {
-    // 선택된 카테고리에 따라 비디오를 필터링
-    filteredVideos() {
-      if (this.selectedCategory === "전체") {
-        return this.videos; // 전체 카테고리일 경우 모든 비디오 반환
-      }
-      return this.videos.filter(
-        (video) => video.category === this.selectedCategory
-      );
-    },
-  },
-  mounted() {
-    this.fetchVideos(); // 컴포넌트가 마운트되면 비디오 목록을 로드
-    const user = sessionStorage.getItem("user");
-    if (user) {
-      try {
-        const parsedUser = JSON.parse(user); // JSON 문자열 파싱
-        this.username11 = parsedUser.nickname; // nickname 값 설정
-        this.isUserLoggedIn = true; // 세션에 사용자 정보가 없는 경우
-      } catch (error) {
-        console.error("Failed to parse user data:", error);
-      }
-    } else {
-      console.error("No user found in sessionStorage.");
-      this.isUserLoggedIn = false; // 세션에 사용자 정보가 없는 경우
+    const notifications = [
+      { id: 1, tag: 'Follow', user: 'User1' },
+      { id: 2, tag: 'Like', user: 'User2' },
+      { id: 3, tag: 'Comment', user: 'User3' },
+    ]
+
+    const selectCategory = (category) => {
+      selectedCategory.value = category
     }
-    this.fetchVideos(); // 컴포넌트가 마운트되면 비디오 목록을 로드
-  },
-  methods: {
-    async fetchVideos() {
-          const user = JSON.parse(sessionStorage.getItem("user"));
-      if (user) {
-        console.log("Logged in user:", user);
-      } else {
-        this.$router.push({ name: "Login" }); // 로그인이 안 되어 있으면 로그인 페이지로 이동
-      }
-      try {
-        const response = await axios.post(
-          "http://localhost:8080/videos/getAllVideos"
-        );
-        this.videos = response.data.sort(() => Math.random() - 0.5); // 데이터를 랜덤으로 섞어서 저장
-      } catch (error) {
-        console.error("Error fetching videos:", error);
-      }
-    },
-    // 클릭한 점에 맞는 이미지로 배경 변
-    changeBackground(index) {
-      this.currentImage = this.images[index];
-    },
 
-    filterVideos(category) {
-      this.selectedCategory = category; // 선택된 카테고리를 업데이트
-    },
-    getThumbnailUrl(videoUrl) {
-      const videoId = videoUrl.split("v=")[1];
-      const ampersandPosition = videoId.indexOf("&");
-      if (ampersandPosition !== -1) {
-        return `https://img.youtube.com/vi/${videoId.substring(
-          0,
-          ampersandPosition
-        )}/0.jpg`;
+    const showVideoInfo = (level) => {
+      showingVideoInfo.value = true
+      currentVideoInfo.value = `This is information about the level ${level} video.`
+      currentVideoLevel.value = level
+    }
+
+    const hideVideoInfo = () => {
+      showingVideoInfo.value = false
+    }
+
+    const goToVideo = (level) => {
+      if (level <= currentLevel.value + 1) {
+        console.log(`Navigating to level ${level} video`)
       }
-      return `https://img.youtube.com/vi/${videoId}/0.jpg`;
-    },
-    shoulder() {
-      this.type = "어깨";
-    },
-    arm() {
-      this.type = "팔";
-    },
-    chest() {
-      this.type = "가슴";
-    },
-    back() {
-      this.type = "등";
-    },
-    abdominal() {
-      this.type = "복부";
-    },
-    leg() {
-      this.type = "하체";
-    },
-    async button1() {
-      try {
-        const response = await axios.post(
-          "http://localhost:8080/videos/getAllVideos"
-        );
-        let videos = response.data.sort(() => Math.random() - 0.5); // 데이터를 랜덤으로 섞어서 저장
-        let hsj = 0;
-        //console.log(videos);
-        for (let index = 0; index < videos.length; index++) {
-          if (videos[index].category == this.type) {
-            //console.log(videos[index].category);
-            hsj = index;
-            break;
-          }
-        }
-        this.$router.push({
-          name: "VideoPage",
-          query: {
-            videoId: videos[hsj].videoId,
-            url: videos[hsj].url,
-            category: videos[hsj].category,
-            views: videos[hsj].views,
-          },
-        });
-      } catch (error) {
-        console.error("Error fetching videos:", error);
-      }
-    },
-    async goToVideo(video) {
-      this.$router.push({
-        name: "VideoPage",
-        query: {
-          videoId: video.videoId,
-          url: video.url,
-          category: video.category,
-          views: video.views,
-        },
-      });
-    },
-    goMainPage() {
-      this.fetchVideos(); // 컴포넌트가 마운트되면 비디오 목록을 로드
-      this.$router.push({ name: "Main" });
-    },
-    goLoginPage() {
-      this.$router.push({ name: "Login" });
-    },
-    searchVideos() {
-      if (this.searchQuery.trim()) {
-        this.$router.push({ name: "SearchPage", query: { q: this.searchQuery } });
-      }
-    },
+    }
+
+    const changeLevel = (level) => {
+      currentLevel.value = level
+    }
+
+    const toggleCompare = () => {
+      showingCompare.value = !showingCompare.value
+    }
+
+    const toggleNotifications = () => {
+      notificationsCollapsed.value = !notificationsCollapsed.value
+    }
+
+    return {
+      categories,
+      selectedCategory,
+      currentLevel,
+      showingVideoInfo,
+      currentVideoInfo,
+      currentVideoLevel,
+      showingCompare,
+      notificationsCollapsed,
+      userMessage,
+      followers,
+      crewName,
+      hasNewNotifications,
+      roadmapBackgrounds,
+      notifications,
+      selectCategory,
+      showVideoInfo,
+      hideVideoInfo,
+      goToVideo,
+      changeLevel,
+      toggleCompare,
+      toggleNotifications,
+    }
   },
-};
+}

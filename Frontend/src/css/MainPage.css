@@ -1,295 +1,225 @@
-.main-page {
+.main-container {
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.category-section {
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+.category-section button {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.category-section button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.main-roadmap-section {
+  flex-grow: 1;
+  padding: 20px;
+  position: relative;
+}
+
+.roadmap-container {
+  height: 300px;
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.level-indicator {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.circle-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #ccc;
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
+}
+
+.circle-button.active {
+  background-color: #007bff;
+}
+
+.circle-button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.character {
+  width: 50px;
+  height: 50px;
+  background-color: #ff6b6b;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 20px;
+  transition: left 0.3s ease;
+}
+
+.video-info {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.roadmap-navigation {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.nav-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.nav-dot.active {
+  background-color: #007bff;
+}
+
+.compare-section {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.compare-section button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.compare-section button.active {
+  background-color: #0056b3;
+}
+
+.compare-options {
+  margin-top: 10px;
+}
+
+.compare-options span {
+  margin-right: 10px;
+}
+
+.user-section {
+  width: 300px;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.upper-section {
+  margin-bottom: 20px;
+}
+
+.profile-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.user-info {
+  text-align: left;
+}
+
+.follow-crew-section {
   display: flex;
   justify-content: space-between;
-  margin: 0px 0px 20px 20px;
-  /* margin: 20px; */
-  gap: 20px;
-  flex-wrap: wrap; /* 화면 크기에 따라 자동으로 줄 바꿈 */
-  background-color: rgb(255, 255, 255);
-  padding-left: 4%;
-  padding-right: 4%;
-  padding-top: 2%;
-
-  min-width: 300px; /* 최소 너비 설정 */
 }
 
-/* 비디오 구역 */
-.video-section {
-  flex: 3;
+.lower-section {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  transition: max-height 0.3s ease;
+  overflow: hidden;
+}
+
+.lower-section.collapsed {
+  max-height: 50px;
+}
+
+.notification-header {
   display: flex;
-  flex-direction: column;
-  
-  /* min-height: calc(100vh - 64px); 최소 높이 설정 */
-  position: relative; /* 카테고리 버튼을 절대 위치로 설정할 공간 마련 */
-}
-
-/* 비디오 버튼 기본 스타일 */
-.video-button1,
-.video-button2,
-.video-button3,
-.video-button4,
-.video-button5 {
-  position: absolute;
-  background-color: blue;
-  color: white;
-  border-radius: 50%;
-  width: 2.5vw;  /* 상대적인 크기 */
-  height: 2.5vw; /* 원형 버튼으로 유지 */
-  text-align: center;
-  line-height: 5vw;
-  cursor: pointer;
-  z-index: 1; /* 버튼이 이미지 위에 오도록 설정 */
-}
-
-/* 버튼 위치 설정 */
-.video-button1 {
-  top: 10%;
-  left: 10%;
-}
-
-.video-button2 {
-  top: 20%;
-  left: 30%;
-}
-
-.video-button3 {
-  top: 40%;
-  left: 40%;
-}
-
-.video-button4 {
-  top: 60%;
-  left: 50%;
-}
-
-.video-button5 {
-  top: 80%;
-  left: 60%;
-}
-
-.roadmap {
-  position: relative; /* 버튼이 이미지 위에 배치될 수 있도록 설정 */
-  width: 100%;
-}
-
-.roadmap img {
-  width: 100%;
-  height: auto;
-  z-index: 0; /* 이미지가 버튼 아래로 가도록 설정 */
-}
-
-
-/* 카테고리 버튼을 비디오 구역 오른쪽에 배치 */
-.categories {
-  position: absolute;
-  /* top: 50%; */
-  right: 30px;
-  bottom: 60px;
-  transform: translateY(-50%); /* 중앙 정렬 */
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  gap: 10px; /* 버튼들 사이 간격 */
-}
-
-.categories button {
-  margin: 5px;
-}
-
-/* 난이도 점 3개 가운데 정렬 */
-.difficulty-nav {
-  text-align: center;
-  margin-top: auto;
-  padding-top: 10px;
-  padding-bottom: 20px;
-}
-
-
-
-.dot {
-  margin: 5px;
-  cursor: pointer;
-}
-
-
-/* 유저 구역 */
-/* .user-section {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  background-color: aqua;
-  min-width: 300px;
-}
-
-.profile {
-  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
-.profile img {
-  width: 50px;
-  height: 50px;
+.notification-icon {
+  position: relative;
+}
+
+.new-notification {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 10px;
+  height: 10px;
+  background-color: #ff69b4;
+  border-radius: 50%;
+}
+
+.toggle-notifications {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.notification-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.notification-icon {
+  width: 30px;
+  height: 30px;
+  background-color: #ccc;
   border-radius: 50%;
   margin-right: 10px;
 }
 
-.stats {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
+.notification-content {
+  flex-grow: 1;
 }
 
-.lower-section {
-  margin-top: auto;
-  background-color: #f0f0f0;
-  padding: 10px;
-  text-align: center;
-} */
-
-/* 유저구역_ new @@@@@@@@@@@@@@@@@@@@@@@@@ */
-.user-section {
-  flex: 0.5;
-  width: 100%;
-  max-width: 24rem;
-  min-width: 18rem;
-  border-left: 1px solid #e5e7eb;
-  min-height: 100%;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  padding-left: 2rem;
-  padding-right: 1.5rem;
-  
-}
-
-.profile-card {
-  border: 2px solid #e5e7eb;
-  border-radius: 1rem;
-  overflow: hidden;
-}
-
-.profile-content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.5rem;
-  padding: 1rem;
-}
-
-.avatar {
-  width: 6rem;
-  height: 6rem;
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-.avatar-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.profile-name {
-  font-size: 1.25rem;
+.notification-tag {
   font-weight: bold;
-  margin: 0;
-  text-align: left;
-}
-
-.profile-description {
-  font-size: 0.875rem;
-  color: #6b7280;
-  margin: 0;
-}
-
-.badge-container {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
-}
-
-.badge {
-  font-size: 0.75rem;
-  padding: 0.25rem 1rem;
-  border-radius: 15px;
-}
-
-.badge-secondary {
-  background-color: #e5e7eb;
-  color: #4b5563;
-}
-
-.badge-outline {
-  border: 1px solid #e5e7eb;
-  color: #4b5563;
-}
-
-
-
-
-/* 반응형 디자인 */
-@media (max-width: 768px) {
-  .main-page {
-    flex-direction: column; /* 세로로 배치 */
-    gap: 10px;
-  }
-
-  .video-section,
-  .user-section {
-    flex: none;
-    width: 100%; /* 화면 너비를 100%로 설정 */
-  }
-
-  /* 버튼 크기와 위치를 화면에 맞게 조정 */
-  .video-button1,
-  .video-button2,
-  .video-button3,
-  .video-button4,
-  .video-button5 {
-    width: 5vw;  /* 화면 크기에 비례한 버튼 크기 */
-    height: 5vw;
-    line-height: 10vw; /* 글자가 버튼 중앙에 오도록 */
-  }
-
-  /* 버튼 위치도 비율에 맞게 조정 */
-  .video-button1 {
-    top: 15%;
-    left: 10%;
-  }
-
-  .video-button2 {
-    top: 25%;
-    left: 30%;
-  }
-
-  .video-button3 {
-    top: 45%;
-    left: 40%;
-  }
-
-  .video-button4 {
-    top: 65%;
-    left: 50%;
-  }
-
-  .video-button5 {
-    top: 85%;
-    left: 60%;
-  }
-
-  /* 유저 구역_new @@@@@@@@@@@@@@@@@@@@@@@@@ */
-  .user-section {
-    max-width: none; 
-    border-left: none;
-  }
-
-  /* 카테고리 버튼 세로로 배치 */
-  .categories {
-    position: relative;
-    transform: none;
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
-    right: 0px;
-    bottom: 0px;
-  }
+  margin-right: 5px;
 }
