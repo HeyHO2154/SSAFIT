@@ -34,6 +34,7 @@ h1, h2, h3 {
 
   width: 200px;
   display: flex;
+  /* flex: 0.2; */
   flex-direction: column;
   padding: 20px;
   /* background-color: #f0f0f0; */
@@ -70,7 +71,7 @@ h1, h2, h3 {
 
 
 /* 비디오 구역 */
-.middle-section {
+.middle-sectionss {
   flex: 1;
   padding: 1.5rem;
   padding-top: 1.2rem;
@@ -82,7 +83,7 @@ h1, h2, h3 {
 
 /* 영상 제목 부분 */
 .header {
-  background-color: #f9fafb;
+  /* background-color: #f9fafb; */
   border-bottom: 1px solid #e5e7eb;
 }
 
