@@ -24,6 +24,18 @@
   pointer-events: none;
 }
 
+.categoryyyy{
+  background-image: url('../assets/categoryyy.png');
+  background-repeat: no-repeat;
+  position: fixed; 
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  top: 490px;
+  left: 160px;
+}
+
 .image {
   background-image: url('../assets/background_1.png');
   background-size: 95%;
@@ -39,10 +51,10 @@
   pointer-events: none;
 }
 
-.body{
-  /* background-color: #4B98DC; */
-  /* height: 100vh;  */
-}
+/* .body{
+  background-color: #4B98DC; 
+  height: 100vh; 
+} */
 
 
 
@@ -135,7 +147,7 @@
   padding: 20px;
   /* background-color: #f0f0f0; */
   padding-top: 30rem;        /* 버튼을 하단으로 밀어냄 */
-  z-index: 1;
+  z-index: 2;
 }
 
 
