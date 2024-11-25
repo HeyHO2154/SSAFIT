@@ -1,4 +1,5 @@
 // import axios from "axios";
+import axios from "axios";
 
 export default {
   name: "MainPage",
@@ -53,8 +54,33 @@ export default {
     },
 
     // 버튼 클릭 처리
-     handleButtonClick(n) {
-      console.log(`비디오 ${n} 버튼 클릭됨`);
+     async handleButtonClick(n) {
+      try {
+        const response = await axios.post(
+          "http://localhost:8080/videos/getAllVideos"
+        );
+        let videos = response.data.sort(() => Math.random() - 0.5); // 데이터를 랜덤으로 섞어서 저장
+        let hsj = n;
+        //console.log(videos);
+        for (let index = 0; index < videos.length; index++) {
+          if (videos[index].category == this.type) {
+            //console.log(videos[index].category);
+            hsj = index;
+            break;
+          }
+        }
+        this.$router.push({
+          name: "VideoPage",
+          query: {
+            videoId: videos[hsj].videoId,
+            url: videos[hsj].url,
+            category: videos[hsj].category,
+            views: videos[hsj].views,
+          },
+        });
+      } catch (error) {
+        console.error("Error fetching videos:", error);
+      }
     },
 
     // 특정 레벨의 비디오로 이동

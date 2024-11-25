@@ -282,7 +282,7 @@
 .user-section {
   position: relative;  /* 내부 요소들의 절대 위치 기준점 설정 */
   width: 250px;
-  padding: 20px;
+  padding: 15px;
   /* background-color: #f9f9f9; */
   border-left: 1px solid #4B89DC;
   min-width: 250px;  /* 사용자 구역의 최소 너비를 200px로 지정 */
@@ -337,7 +337,8 @@
 
 .follow-crew-section .follow{
   /* margin-right: 6rem; */
-  padding-right: 3.5rem;
+  padding-right: 1.5rem;
+  
   border-right: 1px solid #4B89DC;
 }
 
