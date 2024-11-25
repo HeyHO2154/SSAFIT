@@ -19,7 +19,7 @@ export default {
         { left: '87.5%', top: '43%' }, // 7번째 버튼 위치
       ],
 
-      username: '',
+      username: 'dasd',
       showingVideoInfo: false, // 비디오 정보 표시 여부
       currentVideoInfo: '', // 현재 비디오 정보
       currentVideoLevel: 1, // 현재 비디오 레벨
@@ -105,13 +105,17 @@ export default {
   },
   mounted() {
     console.log("MainPage mounted");
-    this.username = JSON.parse(sessionStorage.getItem("user"))?.userId || '';
+    
     const user = sessionStorage.getItem("user");
+    
     if (!user) {
-        // 세션에 user 객체가 없으면 로그인 페이지로 이동
+      // 세션에 user 객체가 없으면 로그인 페이지로 이동
+      
         this.$router.push({ name: "Login" });
     } else {
-        this.username = user.userId || '';
+      this.username = JSON.parse(sessionStorage.getItem("user"))?.userId || '';
+      
     }
+
   },
 };
