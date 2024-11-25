@@ -13,17 +13,13 @@
 
   <!-- 영상 구역 -->
   <div class="middle-section">
+    <!-- 영상 플레이어 -->
     <div class="video-player">
-      <video
-        v-if="currentVideo"
-        class="current-video"
-        :src="currentVideo.videoUrl"
-        controls
-      ></video>
-
-      <div v-else>
-        <p>Loading video...</p>
-      </div>
+      <iframe
+      src="https://www.youtube.com/embed/i643hgi6Deo?autoplay=1&mute=1"
+      frameborder="0"
+      allowfullscreen
+    ></iframe>
     </div>
 
     <!-- 영상 정보 -->
