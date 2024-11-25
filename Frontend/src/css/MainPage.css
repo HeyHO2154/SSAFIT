@@ -22,8 +22,9 @@
   top: 5;
   left: 5;
   width: 103%;
-  height: 100%; /* 화면 전체 높이 설정 /
-  z-index: -1; / 다른 요소 뒤로 보내기 */
+  height: 100%;
+  /* z-index: -1; */
+  pointer-events: none;
 }
 
 
@@ -42,6 +43,7 @@
   border-radius: 50%;
   background-color: #ccc;
   cursor: pointer;
+  z-index: 2;
 }
 
 .circle-button.active {

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Interface</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="min-h-screen bg-white">
+
+
+    <div class="container grid-layout">
+      <!-- Left Sidebar -->
+      <div class="sidebar">
+
+
+        <div class="followerssssssss">
+        <div class="search-bar">
+          <input type="text" placeholder="검색" class="input-search" />
+         </div>
+         <div class="user-list">
+          <!-- User items will be repeated dynamically -->
+          <div class="user-item">
+            <div class="avatar"></div>
+            <div class="user-info">
+              <div class="nickname">닉네임</div>
+              <div class="message">이야기</div>
+            </div>
+            <button class="btn-follow">팔로잉</button>
+          </div>
+         </div>
+
+        </div>
+
+         <div class="follow-followersss">
+          <div class="follow">
+            <div>팔로우</div>
+            <p>80명</p>
+         </div>
+
+         <div class="followersss">
+            <div>팔로워</div>
+            <p>20명</p>
+
+         </div>
+         </div>
+
+
+        <div class="group-info">
+          <div class="title">그룹</div>
+          <div class="textttt">설며어아</div>
+          <div class="group-icons">
+            <div class="group-avatar"></div>
+            <div class="group-avatar"></div>
+            <div class="group-avatar"></div>
+            <div class="group-avatar"></div>
+            <div class="group-count">10명</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <img src="/placeholder.svg" alt="Avatar character" class="avatar-img" />
+        <div class="edit-form">
+            <div>닉네임</div>
+          <input type="text" placeholder="닉네임" />
+             <div>대화명</div>
+          <input type="text" placeholder="오늘부터 1일! 화자!" />
+          <button class="btn-primary">수정</button>
+        </div>
+      </div>
+
+      <!-- Right Sidebar -->
+      <div class="emoji-sidebar">
+        <div class="search-bar">
+          <input type="text" placeholder="검색" class="input-search" />
+        </div>
+        <div class="emoji-categories">
+          <button>전체</button>
+          <button>얼굴</button>
+          <button>동물</button>
+          <button>음식</button>
+          <button>활동</button>
+          <button>장소</button>
+          <button>물건</button>
+        </div>
+        <div class="emoji-grid">
+          <!-- Emoji items will be dynamically rendered -->
+          <div class="emoji-item"></div>
+        </div>
+        <button class="btn-primary">적용하기</button>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+</html>

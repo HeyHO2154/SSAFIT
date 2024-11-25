@@ -4,12 +4,14 @@ import MainPage from '../views/MainPage.vue';
 import LoginPage from '../views/LoginPage.vue';
 import RegisterPage from '../views/RegisterPage.vue';
 import VideoPage from '../views/VideoPage.vue';
+import MyPage from '../views/MyPage.vue';
 import SearchPage from '../views/SearchPage.vue'; // SearchPage 컴포넌트 추가
 
 const routes = [
   { path: '/', component: MainPage, name: 'Main' },
   { path: '/login', component: LoginPage, name: 'Login' },
   { path: '/register', component: RegisterPage, name: 'Register' },
+  { path: '/mypage', component: MyPage, name: 'MyPage' },
   {
     path: '/video',
     component: VideoPage,
