@@ -127,7 +127,7 @@ h1, h2, h3 {
 /* 현재 보여지는 비디오 */
 .video-player {
   aspect-ratio: 16 / 9;
-  background-color: black;
+  background-color: rgb(119, 119, 119);
   border-radius: 0.8em;
   margin-bottom: 0.5rem;
   min-width: 500px; /* 비디오 플레이어의 최소 너비 지정 */
@@ -143,22 +143,22 @@ h1, h2, h3 {
 
 /* Video Info */
 
-.video-info{
+.video-infofo{
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   margin-top: 1rem;
 }
 
-.video-info .info-header {
+.video-infofo .info-header {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* 요소들을 세로 가운데 정렬 */
+  align-items: center;
   height: 2rem;
   margin-top: 0.8rem;
-  margin-bottom: 0.5rem; /* 제목과 인포 디테일 사이의 간격 줄임 */
+  margin-bottom: 0.5rem;
 }
 
-.video-info h1 {
+.video-infofo h1 {
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
 }
@@ -166,7 +166,7 @@ h1, h2, h3 {
 .info-details {
   font-size: 0.875rem;
   color: #6b7280;
-  margin-bottom: 0.5rem; /* 제목과 상세 정보 사이의 간격 */
+  margin-bottom: 0.5rem;
 
   border-bottom: 1px solid #3b82f6;
   padding-bottom: 1rem;
