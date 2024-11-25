@@ -277,6 +277,7 @@
   border: 1px solid #4B89DC;  /* 테두리의 너비, 스타일, 색상 지정 */
   padding: 20px;              /* 내부 여백 추가로 요소가 테두리와 떨어지도록 설정 */
   border-radius: 10px; 
+  height: 300px;
 }
 
 .user-section {

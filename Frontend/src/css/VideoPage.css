@@ -1,33 +1,95 @@
-/* General */
-.app-container {
-  display: flex;
-  min-height: 100vh;
+@font-face {
+  font-family: 'SBAggroM';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff') format('woff');
+  font-weight: 300;
+  /* font-style: normal; */
 }
 
-.left-section {
-  width: 12rem;
+@font-face {
+  font-family: 'SBAggroB';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1, h2, h3 {
+  font-weight: normal;
+}
+
+/* General */
+.main-container {
+  display: flex;
+  height: 88vh;
+  /* font-family: Arial, sans-serif; */
+  font-family: SBAggroM;
+  padding: 1rem 5rem 1rem  5rem ;
+}
+
+/* 카테고리 구역 */
+.category-section {
+  /* width: 12rem;
   background-color: white;
   border-right: 1px solid #e5e7eb;
-  padding: 1rem;
+  padding: 1rem; */
+
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  /* background-color: #f0f0f0; */
+  padding-top: 30rem;        /* 버튼을 하단으로 밀어냄 */
+
+  min-width: 150px;           /* 최소 너비 설정 */
+  transition: width 0.3s;     /* 너비가 변경될 때 부드럽게 변하도록 설정 */
 }
 
+
+.category-section button {
+  margin-bottom: 10px;        /* 버튼 사이 여백 */
+  padding: 10px;              /* 버튼 내부 여백 */
+  border: none;               /* 버튼 외곽선 제거 */
+  background-color: #fff;     /* 버튼 배경색 설정 */
+  cursor: pointer;            /* 마우스를 올렸을 때 포인터 모양 변경 */
+  border-radius: 12px;        /* 버튼 모서리를 둥글게 설정 */
+  width: 5rem;                /* 버튼 너비 설정 */
+  height: 2rem;               /* 버튼 높이 설정 */
+  
+  align-self: flex-end;       /* 버튼을 오른쪽으로 정렬 */
+  font-family: SBAggroM;      /* 폰트 설정 */
+  font-size: 0.9em;           /* 폰트 크기 설정 */
+  display: flex;              /* 버튼 내용을 플렉스 박스로 설정 */
+  justify-content: center;    /* 수평 방향 중앙 정렬 */
+  align-items: center;        /* 수직 방향 중앙 정렬 */
+  border: 1px solid #007bff;  /* 파란색 외곽선 설정 */
+}
+
+.category-section button.active-category {
+  background-color: #007bff;  /* 선택된 버튼 배경색 변경 */
+  color: white;               /* 선택된 버튼 글자색 변경 */
+}
+
+
+/* 비디오 구역 */
 .middle-section {
   flex: 1;
   padding: 1.5rem;
-  overflow-y: auto;
+  padding-top: 1.2rem;
+  /* overflow-y: auto; */ /* 이 줄을 제거하여 비디오 구역의 스크롤을 없앰 */
+  min-width: 500px; /* 비디오 구역의 최소 너비 지정 */
+  border-right: 1px solid #007bff;
+  flex-direction: column;
 }
 
-.right-section {
-  width: 20rem;
-  border-left: 1px solid #e5e7eb;
-  padding: 1rem;
-}
-
-/* Header */
+/* 영상 제목 부분 */
 .header {
   background-color: #f9fafb;
   border-bottom: 1px solid #e5e7eb;
 }
+
+/* h1 {
+  font-size: 2rem;
+  margin: 0;
+} */
 
 .header .logo img {
   height: 40px;
@@ -62,53 +124,77 @@
   background-color: #e5e7eb;
 }
 
-/* Video Player */
+/* 현재 보여지는 비디오 */
 .video-player {
   aspect-ratio: 16 / 9;
   background-color: black;
-  border-radius: 0.5rem;
-  margin-bottom: 1rem;
+  border-radius: 0.8em;
+  margin-bottom: 0.5rem;
+  min-width: 500px; /* 비디오 플레이어의 최소 너비 지정 */
 }
 
 .current-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 0.5rem;
+  border-radius: 0.8rem;
+  min-width: 500px;
 }
 
 /* Video Info */
+
+.video-info{
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin-top: 1rem;
+}
+
 .video-info .info-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; /* 요소들을 세로 가운데 정렬 */
+  height: 2rem;
+  margin-top: 0.8rem;
+  margin-bottom: 0.5rem; /* 제목과 인포 디테일 사이의 간격 줄임 */
 }
 
 .video-info h1 {
-  font-size: 1.25rem;
-  font-weight: bold;
-}
-
-.like-button {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #6b7280;
-}
-
-.like-button:hover {
-  color: #ef4444;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .info-details {
   font-size: 0.875rem;
   color: #6b7280;
+  margin-bottom: 0.5rem; /* 제목과 상세 정보 사이의 간격 */
+
+  border-bottom: 1px solid #3b82f6;
+  padding-bottom: 1rem;
 }
 
-/* Comments */
+/* 댓글작성 구역 */
 .comments-header {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  align-items: center; /* span을 세로 가운데 정렬 */
+  gap: 1rem;
+  height: 3rem;
+  padding: 0.5rem;
+  height: 1.5rem;
+  padding-top: 0.1rem;
+}
+
+/* 댓글 제목 */
+.comments-header h2 {
+  margin: 0.25rem 0; /* 위아래 간격을 약간 남기고 줄임 */
+  font-size: 1rem;
+}
+
+
+.comments-count {
+  align-self: center; /* 댓글 수를 세로 중앙 정렬 */
+  font-size: 0.875rem; /* 댓글 수 폰트 크기 */
+  color: #6b7280;
 }
 
 .comment-input {
@@ -119,8 +205,10 @@
 .comment-input input {
   flex: 1;
   padding: 0.5rem;
-  border: 1px solid #e5e7eb;
+  padding-left: 0.8rem;
+  border: 1px solid #4B89DC;
   border-radius: 0.5rem;
+  font-family: SBAggroM;
 }
 
 .comment-input button {
@@ -128,28 +216,77 @@
   background-color: #3b82f6;
   color: white;
   border-radius: 0.5rem;
+  width: 8rem;
+
+  font-family: SBAggroM;
+  border: none;
+  outline: none;
 }
 
 .comment-item {
   display: flex;
-  gap: 1rem;
+  gap: 1rem; /* 댓글 아이템 간의 여백 */
   padding: 1rem;
   background-color: #f9fafb;
   border-radius: 0.5rem;
+  font-size: 0.875rem; /* 댓글 폰트 사이즈 줄임 */
+}
+
+.comment-item img {
+  width: 32px; /* 유저 아바타의 너비 줄임 */
+  height: 32px; /* 유저 아바타의 높이 줄임 */
+  border-radius: 50%;
+}
+
+.comment-content {
+  display: flex;
+  justify-content: space-between; /* 내부 요소들을 양쪽 끝에 배치 */
+  align-items: center; /* 요소들이 수직 중앙에 정렬되도록 설정 */
+  width: 100%; /* 부모 요소의 전체 너비를 사용 */
+  padding: 1rem; /* 요소 안쪽 여백 추가 (옵션) */
+  box-sizing: border-box; /* 패딩을 포함한 전체 너비 계산 */
 }
 
 .comment-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column; /* 댓글 헤더의 요소들을 세로 방향으로 정렬 */
+  align-items: flex-start; /* 요소들이 왼쪽으로 정렬되도록 설정 */
+  gap: 0.25rem; /* 내부 요소들 간의 간격 설정 */
+  font-family: SBAggroM;
+}
+
+.comment-header h3 {
+  font-size: 0.6rem; /* 유저 아이디의 폰트 크기 설정 */
+  margin: 0; /* 간격 줄이기 */
+  color: #4b5563;
 }
 
 .comment-content p {
   margin-top: 0.25rem;
-  color: #4b5563;
+  /* color: #4b5563; */
 }
 
-/* Difficulty Levels */
+.comment-content span {
+  margin-right: 0.5rem;
+  /* color: #4b5563; */
+}
+
+
+
+/* 오른쪽 구역 */
+.right-section {
+  background-color: #dbdbdb;
+  width: 20rem;
+  height: 30rem;
+  border-left: 1px solid #e5e7eb;
+  padding: 1rem;
+  padding-top: 1.2rem;
+  margin-left: 1.5rem;
+
+  min-width: 200px;           /* 최소 너비 설정 */
+  transition: width 0.3s;     /* 너비가 변경될 때 부드럽게 변하도록 설정 */
+}
+
 .difficulty-levels button {
   width: 0.75rem;
   height: 0.75rem;
@@ -191,32 +328,114 @@
   border-radius: 0.5rem;
 }
 
+/* 사용자 구역 하단 구역 */
+.lower-section {
+  background-color: white;
+  border: 1px solid #4B89DC;
+  overflow: hidden;
+  border-radius: 10px; 
+  position: fixed;     /* 화면에 고정 */
+  bottom: 0;           /* 항상 화면 하단에 고정 */
+  right: 65px;          
+  height: 40px;        /* 기본 상태에서는 접혀 있도록 고정된 높이 */
+  margin: 20px;
+  width: 20rem;
+  transition: height 0.5s ease; /* 높이 변화에 부드러운 애니메이션을 적용 */
 
-
-
-
-.video-container video {
-  width: 100%;
-  height: auto;
+  padding: 1rem;
 }
 
-.related-videos {
-  margin-top: 20px;
+.lower-section.expanded {
+  height: 250px;       /* 펼쳐졌을 때 높이 설정 (필요에 따라 조정 가능) */
+  
 }
 
-.related-video {
-  display: inline-block;
-  margin-right: 10px;
+.notification-header {
+  display: flex;
+  align-items: center;
+  height: 20px;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #4B89DC;
+  position: relative;  /* 삼각형 토글 버튼의 위치를 설정하기 위한 기준점 */
+}
+
+.notification-header p {
+  margin-right: 15px;
+}
+
+.notification-icon {
+  position: relative;
+}
+
+.new-notification {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 10px;
+  height: 10px;
+  background-color: #ff69b4;
+  border-radius: 50%;
+}
+
+.toggle-notifications {
+  position: absolute;  /* 절대 위치 설정 */
+  right: 0;            /* 부모 요소의 오른쪽 끝에 배치 */
+  top: 25%;            /* 수직 중앙 정렬 */
+  transform: translateY(-50%); /* 정확히 중앙에 맞추기 위해 이동 */
+  background: none;
+  border: none;
   cursor: pointer;
 }
 
-.comments-section {
-  margin-top: 20px;
+.notification-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
-.new-comment input,
-.new-comment textarea {
-  display: block;
-  width: 100%;
-  margin-bottom: 10px;
+.notification-icon {
+  width: 30px;
+  height: 30px;
+  background-color: #ccc;
+  border-radius: 50%;
+  margin-right: 10px;
 }
+
+.notification-content {
+  display: flex;          /* Flexbox 사용 */
+  flex-direction: column; /* 요소들을 세로 방향으로 배치 */
+  flex-grow: 1;           /* 남은 공간을 차지하도록 설정 */
+}
+
+.notification-tag {
+  font-size: 12px;       /* 글씨 크기 줄이기 */
+  color: #4B89DC;        /* 글씨 색 변경 */
+  margin: 0px;
+}
+
+
+
+
+
+
+/* 반응형 미디어 쿼리 */
+@media (max-width: 1200px) {
+  .left-section,
+  .right-section {
+    width: 15rem;            /* 화면이 줄어들 때 너비를 줄임 */
+  }
+}
+
+@media (max-width: 768px) {
+  .left-section,
+  .right-section {
+    width: 12rem;            /* 더 작은 화면에서는 너비를 더 줄임 */
+  }
+}
+
+/* @media (max-width: 480px) {
+  .left-section,
+  .right-section {
+    width: 10rem;           
+  } */
