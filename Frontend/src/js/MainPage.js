@@ -10,13 +10,13 @@ export default {
       selectedCategory: '어깨', // 선택된 카테고리
       currentLevel: 1, // 현재 레벨
       customStyles: [
-        { left: '11.7%', top: '45.5%' }, // 1번 버튼 위치
-        { left: '22.3%', top: '45.5%' }, // 2번 버튼 위치
-        { left: '30.8%', top: '60.5%' }, // 3번 버튼 위치
-        { left: '42.5%', top: '60.5%' }, // 4번 버튼 위치
-        { left: '57.3%', top: '27.4%' }, // 5번 버튼 위치
-        { left: '76%', top: '27.4%' }, // 6번 버튼 위치
-        { left: '87.5%', top: '43%' }, // 7번째 버튼 위치
+        { left: '11.3%', top: '44.9%' }, // 1번 버튼 위치
+        { left: '22%', top: '44.9%' }, // 2번 버튼 위치
+        { left: '30.5%', top: '59.9%' }, // 3번 버튼 위치
+        { left: '42.2%', top: '59.9%' }, // 4번 버튼 위치
+        { left: '56.8%', top: '26.8%' }, // 5번 버튼 위치
+        { left: '75.6%', top: '26.8%' }, // 6번 버튼 위치
+        { left: '87.1%', top: '42.7%' }, // 7번째 버튼 위치
       ],
 
       username: '',
@@ -45,7 +45,7 @@ export default {
     // 비디오 정보 표시
     showVideoInfo(level) {
       this.showingVideoInfo = true;
-      this.currentVideoInfo = `This is information about the level ${level} video.`;
+      this.currentVideoInfo = `클릭하면 ${level}단계 영상으로 이동합니다`;
       this.currentVideoLevel = level;
     },
     

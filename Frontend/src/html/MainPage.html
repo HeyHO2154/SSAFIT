@@ -44,9 +44,9 @@
         <div class="character" :style="{ left: `${(currentLevel - 1) * 20}%` }"></div>
         <div v-if="showingVideoInfo" class="video-info">
           <p>{{ currentVideoInfo }}</p>
-          <button @click="goToVideo(currentVideoLevel)" :disabled="currentVideoLevel > currentLevel + 1">
+          <!-- <button @click="goToVideo(currentVideoLevel)" :disabled="currentVideoLevel > currentLevel + 1">
             Go to video
-          </button>
+          </button> -->
         </div>
 
         <div class="compare-section">

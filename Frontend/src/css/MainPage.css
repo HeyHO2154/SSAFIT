@@ -27,7 +27,10 @@
   pointer-events: none;
 }
 
-
+.body{
+  background-color: #4B98DC;
+  height: 100vh; 
+}
 
 
 
@@ -38,20 +41,20 @@
 
 .circle-button {
   position: absolute;
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  background-color: #ccc;
+  background-color: #5D9CEC;
   cursor: pointer;
   z-index: 2;
 }
 
 .circle-button.active {
-  background-color: #4caf50;
+  background-color: #8CC051;
 }
 
 .circle-button.disabled {
-  background-color: #f44336;
+  background-color: #FEBB50;
   cursor: not-allowed;
 }
 
@@ -72,6 +75,16 @@
   padding: 10px;
   border: 1px solid #ccc;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  width: 320px; 
+  height: 60px;
+  
+}
+
+.video-info p{
+  font-size: 18px;
+  margin-top: 10px;
+  margin-left: 12px;
 }
 
 .compare-section {
@@ -92,22 +105,24 @@
 }
 
 /* Define CSS variables for roadmap background */
-:root {
+/* :root {
   --roadmap-bg-color: #e6f2ff;
-}
+} */
 
 
-
+/* .body{
+  background-color: #4B98DC;
+} */
 
 
 
 .main-container {
   display: flex;
-  height: 88vh;
+  height: 100vh;
   /* font-family: Arial, sans-serif; */
   font-family: SBAggroM;
   padding: 1rem 5rem 1rem  5rem ;
-  background-color: hsl(0, 0%, 100%);
+  background-color: #4B98DC;
 
 }
 
@@ -121,11 +136,14 @@
   
 }
 
+
+
 .category-section button {
   margin-bottom: 10px;
   padding: 10px;
   border: none;
-  background-color: #fff;
+  background-color: #F4FFB6;
+  color: #375E1E;
   cursor: pointer;
   border-radius: 12px;
   width: 5rem;
@@ -137,20 +155,25 @@
   display: flex;               /* 플렉스 박스 설정 */
   justify-content: center;     /* 수평 방향 중앙 정렬 */
   align-items: center;
-  border: 1px solid #007bff;
+  /* border: 1px solid #007bff; */
 }
 
 .category-section button.active {
-  background-color: #007bff;
+  background-color: #679947;
   color: white;
 }
 
+/* .category-section button :hover {
+  background-color: #b4eba4;
+} */
 
 /* 로드맵 구역 */
 .main-roadmap-section {
   flex-grow: 1;
-  padding-bottom: 80px;
-  padding: 20px;
+  /* padding-bottom: 80px;
+  padding-top: 30px; */
+  padding : 20px 20px 20px 20px;
+  /* padding: 20px; */
   
   position: relative;
 }
@@ -171,13 +194,12 @@
   margin: 10px;
 }
 
-.circle-button {
-  width: 40px;  /* 버튼의 크기 */
+/* .circle-button {
+  width: 40px;  
   height: 40px;
   border-radius: 50%;
   background-color: #ccc;
   position: absolute;
-  /* top: 10%;  */
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -199,7 +221,7 @@
   position: absolute;
   bottom: 20px;
   transition: left 0.3s ease;
-}
+} */
 
 .video-info {
   position: absolute;
@@ -235,14 +257,14 @@
 /* 비교하기 구역 */
 .compare-section {
   position: absolute;
-  bottom: 20px;
-  right: 20px;
+  bottom: 30px;
+  right: 18px;
 }
 
 /* 비교하기 버튼 비활성화 */
 .compare-section button {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #679947;
   color: white;
   border: none;
   cursor: pointer;
@@ -252,7 +274,7 @@
 
 /* 비교하기 버튼 활성화 */
 .compare-section button.active {
-  background-color: #0056b3;
+  background-color: #679947;
   font-family: SBAggroM;
 }
 
@@ -276,28 +298,26 @@
   white-space: nowrap;
 }
 
-.upper-section{
-  border: 1px solid #4B89DC;  /* 테두리의 너비, 스타일, 색상 지정 */
-  padding: 20px;              /* 내부 여백 추가로 요소가 테두리와 떨어지도록 설정 */
-  border-radius: 10px; 
-  height: 300px;
-}
 
 .user-section {
   position: relative;  /* 내부 요소들의 절대 위치 기준점 설정 */
   width: 250px;
   padding: 15px;
   /* background-color: #f9f9f9; */
-  border-left: 1px solid #4B89DC;
+  /* border-left: 1px solid #afafaf; */
   min-width: 250px;  /* 사용자 구역의 최소 너비를 200px로 지정 */
 }
 
 /* 사용자 구역 상단 구역 */
-.upper-section {
+.upper-section{
+  border: 1px solid #4B89DC;  /* 테두리의 너비, 스타일, 색상 지정 */
+  background-color: aliceblue;
+  padding: 20px;              /* 내부 여백 추가로 요소가 테두리와 떨어지도록 설정 */
+  border-radius: 10px; 
+  
+  height: 320px;
   margin-bottom: 20px;
   padding-bottom: 0px;
-  height: 300px;
-
 }
 
 .profile-section {
@@ -370,15 +390,15 @@
   background-color: white;
   border: 1px solid #4B89DC;
   /* transition: max-height 0.5s ease; */
-  overflow: hidden;
+  /* overflow: hidden; */
   border-radius: 10px; 
-  position: absolute;  /* 절대 위치로 설정 */
-  bottom: 0;           /* 부모 요소의 하단에 위치 */
-  left: 0;             /* 왼쪽 정렬 */
+  position: relative; /* 그대로 유지 */
+  bottom: 0; /* 초기화 */
   right: 0;            /* 오른쪽 정렬 */
   max-height: 40px;    /* 기본 상태에서는 접혀 있도록 최대 높이 제한 */
   margin: 20px;
   padding: 15px;
+  transform: translateY(-20px);
 }
 
 .lower-section.collapsed {
@@ -463,7 +483,7 @@
 
 
 
-.circle-button {
+/* .circle-button {
   position: absolute;
   width: 40px;
   height: 40px;
@@ -481,4 +501,4 @@
   width: 50px;
   height: 50px;
   background: red;
-}
+} */

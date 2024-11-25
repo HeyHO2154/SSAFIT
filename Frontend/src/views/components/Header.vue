@@ -90,7 +90,7 @@ export default {
   align-items: center;
   font-family: SBAggroM;
   border-bottom: 1.5px solid #4b89dc;
-  background-color: #ffffff;
+  background-color: aliceblue;
 }
 
 nav {

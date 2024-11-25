@@ -32,42 +32,39 @@ h1, h2, h3 {
   border-right: 1px solid #e5e7eb;
   padding: 1rem; */
 
-  width: 200px;
+  /* width: 200px;
   display: flex;
-  /* flex: 0.2; */
   flex-direction: column;
   padding: 20px;
-  /* background-color: #f0f0f0; */
-  padding-top: 30rem;        /* 버튼을 하단으로 밀어냄 */
+  padding-top: 30rem;      
 
-  min-width: 150px;           /* 최소 너비 설정 */
-  transition: width 0.3s;     /* 너비가 변경될 때 부드럽게 변하도록 설정 */
+  min-width: 150px;         
+  transition: width 0.3s;   */
 }
 
 
-.category-section button {
-  margin-bottom: 10px;        /* 버튼 사이 여백 */
-  padding: 10px;              /* 버튼 내부 여백 */
-  border: none;               /* 버튼 외곽선 제거 */
-  background-color: #fff;     /* 버튼 배경색 설정 */
-  cursor: pointer;            /* 마우스를 올렸을 때 포인터 모양 변경 */
-  border-radius: 12px;        /* 버튼 모서리를 둥글게 설정 */
-  width: 5rem;                /* 버튼 너비 설정 */
-  height: 2rem;               /* 버튼 높이 설정 */
+/* .category-section button {
+  margin-bottom: 10px;       
+  padding: 10px;            
+  border: none;              
+  background-color: #fff;    
+  cursor: pointer;      
+  border-radius: 12px;      
+  width: 5rem;           
+  height: 2rem;            
   
-  align-self: flex-end;       /* 버튼을 오른쪽으로 정렬 */
-  font-family: SBAggroM;      /* 폰트 설정 */
-  font-size: 0.9em;           /* 폰트 크기 설정 */
-  display: flex;              /* 버튼 내용을 플렉스 박스로 설정 */
-  justify-content: center;    /* 수평 방향 중앙 정렬 */
-  align-items: center;        /* 수직 방향 중앙 정렬 */
-  border: 1px solid #007bff;  /* 파란색 외곽선 설정 */
+  align-self: flex-end;     
+  font-family: SBAggroM;    
+  font-size: 0.9em;         
+  display: flex;            
+  justify-content: center;   
+  align-items: center;        
 }
 
 .category-section button.active-category {
-  background-color: #007bff;  /* 선택된 버튼 배경색 변경 */
-  color: white;               /* 선택된 버튼 글자색 변경 */
-}
+  background-color: #007bff;  
+  color: white;               
+} */
 
 
 /* 비디오 구역 */
