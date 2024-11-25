@@ -19,7 +19,7 @@ export default {
         { left: '87.5%', top: '43%' }, // 7번째 버튼 위치
       ],
 
-      username: 'dasd',
+      username: '',
       showingVideoInfo: false, // 비디오 정보 표시 여부
       currentVideoInfo: '', // 현재 비디오 정보
       currentVideoLevel: 1, // 현재 비디오 레벨
@@ -55,17 +55,19 @@ export default {
     },
 
     // 버튼 클릭 처리
-     async handleButtonClick(n) {
+    async handleButtonClick(n) {
+      console.log(this.selectedCategory);
+      console.log(n + this.currentLevel * 7 - 7);
+      let levelsss = n + this.currentLevel * 7 - 7;
       try {
         const response = await axios.post(
           "http://localhost:8080/videos/getAllVideos"
         );
         let videos = response.data.sort(() => Math.random() - 0.5); // 데이터를 랜덤으로 섞어서 저장
-        let hsj = n;
+        let hsj = 0;
         //console.log(videos);
         for (let index = 0; index < videos.length; index++) {
-          if (videos[index].category == this.type) {
-            //console.log(videos[index].category);
+          if (videos[index].category == this.selectedCategory && videos[index].difficulty == levelsss) {
             hsj = index;
             break;
           }
@@ -109,7 +111,7 @@ export default {
     const user = sessionStorage.getItem("user");
     
     if (!user) {
-      // 세션에 user 객체가 없으면 로그인 페이지로d 이동
+      // 세션에 user 객체가 없으면 로그인 페이지로 이동
       
         this.$router.push({ name: "Login" });
     } else {
