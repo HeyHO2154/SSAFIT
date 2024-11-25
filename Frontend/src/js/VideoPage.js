@@ -1,112 +1,116 @@
-// VideoPage.js
-import { createApp, ref, computed } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+import axios from "axios";
 
-// Vue 애플리케이션 생성
-const app = createApp({
-  setup() {
-    // 상태 정의
-    const categories = ref([
-      { id: 'shoulders', name: '어깨' },
-      { id: 'arms', name: '팔' },
-      { id: 'chest', name: '가슴' },
-      { id: 'back', name: '등' },
-      { id: 'abs', name: '복부' },
-      { id: 'legs', name: '하체' }
-    ]);
-
-    const activeCategory = ref('shoulders');
-    const currentDifficultyLevel = ref(1);
-    const isLiked = ref(false);
-    const newComment = ref('');
-
-    // Mock 데이터 정의
-    const videos = ref([
-      {
-        id: 1,
-        title: '제목입니다만 불만이라도???',
-        category: '가슴',
-        views: 1564,
-        thumbnail: '/placeholder.svg?height=80&width=128',
-        videoUrl: 'https://example.com/video1.mp4',
-        difficultyLevel: 1
-      },
-      // 더 많은 비디오를 추가할 수 있습니다.
-    ]);
-
-    const comments = ref([
-      {
-        id: 1,
-        userName: 'User1',
-        userAvatar: '/placeholder.svg?height=40&width=40',
-        text: '이영상으로 운동하다가 죽을 뻔했어요 정말 추천합니다 친시팡 하이파이브 하고 플레이했어요',
-        likes: 45,
-        isOwnComment: false
-      },
-      // 더 많은 댓글을 추가할 수 있습니다.
-    ]);
-
-    // 현재 비디오 선택
-    const currentVideo = ref(videos.value[0]);
-
-    // 필터링된 비디오 목록 계산
-    const filteredVideos = computed(() => {
-      return videos.value.filter(
-        video =>
-          video.category === activeCategory.value &&
-          video.difficultyLevel === currentDifficultyLevel.value
-      );
-    });
-
-    // 메소드 정의
-    const setActiveCategory = (categoryId) => {
-      activeCategory.value = categoryId;
-    };
-
-    const setDifficultyLevel = (level) => {
-      currentDifficultyLevel.value = level;
-    };
-
-    const toggleLike = () => {
-      isLiked.value = !isLiked.value;
-    };
-
-    const submitComment = () => {
-      if (!newComment.value.trim()) return;
-      
-      comments.value.unshift({
-        id: Date.now(),
-        userName: 'Current User',
-        userAvatar: '/placeholder.svg?height=40&width=40',
-        text: newComment.value,
-        likes: 0,
-        isOwnComment: true
-      });
-      
-      newComment.value = '';
-    };
-
-    const selectVideo = (video) => {
-      currentVideo.value = video;
-    };
-
+export default {
+  name: "VideoPage",
+  props: {
+    videoUrl: {
+      type: String,
+      required: true,
+    },
+    videoId: {
+      type: String,
+      required: true,
+    },
+    category: {
+      type: String,
+      required: true,
+    },
+    views: {
+      type: String, // 숫자로 다룰 경우 Number로 변경
+      required: true,
+    },
+  },
+  data() {
     return {
-      categories,
-      activeCategory,
-      currentDifficultyLevel,
-      isLiked,
-      newComment,
-      videos,
-      comments,
-      currentVideo,
-      filteredVideos,
-      setActiveCategory,
-      setDifficultyLevel,
-      toggleLike,
-      submitComment,
-      selectVideo
+      relatedVideos: [], // 관련 영상 목록
+      searchQuery: "", // 검색어
+      comments: [], // 댓글 목록
+      newComment: {
+        username: "",
+        content: "",
+      },
     };
-  }
-});
-
-// Vue 애플리케이션 마운트
-app.mount('#app');
+  },
+  created() {
+    this.addVideoView(); // 조회수 증가
+    this.fetchRelatedVideos(); // 관련 영상 로드
+    this.fetchComments(); // 댓글 로드
+  },
+  computed: {
+    // 현재 비디오 제외 관련 영상 필터링
+    filteredRelatedVideos() {
+      return this.relatedVideos.filter((video) => video.videoId !== this.videoId);
+    },
+  },
+  methods: {
+    async addVideoView() {
+      try {
+        const response = await axios.post("http://localhost:8080/videos/addViews", {
+          videoId: this.videoId,
+        });
+        console.log("조회수 증가:", response.data.views);
+      } catch (error) {
+        console.error("조회수 증가 실패:", error);
+      }
+    },
+    async fetchRelatedVideos() {
+      try {
+        const response = await axios.post(
+          "http://localhost:8080/videos/getCategoryVideo",
+          {
+            videoId: this.videoId,
+            category: this.category,
+          }
+        );
+        this.relatedVideos = response.data.sort(() => Math.random() - 0.5);
+      } catch (error) {
+        console.error("관련 영상 로드 실패:", error);
+      }
+    },
+    async fetchComments() {
+      try {
+        const response = await axios.get(`http://localhost:8080/videos/${this.videoId}/comments`);
+        this.comments = response.data;
+      } catch (error) {
+        console.error("댓글 로드 실패:", error);
+      }
+    },
+    async addComment() {
+      if (!this.newComment.username.trim() || !this.newComment.content.trim()) {
+        alert("사용자명과 댓글 내용을 입력해주세요!");
+        return;
+      }
+      try {
+        const response = await axios.post(
+          `http://localhost:8080/videos/${this.videoId}/comments`,
+          this.newComment
+        );
+        this.comments.push(response.data);
+        this.newComment.username = "";
+        this.newComment.content = "";
+      } catch (error) {
+        console.error("댓글 등록 실패:", error);
+      }
+    },
+    getThumbnailUrl(videoUrl) {
+      const videoId = videoUrl.split("v=")[1];
+      const ampersandPosition = videoId ? videoId.indexOf("&") : -1;
+      if (ampersandPosition !== -1) {
+        return `https://img.youtube.com/vi/${videoId.substring(0, ampersandPosition)}/0.jpg`;
+      }
+      return `https://img.youtube.com/vi/${videoId}/0.jpg`;
+    },
+    async goToVideo(video) {
+      await this.addVideoView(); // 조회수 증가
+      this.$router.push({
+        name: "VideoPage",
+        query: {
+          videoId: video.videoId,
+          url: video.url,
+          category: video.category,
+          views: video.views,
+        },
+      });
+    },
+  },
+};

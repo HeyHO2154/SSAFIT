@@ -1,3 +1,6 @@
+
+
+
 <template>
   <div id="app">
     <Header></Header>
@@ -17,7 +20,7 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'SBAggroM';
   margin: 0;
   padding: 0;
 }

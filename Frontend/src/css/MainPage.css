@@ -12,6 +12,92 @@
   font-style: normal;
 }
 
+.image {
+  background-image: url('../assets/background_1.png');
+  background-size: 95%;
+  background-repeat: no-repeat;
+  /* background-position: center; */
+
+  position: absolute; 
+  top: 5;
+  left: 5;
+  width: 103%;
+  height: 100%; /* 화면 전체 높이 설정 /
+  z-index: -1; / 다른 요소 뒤로 보내기 */
+}
+
+
+
+
+
+
+/* .roadmap-container {
+  background-color: var(--roadmap-bg-color);
+} */
+
+.circle-button {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+.circle-button.active {
+  background-color: #4caf50;
+}
+
+.circle-button.disabled {
+  background-color: #f44336;
+  cursor: not-allowed;
+}
+
+.character {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-image: url("");
+  background-size: cover;
+}
+
+.video-info {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  padding: 10px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.compare-section {
+  margin-top: 20px;
+}
+
+.nav-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.nav-dot.active {
+  background-color: #4caf50;
+}
+
+/* Define CSS variables for roadmap background */
+:root {
+  --roadmap-bg-color: #e6f2ff;
+}
+
+
+
+
+
 
 .main-container {
   display: flex;
@@ -67,16 +153,16 @@
 }
 
 .roadmap-container {
-  height: 700px;
+  height: 746px;
   position: relative;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   border-radius: 10px;
 }
 
 .level-indicator {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 25px;
+  left: 50px;
   font-size: 24px;
   font-weight: bold;
   margin: 10px;
@@ -88,7 +174,7 @@
   border-radius: 50%;
   background-color: #ccc;
   position: absolute;
-  top: 10%;  /* 버튼이 로드맵의 상단에서 10% 정도 내려오도록 설정 */
+  /* top: 10%;  */
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -365,3 +451,29 @@
 }
 
 
+
+
+
+
+
+
+
+.circle-button {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: gray;
+}
+.circle-button.active {
+  background: green;
+}
+.circle-button.disabled {
+  background: lightgray;
+}
+.character {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: red;
+}

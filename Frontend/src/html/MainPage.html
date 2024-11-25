@@ -4,29 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="../css/MainPage.css">
-  <link rel="stylesheet" href="../css/header.css">
-  
-  <header class="header">
-    <nav>
-      <div class="logo" @click="goMainPage">
-        <img src="@/assets/youtube-logo.png" alt="Logo" />
-      </div>
-      <ul class="HeaderUl">
-        <li @click="goMainPage">마이페이지</li>
-        <li v-if="isLoggedIn" @click="logout">로그아웃</li>
-        <li v-else @click="goLoginPage">로그인</li>
-        <li>햄버거</li>
-      </ul>
-    </nav>
-  </header>
-
 </head>
 <body>
-  
-  <div id="app">
-    <div class="main-container">
-    <!-- 카테고리 구역 -->
+
+    
+
+  <!-- 메인 컨테이너 -->
+  <div class="main-container">
+    <!-- 카테고리 섹션 -->
     <div class="category-section">
       <button 
         v-for="category in categories" 
@@ -37,57 +22,59 @@
         {{ category }}
       </button>
     </div>
-  
-    <!-- 메인 구역 : 로드맵 -->
-<div class="main-roadmap-section">
-  <div class="roadmap-container" :style="{ backgroundColor: roadmapBackgrounds[currentLevel - 1] }">
-    <div class="level-indicator">Lv.{{ currentLevel }}</div>
-    
-    <!-- circle-button 들을 추가로 표시 -->
-    <div 
-    v-for="n in 6" 
-    :key="n" 
-    class="circle-button"
-    :class="{ active: n <= currentLevel, disabled: n > currentLevel + 1 }"
-    :style="{ left: `${(n - 1) * 15}%`, top: '20%' }" 
-    @mouseover="showVideoInfo(n, $event)"
-    @mouseleave="hideVideoInfo"
-    @click="handleButtonClick(n)"
-  ></div>
 
-    <div class="character" :style="{ left: `${(currentLevel - 1) * 20}%` }"></div>
-    <div v-if="showingVideoInfo" class="video-info">
-      <p>{{ currentVideoInfo }}</p>
-      <button @click="goToVideo(currentVideoLevel)" :disabled="currentVideoLevel > currentLevel + 1">Go to video</button>
-    </div>
+    <!-- 메인 로드맵 섹션 -->
+    <div class="main-roadmap-section">
+      <div class="image"></div>
+      <div class="roadmap-container">
+        <div class="level-indicator">Lv.{{ currentLevel }}</div>
+        
+        <!-- circle-button 표시 -->
+        <div 
+        v-for="n in 7" 
+        :key="n" 
+        class="circle-button"
+        :class="{ active: n <= currentLevel, disabled: n > currentLevel + 1 }"
+        :style="customStyles[n - 1]"
+        @mouseover="showVideoInfo(n, $event)"
+        @mouseleave="hideVideoInfo"
+        @click="handleButtonClick(n)"
+      ></div>
 
-    <div class="compare-section">
-      <button @click="toggleCompare" :class="{ active: showingCompare }">비교하기</button>
-      <div v-if="showingCompare" class="compare-options">
-        <span>혼자</span>
-        <span>팔로우</span>
-        <span>크루</span>
+        <div class="character" :style="{ left: `${(currentLevel - 1) * 20}%` }"></div>
+        <div v-if="showingVideoInfo" class="video-info">
+          <p>{{ currentVideoInfo }}</p>
+          <button @click="goToVideo(currentVideoLevel)" :disabled="currentVideoLevel > currentLevel + 1">
+            Go to video
+          </button>
+        </div>
+
+        <div class="compare-section">
+          <button @click="toggleCompare" :class="{ active: showingCompare }">비교하기</button>
+          <div v-if="showingCompare" class="compare-options">
+            <span>혼자</span>
+            <span>팔로우</span>
+            <span>크루</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="roadmap-navigation">
+        <div 
+          v-for="n in 3" 
+          :key="n" 
+          class="nav-dot"
+          :class="{ active: currentLevel === n }"
+          @click="changeLevel(n)"
+        ></div>
       </div>
     </div>
 
-  </div>
-
-  <div class="roadmap-navigation">
-    <div 
-      v-for="n in 3" 
-      :key="n" 
-      class="nav-dot"
-      :class="{ active: currentLevel === n }"
-      @click="changeLevel(n)"
-    ></div>
-  </div>
-</div>
-  
-    <!-- 사용자 구역 -->
+    <!-- 사용자 섹션 -->
     <div class="user-section">
       <div class="upper-section">
         <div class="profile-section">
-          <img src="../assets/프로필.PNG" alt="User profile" class="profile-image">
+          <img src="" alt="User profile" class="profile-image">
           <div class="user-info">
             <p><span>닉네임</span> MY</p>
             <p>{{ userMessage }}</p>
@@ -104,7 +91,6 @@
           </div>
         </div>
       </div>
-
 
       <div class="lower-section" :class="{ 'collapsed': !notificationsCollapsed }">
         <div class="notification-header">
@@ -126,24 +112,7 @@
           </div>
         </div>
       </div>
-      
-
-
     </div>
   </div>
-
-</div>
-  <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  <script src="../js/MainPage.js"></script> -->
-
-  <!-- Vue.js CDN 불러오기 -->
-  <script src="https://unpkg.com/vue@3"></script>
-
-  <!-- JavaScript 파일 불러오기 -->
-  <!-- <script src="../js/MainPage.js"></script> -->
-  <script type="module" src="../js/MainPage.js"></script>
-
-  
 </body>
 </html>
-

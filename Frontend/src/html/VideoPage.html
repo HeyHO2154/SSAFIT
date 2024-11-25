@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="../css/header.css">
-  <link rel="stylesheet" href="../css/VideoPage.css">
+
 
   <header class="header">
     <nav>
@@ -24,106 +23,127 @@
 </head>
 
 <body>
-  <div id="app" class="app-container">
-    <div class="left-section">
-      <div class="category-buttons">
-        <button
-          v-for="category in categories"
-          :key="category.id"
-          @click="setActiveCategory(category.id)"
-          :class="activeCategory === category.id ? 'active-category' : 'inactive-category'"
-        >
-          {{ category.name }}
-        </button>
-      </div>
-    </div>
-  
-    <div class="middle-section">
-      <div class="video-player">
-        <video
-          v-if="currentVideo"
-          class="current-video"
-          :src="currentVideo.videoUrl"
-          controls
-        ></video>
-      </div>
-  
-      <div class="video-info">
-        <div class="info-header">
-          <h1>{{ currentVideo?.title }}</h1>
-          <button @click="toggleLike" class="like-button">
-            <span>Like</span>
-            <span>{{ isLiked ? '♥' : '♡' }}</span>
+  <div class="app-container">
+    <!-- 헤더 -->
+    <header class="header">
+      <nav>
+        <div class="logo" @click="goMainPage">
+          <img src="../assets/youtube-logo.png" alt="Logo" />
+        </div>
+        <ul class="HeaderUl">
+          <li @click="goMainPage">마이페이지</li>
+          <li v-if="isLoggedIn" @click="logout">로그아웃</li>
+          <li v-else @click="goLoginPage">로그인</li>
+          <li>햄버거</li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="main-container">
+      <!-- 왼쪽 섹션: 카테고리 버튼 -->
+      <div class="left-section">
+        <div class="category-buttons">
+          <button
+            v-for="category in categories"
+            :key="category.id"
+            @click="setActiveCategory(category.id)"
+            :class="activeCategory === category.id ? 'active-category' : 'inactive-category'"
+          >
+            {{ category.name }}
           </button>
         </div>
-        <div class="info-details">
-          <span>{{ currentVideo?.category }}</span>
-          <span>•</span>
-          <span>{{ currentVideo?.views }} views</span>
-        </div>
       </div>
-  
-      <div class="comments-section">
-        <div class="comments-header">
-          <h2>Comments</h2>
-          <span>{{ comments.length }}</span>
+
+      <!-- 중간 섹션: 비디오 플레이어와 정보 -->
+      <div class="middle-section">
+        <div class="video-player">
+          <video
+            v-if="currentVideo"
+            class="current-video"
+            :src="currentVideo.videoUrl"
+            controls
+            autoplay
+          ></video>
         </div>
-        <div class="comment-input">
-          <input v-model="newComment" type="text" placeholder="Write a comment..." />
-          <button @click="submitComment">Write</button>
+        <div class="video-info">
+          <div class="info-header">
+            <h1>{{ currentVideo?.title }}</h1>
+            <button @click="toggleLike" class="like-button">
+              <span>Like</span>
+              <span>{{ isLiked ? '♥' : '♡' }}</span>
+            </button>
+          </div>
+          <div class="info-details">
+            <span>{{ currentVideo?.category }}</span>
+            <span>•</span>
+            <span>{{ currentVideo?.views }} views</span>
+          </div>
         </div>
-        <div class="comments-list">
-          <div
-            v-for="comment in comments"
-            :key="comment.id"
-            class="comment-item"
-          >
-            <img :src="comment.userAvatar" alt="User avatar" />
-            <div class="comment-content">
-              <div class="comment-header">
-                <h3>{{ comment.userName }}</h3>
-                <div v-if="comment.isOwnComment">
-                  <button>Edit</button>
-                  <button>Delete</button>
+
+        <!-- 댓글 섹션 -->
+        <div class="comments-section">
+          <div class="comments-header">
+            <h2>댓글</h2>
+            <span>{{ comments.length }}</span>
+          </div>
+          <div class="comment-input">
+            <textarea v-model="newComment.content" placeholder="댓글을 입력하세요"></textarea>
+            <button @click="addComment">댓글 등록</button>
+          </div>
+          <div class="comments-list">
+            <div
+              v-for="comment in comments"
+              :key="comment.id"
+              class="comment-item"
+            >
+              <img :src="comment.userAvatar" alt="User avatar" />
+              <div class="comment-content">
+                <div class="comment-header">
+                  <h3>{{ comment.userName }}</h3>
+                  <div v-if="comment.isOwnComment">
+                    <button>Edit</button>
+                    <button>Delete</button>
+                  </div>
+                  <div v-else>
+                    <span>{{ comment.likes }}</span>
+                    <button>♡</button>
+                  </div>
                 </div>
-                <div v-else>
-                  <span>{{ comment.likes }}</span>
-                  <button>♡</button>
-                </div>
+                <p>{{ comment.text }}</p>
               </div>
-              <p>{{ comment.text }}</p>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  
-    <div class="right-section">
-      <div class="difficulty-levels">
-        <button
-          v-for="level in 5"
-          :key="level"
-          @click="setDifficultyLevel(level)"
-          :class="currentDifficultyLevel === level ? 'active-level' : 'inactive-level'"
-        ></button>
-        <span>Level {{ currentDifficultyLevel }}</span>
-      </div>
-      <div class="video-list" ref="videoListContainer">
-        <div
-          v-for="video in filteredVideos"
-          :key="video.id"
-          @click="selectVideo(video)"
-          class="video-item"
-        >
-          <div class="thumbnail">
-            <img :src="video.thumbnail" alt="Video thumbnail" />
-          </div>
-          <div class="video-details">
-            <h3>{{ video.title }}</h3>
-            <div>
-              <span>{{ video.category }}</span>
-              <span>•</span>
-              <span>{{ video.views }} views</span>
+
+      <!-- 오른쪽 섹션: 난이도와 관련 비디오 -->
+      <div class="right-section">
+        <div class="difficulty-levels">
+          <button
+            v-for="level in 5"
+            :key="level"
+            @click="setDifficultyLevel(level)"
+            :class="currentDifficultyLevel === level ? 'active-level' : 'inactive-level'"
+          ></button>
+          <span>Level {{ currentDifficultyLevel }}</span>
+        </div>
+        <div class="video-list">
+          <div
+            v-for="video in filteredVideos"
+            :key="video.id"
+            @click="selectVideo(video)"
+            class="video-item"
+          >
+            <div class="thumbnail">
+              <img :src="video.thumbnail" alt="Video thumbnail" />
+            </div>
+            <div class="video-details">
+              <h3>{{ video.title }}</h3>
+              <div>
+                <span>{{ video.category }}</span>
+                <span>•</span>
+                <span>{{ video.views }} views</span>
+              </div>
             </div>
           </div>
         </div>
@@ -131,8 +151,7 @@
     </div>
   </div>
   
-  <script type="module" src="https://unpkg.com/vue@3/dist/vue.esm-browser.js"></script>
-  <script type="module" src="../js/VideoPage.js"></script>
+
 </body>
 </html>
 
