@@ -1,116 +1,117 @@
+
+import { ref, computed, onMounted } from "vue";
 import axios from "axios";
 
 export default {
   name: "VideoPage",
-  props: {
-    videoUrl: {
-      type: String,
-      required: true,
-    },
-    videoId: {
-      type: String,
-      required: true,
-    },
-    category: {
-      type: String,
-      required: true,
-    },
-    views: {
-      type: String, // 숫자로 다룰 경우 Number로 변경
-      required: true,
-    },
-  },
-  data() {
-    return {
-      relatedVideos: [], // 관련 영상 목록
-      searchQuery: "", // 검색어
-      comments: [], // 댓글 목록
-      newComment: {
-        username: "",
-        content: "",
-      },
+  setup() {
+    // 카테고리 및 알림 상태
+    const categories = ref([
+      { id: "shoulders", name: "어깨" },
+      { id: "arms", name: "팔" },
+      { id: "chest", name: "가슴" },
+      { id: "back", name: "등" },
+      { id: "abs", name: "복부" },
+      { id: "legs", name: "하체" },
+    ]);
+    const notificationsCollapsed = ref(false);
+    const hasNewNotifications = ref(true);
+
+    // 초기 상태 설정
+    const videos = ref([]); // 비디오 배열 초기화
+    const currentVideo = ref(null); // 현재 선택된 비디오
+    const comments = ref([]); // 댓글 목록 초기화
+    const newComment = ref(""); // 새 댓글
+    const isLiked = ref(false); // 좋아요 상태
+
+    const activeCategory = ref("shoulders");
+    const currentDifficultyLevel = ref(1);
+
+    // 관련 비디오 필터링
+    const filteredVideos = computed(() =>
+      videos.value.filter(
+        (video) =>
+          video.category === activeCategory.value &&
+          video.difficultyLevel === currentDifficultyLevel.value
+      )
+    );
+
+    // 카테고리 설정
+    const setActiveCategory = (categoryId) => {
+      activeCategory.value = categoryId;
     };
-  },
-  created() {
-    this.addVideoView(); // 조회수 증가
-    this.fetchRelatedVideos(); // 관련 영상 로드
-    this.fetchComments(); // 댓글 로드
-  },
-  computed: {
-    // 현재 비디오 제외 관련 영상 필터링
-    filteredRelatedVideos() {
-      return this.relatedVideos.filter((video) => video.videoId !== this.videoId);
-    },
-  },
-  methods: {
-    async addVideoView() {
-      try {
-        const response = await axios.post("http://localhost:8080/videos/addViews", {
-          videoId: this.videoId,
-        });
-        console.log("조회수 증가:", response.data.views);
-      } catch (error) {
-        console.error("조회수 증가 실패:", error);
-      }
-    },
-    async fetchRelatedVideos() {
-      try {
-        const response = await axios.post(
-          "http://localhost:8080/videos/getCategoryVideo",
-          {
-            videoId: this.videoId,
-            category: this.category,
-          }
-        );
-        this.relatedVideos = response.data.sort(() => Math.random() - 0.5);
-      } catch (error) {
-        console.error("관련 영상 로드 실패:", error);
-      }
-    },
-    async fetchComments() {
-      try {
-        const response = await axios.get(`http://localhost:8080/videos/${this.videoId}/comments`);
-        this.comments = response.data;
-      } catch (error) {
-        console.error("댓글 로드 실패:", error);
-      }
-    },
-    async addComment() {
-      if (!this.newComment.username.trim() || !this.newComment.content.trim()) {
-        alert("사용자명과 댓글 내용을 입력해주세요!");
-        return;
-      }
-      try {
-        const response = await axios.post(
-          `http://localhost:8080/videos/${this.videoId}/comments`,
-          this.newComment
-        );
-        this.comments.push(response.data);
-        this.newComment.username = "";
-        this.newComment.content = "";
-      } catch (error) {
-        console.error("댓글 등록 실패:", error);
-      }
-    },
-    getThumbnailUrl(videoUrl) {
-      const videoId = videoUrl.split("v=")[1];
-      const ampersandPosition = videoId ? videoId.indexOf("&") : -1;
-      if (ampersandPosition !== -1) {
-        return `https://img.youtube.com/vi/${videoId.substring(0, ampersandPosition)}/0.jpg`;
-      }
-      return `https://img.youtube.com/vi/${videoId}/0.jpg`;
-    },
-    async goToVideo(video) {
-      await this.addVideoView(); // 조회수 증가
-      this.$router.push({
-        name: "VideoPage",
-        query: {
-          videoId: video.videoId,
-          url: video.url,
-          category: video.category,
-          views: video.views,
-        },
+
+    // 난이도 설정
+    const setDifficultyLevel = (level) => {
+      currentDifficultyLevel.value = level;
+    };
+
+    // 좋아요 상태 토글
+    const toggleLike = () => {
+      isLiked.value = !isLiked.value;
+    };
+
+    // 댓글 추가
+    const submitComment = () => {
+      if (!newComment.value.trim()) return;
+
+      comments.value.unshift({
+        id: Date.now(),
+        userName: "Current User",
+        userAvatar: "https://via.placeholder.com/40",
+        text: newComment.value,
+        likes: 0,
+        isOwnComment: true,
       });
-    },
+
+      newComment.value = "";
+    };
+
+    // 비디오 선택
+    const selectVideo = (video) => {
+      currentVideo.value = video;
+    };
+
+    // 알림 토글
+    const toggleNotifications = () => {
+      notificationsCollapsed.value = !notificationsCollapsed.value;
+    };
+
+    // 비디오 및 댓글 로드
+    const fetchVideosAndComments = async () => {
+      try {
+        const videoResponse = await axios.get("http://localhost:8080/videos");
+        videos.value = videoResponse.data || [];
+        currentVideo.value = videos.value.length > 0 ? videos.value[0] : null;
+
+        const commentsResponse = await axios.get("http://localhost:8080/comments");
+        comments.value = commentsResponse.data || [];
+      } catch (error) {
+        console.error("데이터 로드 실패:", error);
+      }
+    };
+
+    // 컴포넌트 마운트 시 데이터 로드
+    onMounted(fetchVideosAndComments);
+
+    return {
+      categories,
+      notificationsCollapsed,
+      hasNewNotifications,
+      toggleNotifications,
+      videos,
+      comments,
+      currentVideo,
+      newComment,
+      isLiked,
+      activeCategory,
+      currentDifficultyLevel,
+      filteredVideos,
+      setActiveCategory,
+      setDifficultyLevel,
+      toggleLike,
+      submitComment,
+      selectVideo,
+    };
   },
 };
