@@ -109,7 +109,7 @@ export default {
     const user = sessionStorage.getItem("user");
     
     if (!user) {
-      // 세션에 user 객체가 없으면 로그인 페이지로 이동
+      // 세션에 user 객체가 없으면 로그인 페이지로d 이동
       
         this.$router.push({ name: "Login" });
     } else {
