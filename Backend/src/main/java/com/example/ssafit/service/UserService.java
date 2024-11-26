@@ -24,4 +24,12 @@ public class UserService {
     public User login(User user) {
         return userMapper.login(user);
     }
+
+	public int getFollowersNum(String userId) {
+		return userMapper.getFollowersNum(userId);
+	}
+
+	public String getCrew(String userId) {
+		return userMapper.getCrew(userId);
+	}
 }

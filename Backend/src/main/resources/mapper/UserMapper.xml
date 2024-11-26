@@ -18,6 +18,15 @@
     <select id="getUserById" parameterType="com.example.ssafit.model.User" resultType="com.example.ssafit.model.User">
         SELECT * FROM users WHERE userId = #{userId}
     </select>
+    
+	<!-- 팔로워 수 조회 -->
+	<select id="getFollowersNum" parameterType="String" resultType="int">
+	    SELECT COUNT(*) FROM follower WHERE leaderId = #{userId}
+	</select>
+	<!-- 크루 정보 조회 -->
+	<select id="getCrew" parameterType="String" resultType="String">
+	    SELECT crew FROM users WHERE userId = #{userId}
+	</select>
 
     <!-- 사용자 정보 수정 -->
     <update id="updateUser" parameterType="com.example.ssafit.model.User">

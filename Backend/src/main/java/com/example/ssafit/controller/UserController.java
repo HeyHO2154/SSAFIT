@@ -21,15 +21,25 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<Boolean> register(@RequestBody User user) {
-    	System.out.println(user);
         return ResponseEntity.ok(userService.register(user));
     }
 
     @PostMapping("/login")
     public ResponseEntity<User> login(@RequestBody User loginRequest) {
-    	System.out.println(loginRequest.getUserId());
         User user = userService.login(loginRequest);
         return ResponseEntity.ok(user);
+    }
+    
+    @PostMapping("/getFollowersNum")
+    public ResponseEntity<Integer> getFollowersNum(@RequestBody User user){
+    	int FollowersNum = userService.getFollowersNum(user.getUserId());
+    	return ResponseEntity.ok(FollowersNum);
+    }
+    
+    @PostMapping("/getCrew")
+    public ResponseEntity<String> getCrew(@RequestBody User user){
+    	String Crewname = userService.getCrew(user.getUserId());
+    	return ResponseEntity.ok(Crewname);
     }
 
 }

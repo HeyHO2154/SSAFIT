@@ -8,9 +8,9 @@ export default {
     // 카테고리 및 알림 상태
     const categories = ref([
       { id: "shoulders", name: "어깨" },
-      { id: "arms", name: "팔" },
+      { id: "arms", name: "등" },
       { id: "chest", name: "가슴" },
-      { id: "back", name: "등" },
+      { id: "back", name: "팔" },
       { id: "abs", name: "복부" },
       { id: "legs", name: "하체" },
     ]);

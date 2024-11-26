@@ -54,10 +54,29 @@ export default {
       this.showingVideoInfo = false;
     },
 
+    async getMainInfo(userId) {
+      try {
+        const response = await axios.post(
+          "http://localhost:8080/users/getFollowersNum",
+          { userId: userId } // userId만 포함된 객체를 전송
+        );
+        this.followers = response.data; // 데이터를 저장 (랜덤 섞기는 이후에 처리)
+      } catch (error) {
+        console.error("Error fetching followers:", error);
+      }
+      try {
+        const response = await axios.post(
+          "http://localhost:8080/users/getCrew",
+          { userId: userId } // userId만 포함된 객체를 전송
+        );
+        this.crewName = response.data; // 데이터를 저장 (랜덤 섞기는 이후에 처리)
+      } catch (error) {
+        console.error("Error fetching followers:", error);
+      }
+    },
+
     // 버튼 클릭 처리
     async handleButtonClick(n) {
-      console.log(this.selectedCategory);
-      console.log(n + this.currentLevel * 7 - 7);
       let levelsss = n + this.currentLevel * 7 - 7;
       try {
         const response = await axios.post(
@@ -106,17 +125,12 @@ export default {
     },
   },
   mounted() {
-    console.log("MainPage mounted");
-    
     const user = sessionStorage.getItem("user");
-    
     if (!user) {
-      // 세션에 user 객체가 없으면 로그인 페이지로 이동
-      
-        this.$router.push({ name: "Login" });
+      this.$router.push({ name: "Login" });
     } else {
       this.username = JSON.parse(sessionStorage.getItem("user"))?.userId || '';
-      
+      this.getMainInfo(this.username);
     }
 
   },

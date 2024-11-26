@@ -5,7 +5,7 @@
         <img src="@/assets/youtube-logo.png" alt="Logo" />
       </div>
       <ul class="HeaderUl">
-        <li @click="goMainPage">마이페이지</li>
+        <li @click="goMyPage">마이페이지</li>
         <li v-if="isLoggedIn" @click="logout">로그아웃</li>
         <li v-else @click="goLoginPage">로그인</li>
         <li>햄버거</li>
@@ -33,6 +33,10 @@ export default {
     goMainPage() {
       this.fetchVideos();
       this.$router.push({ name: "Main" });
+    },
+    goMyPage() {
+      this.fetchVideos();
+      this.$router.push({ name: "MyPage" });
     },
     goLoginPage() {
       this.$router.push({ name: "Login" });

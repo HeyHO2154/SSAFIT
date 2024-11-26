@@ -8,4 +8,6 @@ public interface UserMapper {
     void registerUser(User user);
     User getUserById(User user);
     User login(User user);
+	int getFollowersNum(String userId);
+	String getCrew(String userId);
 }
