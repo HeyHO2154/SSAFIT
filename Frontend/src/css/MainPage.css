@@ -273,8 +273,8 @@ body{
 /* 비교하기 구역 */
 .compare-section {
   position: absolute;
-  bottom: 30px;
-  right: 18px;
+  bottom: 26px;
+  right: 33px;
 }
 
 /* 비교하기 버튼 비활성화 */
