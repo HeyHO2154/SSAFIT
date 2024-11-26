@@ -32,9 +32,11 @@
         </button>
       </div>
       <div class="info-details">
-        <span>카테고리: {{ currentVideo?.category }}</span>
+        <span>카테고리: {{ category }}</span>
         <span> | </span>
-        <span>조회수: {{ currentVideo?.views }}</span>
+        <span>난이도: {{ difficultyHSJ() }}</span>
+        <span> | </span>
+        <span>조회수: {{ views }}</span>
       </div>
     </div>
 

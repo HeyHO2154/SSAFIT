@@ -18,6 +18,15 @@ export default {
         { left: '74.9%', top: '27.4%' }, // 6번 버튼 위치
         { left: '86.1%', top: '42.9%' }, // 7번째 버튼 위치
       ],
+      customStyless: [
+        { left: '10%', top: '25.2%' }, // 1번 버튼 위치
+        { left: '20.4%', top: '25.2%' }, // 2번 버튼 위치
+        { left: '28.7%', top: '40.1%' }, // 3번 버튼 위치
+        { left: '40.2%', top: '40.1%' }, // 4번 버튼 위치
+        { left: '54.5%', top: '7.4%' }, // 5번 버튼 위치
+        { left: '72.9%', top: '7.4%' }, // 6번 버튼 위치
+        { left: '84.1%', top: '22.9%' }, // 7번째 버튼 위치
+      ],
 
       username: '',
       showingVideoInfo: false, // 비디오 정보 표시 여부
@@ -38,15 +47,25 @@ export default {
     };
   },
   methods: {
+    currentLevel22() {
+      if (this.currentLevel == 1) {
+        return '초급';
+      }
+      if (this.currentLevel == 2) {
+        return '중급';
+      }
+      if (this.currentLevel == 3) {
+        return '고급';
+      }
+    },
     // 카테고리 선택
     selectCategory(category) {
       this.selectedCategory = category;
     },
     // 비디오 정보 표시
-    showVideoInfo(level) {
+    showVideoInfo(n) {
       this.showingVideoInfo = true;
-      this.currentVideoInfo = `클릭하면 ${level}단계 영상으로 이동합니다`;
-      this.currentVideoLevel = level;
+      this.currentVideoInfo = `클릭하면 ${n}단계 영상으로 이동합니다`;
     },
     
     // 비디오 정보 숨기기
@@ -78,33 +97,36 @@ export default {
     // 버튼 클릭 처리
     async handleButtonClick(n) {
       let levelsss = n + this.currentLevel * 7 - 7;
-      try {
-        const response = await axios.post(
-          "http://localhost:8080/videos/getAllVideos"
-        );
-        let videos = response.data;
-        let hsj = 0;
-        for (let index = 0; index < videos.length; index++) {
-          if (videos[index].category == this.selectedCategory && videos[index].difficulty == levelsss) {
-            console.log("find");
-            hsj = index;
-            break;
+      if (n <= this.currentLevel+1) {
+        try {
+          const response = await axios.post(
+            "http://localhost:8080/videos/getAllVideos"
+          );
+          let videos = response.data;
+          let hsj = 0;
+          for (let index = 0; index < videos.length; index++) {
+            if (videos[index].category == this.selectedCategory && videos[index].difficulty == levelsss) {
+              console.log("find");
+              hsj = index;
+              break;
+            }
           }
+          console.log(this.selectedCategory, levelsss);
+          console.log(videos[hsj].category, videos[hsj].difficulty);
+          console.log(videos[hsj].videoId);
+          this.$router.push({
+            name: "VideoPage",
+            query: {
+              videoId: videos[hsj].videoId,
+              url: videos[hsj].url,
+              category: videos[hsj].category,
+              views: videos[hsj].views,
+              difficulty: videos[hsj].difficulty,
+            },
+          });
+        } catch (error) {
+          console.error("Error fetching videos:", error);
         }
-        console.log(this.selectedCategory, levelsss);
-        console.log(videos[hsj].category, videos[hsj].difficulty);
-        console.log(videos[hsj].videoId);
-        this.$router.push({
-          name: "VideoPage",
-          query: {
-            videoId: videos[hsj].videoId,
-            url: videos[hsj].url,
-            category: videos[hsj].category,
-            views: videos[hsj].views,
-          },
-        });
-      } catch (error) {
-        console.error("Error fetching videos:", error);
       }
     },
 

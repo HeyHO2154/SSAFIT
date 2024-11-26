@@ -97,6 +97,7 @@ body{
   height: 50px;
   background-image: url("");
   background-size: cover;
+  z-index: 3;
 }
 
 .video-info {

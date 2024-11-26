@@ -24,7 +24,17 @@ export default {
       type: [String, Number], // 숫자 또는 문자열
       required: false,
       default: ''
-    }
+    },
+    difficulty: {
+      type: [String, Number], // 숫자 또는 문자열
+      required: false,
+      default: ''  
+    },
+  },
+  data() {
+    return {
+      difficultyHSJ23: "",
+    };
   },
   computed: {
     computedVideoUrl() {
@@ -38,6 +48,17 @@ export default {
     }
   },
   methods: {
+    difficultyHSJ() {
+      let result = '';
+      if (this.difficulty <= 7) {
+        result = "초급"+" "+this.difficulty;
+      } else if (this.difficulty <= 14) {
+        result = "중급"+" "+(this.difficulty-7);
+      } else {
+        result = "고급"+" "+(this.difficulty-14);
+      }
+      return result;
+    },
     extractVideoId(url) {
       try {
         const urlObj = new URL(url);

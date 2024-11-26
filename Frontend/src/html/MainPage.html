@@ -27,8 +27,16 @@
     <div class="main-roadmap-section">
       <div class="image"></div>
       <div class="roadmap-container">
-        <div class="level-indicator">Lv.{{ currentLevel }}</div>
+        <div class="level-indicator">{{ currentLevel22() }}</div>
         
+        <div 
+        v-if="currentLevel > 0 && currentLevel <= customStyles.length" 
+        class="character"
+        :style="customStyless[currentLevel]"
+      >
+        <img src="../assets/user.png" alt="Character" />
+      </div>
+
         <!-- circle-button 표시 -->
         <div 
         v-for="n in 7" 
@@ -36,10 +44,12 @@
         class="circle-button"
         :class="{ active: n <= currentLevel, disabled: n > currentLevel + 1 }"
         :style="customStyles[n - 1]"
-        @mouseover="showVideoInfo(n, $event)"
+        @mouseover="showVideoInfo(n, currentLevel)"
         @mouseleave="hideVideoInfo"
         @click="handleButtonClick(n)"
       ></div>
+
+
 
         <div class="character" :style="{ left: `${(currentLevel - 1) * 20}%` }"></div>
         <div v-if="showingVideoInfo" class="video-info">

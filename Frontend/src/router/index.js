@@ -21,6 +21,7 @@ const routes = [
       videoUrl: route.query.url || '',
       category: route.query.category || '',
       views: route.query.views || '',
+      difficulty: route.query.difficulty || '',
     }),
   },
   { 
