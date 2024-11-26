@@ -1,21 +1,23 @@
 @font-face {
-  font-family: 'SBAggroM';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff') format('woff');
+  font-family: "SBAggroM";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff")
+    format("woff");
   font-weight: 300;
   /* font-style: normal; */
 }
 
 @font-face {
-  font-family: 'SBAggroB';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+  font-family: "SBAggroB";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff")
+    format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
-.backback{
-  background-image: url('../assets/backback.jpg');
+.backback {
+  background-image: url("../assets/backback.jpg");
   background-repeat: no-repeat;
-  position: absolute; 
+  position: absolute;
   /* top: 5;
   left: 5; */
   width: 100%;
@@ -24,25 +26,25 @@
   pointer-events: none;
 }
 
-.categoryyyy{
-  background-image: url('../assets/categoryyy.png');
+.categoryyyy {
+  background-image: url("../assets/categoryyy.png");
   background-repeat: no-repeat;
-  position: fixed; 
+  position: fixed;
   width: 100%;
   height: 100%;
   z-index: 1;
   pointer-events: none;
   top: 490px;
-  left: 160px;
+  left: 135px;
 }
 
 .image {
-  background-image: url('../assets/background_1.png');
+  background-image: url("../assets/background_1.png");
   background-size: 95%;
   background-repeat: no-repeat;
   /* background-position: center; */
 
-  position: absolute; 
+  position: absolute;
   top: 5;
   left: 5;
   width: 103%;
@@ -51,13 +53,12 @@
   pointer-events: none;
 }
 
-/* .body{
+.body{
   background-color: #4B98DC; 
   height: 100vh; 
-} */
-
-
-
+  height: 100vh;  /* 화면 크기만큼 높이를 지정 */
+  overflow: hidden; /* 이 영역에 대해 스크롤을 제거 */
+}
 
 /* .roadmap-container {
   background-color: var(--roadmap-bg-color);
@@ -68,17 +69,17 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #5D9CEC;
+  background-color: #5d9cec;
   cursor: pointer;
   z-index: 2;
 }
 
 .circle-button.active {
-  background-color: #8CC051;
+  background-color: #8cc051;
 }
 
 .circle-button.disabled {
-  background-color: #FEBB50;
+  background-color: #febb50;
   cursor: not-allowed;
 }
 
@@ -100,12 +101,11 @@
   border: 1px solid #ccc;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-  width: 320px; 
+  width: 320px;
   height: 60px;
-  
 }
 
-.video-info p{
+.video-info p {
   font-size: 18px;
   margin-top: 10px;
   margin-left: 12px;
@@ -128,16 +128,13 @@
   background-color: #4caf50;
 }
 
-
-
 .main-container {
   display: flex;
   height: 100vh;
   /* font-family: Arial, sans-serif; */
   font-family: SBAggroM;
-  padding: 1rem 5rem 1rem  5rem ;
+  padding: 1rem 5rem 1rem 5rem;
   /* background-color: #4B98DC; */
-
 }
 
 .category-section {
@@ -146,28 +143,26 @@
   flex-direction: column;
   padding: 20px;
   /* background-color: #f0f0f0; */
-  padding-top: 30rem;        /* 버튼을 하단으로 밀어냄 */
+  padding-top: 30rem; /* 버튼을 하단으로 밀어냄 */
   z-index: 2;
 }
-
-
 
 .category-section button {
   margin-bottom: 10px;
   padding: 10px;
   border: none;
-  background-color: #F4FFB6;
-  color: #375E1E;
+  background-color: #f4ffb6;
+  color: #375e1e;
   cursor: pointer;
   border-radius: 12px;
   width: 5rem;
   height: 2rem;
-  
-  align-self: flex-end;    /* 버튼을 오른쪽으로 정렬 */
+
+  align-self: flex-end; /* 버튼을 오른쪽으로 정렬 */
   font-family: SBAggroM;
   font-size: 0.9em;
-  display: flex;               /* 플렉스 박스 설정 */
-  justify-content: center;     /* 수평 방향 중앙 정렬 */
+  display: flex; /* 플렉스 박스 설정 */
+  justify-content: center; /* 수평 방향 중앙 정렬 */
   align-items: center;
   /* border: 1px solid #007bff; */
 }
@@ -186,9 +181,9 @@
   flex-grow: 1;
   /* padding-bottom: 80px;
   padding-top: 30px; */
-  padding : 20px 20px 20px 20px;
+  padding: 20px 20px 20px 20px;
   /* padding: 20px; */
-  
+
   position: relative;
 }
 
@@ -201,8 +196,8 @@
 
 .level-indicator {
   position: absolute;
-  top: 25px;
-  left: 50px;
+  top: 35px;
+  left: 65px;
   font-size: 24px;
   font-weight: bold;
   margin: 10px;
@@ -267,7 +262,6 @@
   background-color: #007bff;
 }
 
-
 /* 비교하기 구역 */
 .compare-section {
   position: absolute;
@@ -293,10 +287,10 @@
 }
 
 .compare-options {
-  display: flex;          /* Flexbox 설정으로 가로 정렬 */
-  flex-direction: row;    /* 가로(row) 방향으로 정렬 */
-  align-items: center;    /* 수직 중앙 정렬 */
-  gap: 10px;              /* 텍스트 간의 간격 설정 */
+  display: flex; /* Flexbox 설정으로 가로 정렬 */
+  flex-direction: row; /* 가로(row) 방향으로 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+  gap: 10px; /* 텍스트 간의 간격 설정 */
   margin-top: 0;
   margin-right: 10px;
   position: absolute;
@@ -307,28 +301,27 @@
 }
 
 .compare-options span {
-  margin-right: 0;    /* 불필요한 오른쪽 여백 제거 */
+  margin-right: 0; /* 불필요한 오른쪽 여백 제거 */
   display: inline;
   white-space: nowrap;
 }
 
-
 .user-section {
-  position: relative;  /* 내부 요소들의 절대 위치 기준점 설정 */
+  position: relative; /* 내부 요소들의 절대 위치 기준점 설정 */
   width: 250px;
   padding: 15px;
   /* background-color: #f9f9f9; */
   /* border-left: 1px solid #afafaf; */
-  min-width: 250px;  /* 사용자 구역의 최소 너비를 200px로 지정 */
+  min-width: 250px; /* 사용자 구역의 최소 너비를 200px로 지정 */
 }
 
 /* 사용자 구역 상단 구역 */
-.upper-section{
-  border: 1px solid #4B89DC;  /* 테두리의 너비, 스타일, 색상 지정 */
+.upper-section {
+  border: 1px solid #4b89dc; /* 테두리의 너비, 스타일, 색상 지정 */
   background-color: aliceblue;
-  padding: 20px;              /* 내부 여백 추가로 요소가 테두리와 떨어지도록 설정 */
-  border-radius: 10px; 
-  
+  padding: 20px; /* 내부 여백 추가로 요소가 테두리와 떨어지도록 설정 */
+  border-radius: 10px;
+
   height: 320px;
   margin-bottom: 20px;
   margin-top: 20px;
@@ -338,7 +331,6 @@
 .profile-section {
   text-align: center;
   margin-bottom: 15px;
-
 }
 
 /* 프로필 이미지 */
@@ -351,12 +343,10 @@
 
 .user-info {
   text-align: left;
-
 }
 
 .user-info p {
   margin: 2px 0; /* 닉네임과 메시지 사이의 간격을 줄임 */
-  
 }
 
 .user-info span {
@@ -368,59 +358,54 @@
 .follow-crew-section {
   display: flex;
   justify-content: start;
-  border-top: 1px solid #4B89DC;
+  border-top: 1px solid #4b89dc;
   padding: 12px 10px 10px 10px;
   height: 55px;
-
 }
 
-.follow-crew-section .follow{
+.follow-crew-section .follow {
   /* margin-right: 6rem; */
   padding-right: 1.5rem;
-  
-  border-right: 1px solid #4B89DC;
+
+  border-right: 1px solid #4b89dc;
 }
 
-.follow-crew-section .crew{
+.follow-crew-section .crew {
   margin-left: 1rem;
-
 }
 
 .follow-crew-section h3 {
-  font-size: 12px;       /* 글씨 크기 줄이기 */
-  color: #4B89DC;        /* 글씨 색 변경 */
+  font-size: 12px; /* 글씨 크기 줄이기 */
+  color: #4b89dc; /* 글씨 색 변경 */
   margin-bottom: 10px;
   margin: 5px 0;
 }
 
 .follow-crew-section p {
-  font-size: 18px;       /* 글씨 크기 줄이기 */
+  font-size: 18px; /* 글씨 크기 줄이기 */
   /* color: #4B89DC; */
   margin: 5px 0;
 }
 
-
 /* 사용자 구역 하단 구역 */
 .lower-section {
   background-color: white;
-  border: 1px solid #4B89DC;
+  border: 1px solid #4b89dc;
   /* transition: max-height 0.5s ease; */
   /* overflow: hidden; */
-  border-radius: 10px; 
+  border-radius: 10px;
   position: relative; /* 그대로 유지 */
   bottom: 0; /* 초기화 */
-  right: 0;            /* 오른쪽 정렬 */
-  max-height: 40px;    /* 기본 상태에서는 접혀 있도록 최대 높이 제한 */
+  right: 0; /* 오른쪽 정렬 */
+  max-height: 40px; /* 기본 상태에서는 접혀 있도록 최대 높이 제한 */
   margin: 20px;
   padding: 15px;
   transform: translateY(-20px);
 }
 
 .lower-section.collapsed {
-  max-height: 200px;  /* 펼쳐졌을 때 최대 높이 설정 (필요에 따라 조정 가능) */
+  max-height: 200px; /* 펼쳐졌을 때 최대 높이 설정 (필요에 따라 조정 가능) */
 }
-
-
 
 .notification-header {
   display: flex;
@@ -429,11 +414,11 @@
   height: 20px;
   margin-bottom: 15px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #4B89DC;
+  border-bottom: 1px solid #4b89dc;
   position: relative; /* 삼각형 토글 버튼의 위치를 설정하기 위한 기준점 */
 }
 
-.notification-header p{
+.notification-header p {
   margin-right: 15px;
 }
 
@@ -452,9 +437,9 @@
 }
 
 .toggle-notifications {
-  position: absolute;  /* 절대 위치 설정 */
-  right: 0;            /* 부모 요소의 오른쪽 끝에 배치 */
-  top: 25%;            /* 수직 중앙 정렬 */
+  position: absolute; /* 절대 위치 설정 */
+  right: 0; /* 부모 요소의 오른쪽 끝에 배치 */
+  top: 25%; /* 수직 중앙 정렬 */
   transform: translateY(-50%); /* 정확히 중앙에 맞추기 위해 이동 */
   background: none;
   border: none;
@@ -477,26 +462,17 @@
 
 /*  */
 .notification-content {
-  display: flex;          /* Flexbox 사용 */
+  display: flex; /* Flexbox 사용 */
   flex-direction: column; /* 요소들을 세로 방향으로 배치 */
-  flex-grow: 1;           /* 남은 공간을 차지하도록 설정 */
+  flex-grow: 1; /* 남은 공간을 차지하도록 설정 */
 }
 
-
 .notification-tag {
- font-size: 12px;       /* 글씨 크기 줄이기 */
-  color: #4B89DC;        /* 글씨 색 변경 */
+  font-size: 12px; /* 글씨 크기 줄이기 */
+  color: #4b89dc; /* 글씨 색 변경 */
   margin-bottom: 10px 0px;
   margin: 0px;
 }
-
-
-
-
-
-
-
-
 
 /* .circle-button {
   position: absolute;
