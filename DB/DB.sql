@@ -46,7 +46,9 @@ CREATE TABLE comments (
     FOREIGN KEY (videoId) REFERENCES videos(videoId) ON DELETE CASCADE
 );
 
-INSERT INTO videos (videoId, category, url) VALUES 
-('주말에 하면 딱 좋은 팔 운동 루틴', '팔', 'https://www.youtube.com/watch?v=jhioxpxkces');
+INSERT INTO videos (videoId, category, url, difficulty) VALUES 
+('주말에 하면 딱 좋은 팔 운동 루틴', '어깨', 'https://www.youtube.com/watch?v=jhioxpxkces', 1);
+INSERT INTO videos (videoId, category, url, difficulty) VALUES 
+('주말에 하면 딱 좋은 팔 운동 루틴2', '어깨', 'https://www.youtube.com/watch?v=nyU7YIF8M6c', 2);
 
 SELECT * FROM videos;

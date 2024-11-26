@@ -4,6 +4,65 @@ import axios from "axios";
 
 export default {
   name: "VideoPage",
+  props: {
+    videoId: {
+      type: String,
+      required: true,
+      default: '' // 기본값
+    },
+    videoUrl: {
+      type: String,
+      required: true,
+      default: ''
+    },
+    category: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    views: {
+      type: [String, Number], // 숫자 또는 문자열
+      required: false,
+      default: ''
+    }
+  },
+  computed: {
+    computedVideoUrl() {
+      // YouTube URL 형식으로 변환
+      if (this.videoUrl.includes('youtube.com') || this.videoUrl.includes('youtu.be')) {
+        const videoId = this.extractVideoId(this.videoUrl);
+        return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1`;
+      }
+      // 다른 URL 형식인 경우 그대로 반환
+      return this.videoUrl;
+    }
+  },
+  methods: {
+    extractVideoId(url) {
+      try {
+        const urlObj = new URL(url);
+        // `v` 파라미터가 있는 경우 (https://www.youtube.com/watch?v=ID)
+        if (urlObj.searchParams.has('v')) {
+          return urlObj.searchParams.get('v');
+        }
+        // 짧은 URL 형식 (https://youtu.be/ID)
+        if (urlObj.hostname === 'youtu.be') {
+          return urlObj.pathname.slice(1); // `pathname`에서 첫 슬래시 제거
+        }
+        // embed 형식 처리 (https://www.youtube.com/embed/ID)
+        if (urlObj.pathname.startsWith('/embed/')) {
+          return urlObj.pathname.split('/embed/')[1];
+        }
+        return ''; // 동영상 ID가 없으면 빈 문자열 반환
+      } catch (e) {
+        console.error('Invalid URL', e);
+        return '';
+      }
+    }
+  },
+  mounted() {
+    console.log(this.videoUrl); // videoUrl 출력
+  },
   setup() {
     // 카테고리 및 알림 상태
     const categories = ref([

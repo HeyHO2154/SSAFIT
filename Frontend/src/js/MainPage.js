@@ -82,15 +82,18 @@ export default {
         const response = await axios.post(
           "http://localhost:8080/videos/getAllVideos"
         );
-        let videos = response.data.sort(() => Math.random() - 0.5); // 데이터를 랜덤으로 섞어서 저장
+        let videos = response.data;
         let hsj = 0;
-        //console.log(videos);
         for (let index = 0; index < videos.length; index++) {
           if (videos[index].category == this.selectedCategory && videos[index].difficulty == levelsss) {
+            console.log("find");
             hsj = index;
             break;
           }
         }
+        console.log(this.selectedCategory, levelsss);
+        console.log(videos[hsj].category, videos[hsj].difficulty);
+        console.log(videos[hsj].videoId);
         this.$router.push({
           name: "VideoPage",
           query: {
@@ -129,7 +132,7 @@ export default {
     if (!user) {
       this.$router.push({ name: "Login" });
     } else {
-      this.username = JSON.parse(sessionStorage.getItem("user"))?.userId || '';
+      this.username = JSON.parse(sessionStorage.getItem("user"))?.nickname || '';
       this.getMainInfo(this.username);
     }
 
