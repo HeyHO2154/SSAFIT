@@ -84,11 +84,7 @@ export default {
         console.error("Error fetching followers:", error);
       }
       try {
-        const response = await axios.post(
-          "http://localhost:8080/users/getCrew",
-          { userId: userId } // userId만 포함된 객체를 전송
-        );
-        this.crewName = response.data; // 데이터를 저장 (랜덤 섞기는 이후에 처리)
+        this.crewName = JSON.parse(sessionStorage.getItem("user"))?.crew; // 데이터를 저장 (랜덤 섞기는 이후에 처리)
       } catch (error) {
         console.error("Error fetching followers:", error);
       }
