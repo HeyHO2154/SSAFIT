@@ -43,7 +43,7 @@ CREATE TABLE comments (
 );
 
 INSERT INTO videos (videoId, category, url, difficulty) VALUES
-('승모근 소멸:fire: 오프숄더 여신되는 ‘제니어깨’ 루틴', '어깨', 'https://www.youtube.com/watch?v=M3bVPN42Kdo', 1),
+('승희모근 소멸:fire: 오프숄더 여신되는 ‘제니어깨’ 루틴', '어깨', 'https://www.youtube.com/watch?v=M3bVPN42Kdo', 1),
 ('딱 2가지 운동만으로, \'어깨\'는 무조건 벌크업 됩니다!! (헬스초보자 삼각근 루틴? 밀리터리 프레스 / 사이드레터럴레이즈 / 케이블 리버스플라이)', '어깨', 'https://www.youtube.com/watch?v=vMLYQm2Q_q0', 2),
 (':fire:어깨 운동 루틴:fire:헬스 초보 헬린이 필수 종목 BEST 4', '어깨', 'https://www.youtube.com/watch?v=8URvHKlhE1s', 3),
 ('승모근 안쓰는 :muscle:직각어깨 만들기 10분 따라하기', '어깨', 'https://www.youtube.com/watch?v=dpFqSZ52jGk', 4),
