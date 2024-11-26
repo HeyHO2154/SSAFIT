@@ -53,8 +53,16 @@
   pointer-events: none;
 }
 
-.body{
-  background-color: #4B98DC; 
+
+/* html, body {
+  overflow: hidden;
+  height: 100%;
+  margin: 0;
+} */
+
+
+body{
+  /* background-color: #4B98DC;  */
   height: 100vh; 
   height: 100vh;  /* 화면 크기만큼 높이를 지정 */
   overflow: hidden; /* 이 영역에 대해 스크롤을 제거 */
