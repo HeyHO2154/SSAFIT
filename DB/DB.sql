@@ -47,8 +47,8 @@ CREATE TABLE comments (
 );
 
 INSERT INTO videos (videoId, category, url, difficulty) VALUES 
-('주말에 하면 딱 좋은 팔 운동 루틴', '어깨', 'https://www.youtube.com/watch?v=jhioxpxkces', 1);
-INSERT INTO videos (videoId, category, url, difficulty) VALUES 
-('주말에 하면 딱 좋은 팔 운동 루틴2', '어깨', 'https://www.youtube.com/watch?v=nyU7YIF8M6c', 2);
+('주말에 하면 딱 좋은 팔 운동 루틴', '어깨', 'https://www.youtube.com/watch?v=jhioxpxkces', 1),
+('주말에 하면 딱 좋은 팔 운동 루틴2', '어깨', 'https://www.youtube.com/watch?v=nyU7YIF8M6c', 10),
+('ㅁㄴㅇ','팔','https://www.youtube.com/watch?v=VHhLm6D0vuw',1);
 
 SELECT * FROM videos;
