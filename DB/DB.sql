@@ -23,8 +23,7 @@ CREATE TABLE follower (
     CONSTRAINT fk_follower FOREIGN KEY (followerId) REFERENCES users(userId) ON DELETE CASCADE
 );
 
-INSERT INTO follower (leaderId, followerId) VALUES 
-('as', 'ass');
+#INSERT INTO follower (leaderId, followerId) VALUES ('as', 'ass');
 
 SELECT * FROM follower;
 
