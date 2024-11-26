@@ -46,6 +46,7 @@
     font-size: 1em;
     color: #aab2bd;
 
+  z-index: 4;
   }
 
   /* .login-form .login{
@@ -170,7 +171,7 @@
       left: -120px;
       width: 180%;  /* 고정 크기 설정 */
       height: 120%;  /* 고정 크기 설정 */
-      z-index: 10;
+      z-index: 2;
     }
     
     .login-illusttttt {
@@ -183,7 +184,7 @@
       left: 0;
       width: 103%;  /* 이미지를 부모보다 크게 설정 (필요에 따라 조정) */
       height: 100%;
-      z-index: 5;  /* 아래에 표시되도록 설정 */
+      z-index: 1;  /* 아래에 표시되도록 설정 */
       pointer-events: none;  /* 이 요소는 클릭을 받지 않게 설정 */
     }
     
