@@ -26,27 +26,27 @@ h1, h2, h3 {
 }
 
 /* 카테고리 구역 */
-.category-section {
+.category-section2 {
   /* width: 12rem;
   background-color: white;
   border-right: 1px solid #e5e7eb;
   padding: 1rem; */
 
-  /* width: 200px;
+  width: 200px;
   display: flex;
   flex-direction: column;
   padding: 20px;
   padding-top: 30rem;      
 
   min-width: 150px;         
-  transition: width 0.3s;   */
+  transition: width 0.3s;  
 }
 
 
-/* .category-section button {
+.category-section2 button {
   margin-bottom: 10px;       
   padding: 10px;            
-  border: none;              
+  border: 1px solid #007bff;       
   background-color: #fff;    
   cursor: pointer;      
   border-radius: 12px;      
@@ -61,10 +61,10 @@ h1, h2, h3 {
   align-items: center;        
 }
 
-.category-section button.active-category {
+.category-section2 button.active-category {
   background-color: #007bff;  
   color: white;               
-} */
+}
 
 
 /* 비디오 구역 */
@@ -109,7 +109,7 @@ h1, h2, h3 {
 }
 
 .active-category {
-  background-color: #3b82f6;
+  background-color: #448cff;
   color: white;
 }
 
@@ -175,6 +175,8 @@ h1, h2, h3 {
   border-bottom: 1px solid #3b82f6;
   padding-bottom: 1rem;
 }
+
+
 
 /* 댓글작성 구역 */
 .comments-header {
