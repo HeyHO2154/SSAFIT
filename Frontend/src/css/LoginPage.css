@@ -21,7 +21,7 @@
   
   body {
     /* font-family: SBAggroB; */
-    background-color: #f4f4f9;
+    /* background-color: #f4f4f9; */
     color: #333;
   }
   
@@ -144,19 +144,49 @@
     /* 일러스트 자리 */
     .login-container {
       display: flex;
-      /* flex-direction: row; */
-      height: calc(100vh - 80px);
+      flex-direction: row;
+      height: 100vh;
     }
     
     .login-illust {
       flex: 0 0 65%;
-      background-color: #e0f7fa; /* 예시 배경 */
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative; /* 자식 요소들의 위치를 이 요소를 기준으로 잡기 위해 설정 */
+      width: 100%;  /* 부모 요소의 너비 설정 */
+      height: 100vh;  /* 화면 전체 높이로 설정 */
     }
+    
+    .island {
+      background-image: url("../assets/island.png");
+      background-size: contain;  /* 비율 유지하면서 크기 꽉 채움 */
+      background-repeat: no-repeat;
+      background-position: center;  /* 중앙 정렬 */
+    
+      position: absolute;
+      top: -60px;
+      /* bottom: 10px; */
+      left: -120px;
+      width: 180%;  /* 고정 크기 설정 */
+      height: 120%;  /* 고정 크기 설정 */
+      z-index: 10;
+    }
+    
+    .login-illusttttt {
+      background-image: url("../assets/mul.png");
+      background-size: cover;  /* 이미지 크기 조정 */
+      background-repeat: no-repeat;
+    
+      position: absolute; /* 부모 요소를 기준으로 위치 */
+      top: 0;
+      left: 0;
+      width: 103%;  /* 이미지를 부모보다 크게 설정 (필요에 따라 조정) */
+      height: 100%;
+      z-index: 5;  /* 아래에 표시되도록 설정 */
+      pointer-events: none;  /* 이 요소는 클릭을 받지 않게 설정 */
+    }
+    
 
-     /* .illustration img {
-      max-width: 80%;
-      height: auto;
-    } */
+    
+
