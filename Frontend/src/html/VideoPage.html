@@ -70,8 +70,8 @@
               
             </div>
             <div v-if="comment.isOwnComment">
-              <button>수정</button>
-              <button>삭제</button>
+              <button @click="e">수정</button>
+              <button @click="d">삭제</button>
             </div>
             <div v-if="!comment.isOwnComment">
               <span>{{ comment.likes }}</span>
@@ -116,10 +116,10 @@
     </div>
 
     <!-- 알림 영역 -->
-    <div
+    <!-- <div
       class="lower-section"
       :class="{ collapsed: notificationsCollapsed, expanded: !notificationsCollapsed }"
-    >
+     >
       <div class="notification-header">
         <p>알림</p>
         <div class="notification-icon">
@@ -142,6 +142,6 @@
           </div>
         </div>
       </div>
-    </div>
+     </div> -->
   </div>
 </div>
