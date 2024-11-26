@@ -1,6 +1,6 @@
 <div class="main-container">
   <!-- 카테고리 구역 -->
-  <div class="category-section">
+  <div class="category-section2">
     <button
       v-for="category in categories"
       :key="category.id"
@@ -66,8 +66,8 @@
             <div class="comment-header">
               <h3>{{ comment.userName }}</h3>
               <div v-if="comment.isOwnComment">
-                <button>Edit</button>
-                <button>Delete</button>
+                <button>수정</button>
+                <button>삭제</button>
               </div>
             </div>
             <p>{{ comment.text }}</p>

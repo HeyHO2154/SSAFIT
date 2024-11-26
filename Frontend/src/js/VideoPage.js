@@ -101,7 +101,7 @@ export default {
     const videos = ref([]); // 비디오 배열 초기화
     const currentVideo = ref(null); // 현재 선택된 비디오
     const comments = ref([]); // 댓글 목록 초기화
-    const newComment = ref(""); // 새 댓글
+    const newComment = ref({ content:'' }); // 새 댓글  수정항아아아아ㅏㅇㅁ
     const isLiked = ref(false); // 좋아요 상태
 
     const activeCategory = ref("shoulders");
@@ -139,7 +139,7 @@ export default {
         id: Date.now(),
         userName: "Current User",
         userAvatar: "https://via.placeholder.com/40",
-        text: newComment.value,
+        text: newComment.value.content, // 수정하마하마마마맘ㅁ
         likes: 0,
         isOwnComment: true,
       });
