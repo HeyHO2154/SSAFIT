@@ -35,9 +35,6 @@ CREATE TABLE videos (
     difficulty int default 0
 );
 
-
-
-
 CREATE TABLE comments (
     userId VARCHAR(255) NOT NULL,
     videoId VARCHAR(255) NOT NULL PRIMARY KEY,
