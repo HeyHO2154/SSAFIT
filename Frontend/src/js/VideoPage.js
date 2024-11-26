@@ -133,7 +133,7 @@ export default {
 
     // 댓글 추가
     const submitComment = () => {
-      if (!newComment.value.trim()) return;
+      if (!newComment.value.content.trim()) return; // 수정하하아아아암
 
       comments.value.unshift({
         id: Date.now(),

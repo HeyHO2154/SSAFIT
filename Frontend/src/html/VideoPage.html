@@ -60,17 +60,19 @@
           :key="comment.id"
           class="comment-item"
         >
-        <p>{{ comment.content }}</p>
+         <p>{{ comment.content }}</p>
           <img :src="comment.userAvatar" alt="User avatar" />
           <div class="comment-content">
             <div class="comment-header">
+
               <h3>{{ comment.userName }}</h3>
-              <div v-if="comment.isOwnComment">
-                <button>수정</button>
-                <button>삭제</button>
-              </div>
+              <p>{{ comment.text }}</p>
+              
             </div>
-            <p>{{ comment.text }}</p>
+            <div v-if="comment.isOwnComment">
+              <button>수정</button>
+              <button>삭제</button>
+            </div>
             <div v-if="!comment.isOwnComment">
               <span>{{ comment.likes }}</span>
               <button>♡</button>
