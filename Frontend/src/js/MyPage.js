@@ -1,9 +1,15 @@
+// // import axios from "axios";
 
-// const emojiGrid = document.querySelector('.emoji-grid');
-// const emojiCount = 12;
+// export default {
+//   name: "MyPage",
+//   mounted() {
+//     const user = sessionStorage.getItem("user");
+//     if (!user) {
+//       this.$router.push({ name: "Login" });
+//     } else {
+//       this.username = JSON.parse(sessionStorage.getItem("user"))?.nickname || '';
+//       this.getMainInfo(this.username);
+//     }
 
-// for (let i = 0; i < emojiCount; i++) {
-//   const emojiItem = document.createElement('div');
-//   emojiItem.classList.add('emoji-item');
-//   emojiGrid.appendChild(emojiItem);
-// }
+//   },
+// };

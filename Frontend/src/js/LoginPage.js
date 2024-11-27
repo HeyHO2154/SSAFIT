@@ -20,7 +20,7 @@ export default {
 
     // POST 요청
     const response = await axios.post(
-      "http://localhost:8080/users/login",
+      "http://70.12.50.104:8080/users/login",
       {
         userId: user.userId,
         userPw: user.userPw,

@@ -33,6 +33,7 @@ export default {
   },
   data() {
     return {
+      showAd: true, // 광고 이미지를 표시할지 여부
       difficultyHSJ23: "",
     };
   },
@@ -48,6 +49,10 @@ export default {
     }
   },
   methods: {
+    redirectToAd() {
+      this.showAd = false; // 클릭 시 광고 이미지를 숨김
+      window.open("https://play.google.com/store/apps/details?id=com.hsj.powerclicker", "_blank");
+    },
     difficultyHSJ() {
       let result = '';
       if (this.difficulty <= 7) {
@@ -160,11 +165,11 @@ export default {
     // 비디오 및 댓글 로드
     const fetchVideosAndComments = async () => {
       try {
-        const videoResponse = await axios.get("http://localhost:8080/videos");
+        const videoResponse = await axios.get("http://70.12.50.104:8080/videos");
         videos.value = videoResponse.data || [];
         currentVideo.value = videos.value.length > 0 ? videos.value[0] : null;
 
-        const commentsResponse = await axios.get("http://localhost:8080/comments");
+        const commentsResponse = await axios.get("http://70.12.50.104:8080/comments");
         comments.value = commentsResponse.data || [];
       } catch (error) {
         console.error("데이터 로드 실패:", error);

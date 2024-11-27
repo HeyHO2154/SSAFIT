@@ -8,7 +8,7 @@
         <li @click="goMyPage">마이페이지</li>
         <li v-if="isLoggedIn" @click="logout">로그아웃</li>
         <li v-else @click="goLoginPage">로그인</li>
-        <li>햄버거</li>
+        <li @click="hamburger">햄버거</li>
       </ul>
     </nav>
   </header>
@@ -25,6 +25,9 @@ export default {
     };
   },
   methods: {
+    hamburger() {
+      window.open("https://www.burgerking.co.kr/#/home", "_blank");
+    },
     checkLoginStatus() {
       // 세션에서 사용자 정보를 확인
       const user = JSON.parse(sessionStorage.getItem("user"));

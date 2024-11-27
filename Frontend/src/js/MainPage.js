@@ -5,6 +5,7 @@ export default {
   name: "MainPage",
   data() {
     return {
+      showAd: true, // 광고 이미지를 표시할지 여부
       // 초기 데이터 선언
       categories: ['어깨', '등', '가슴', '팔', '복부', '하체'], // 카테고리 목록
       selectedCategory: '어깨', // 선택된 카테고리
@@ -47,6 +48,10 @@ export default {
     };
   },
   methods: {
+    redirectToAd() {
+      window.open("https://play.google.com/store/apps/details?id=com.hsj.powerclicker", "_blank");
+      this.showAd = false; // 클릭 시 광고 이미지를 숨김
+    },
     currentLevel22() {
       if (this.currentLevel == 1) {
         return '초급';
@@ -76,7 +81,7 @@ export default {
     async getMainInfo(userId) {
       try {
         const response = await axios.post(
-          "http://localhost:8080/users/getFollowersNum",
+          "http://70.12.50.104:8080/users/getFollowersNum",
           { userId: userId } // userId만 포함된 객체를 전송
         );
         this.followers = response.data; // 데이터를 저장 (랜덤 섞기는 이후에 처리)
@@ -96,7 +101,7 @@ export default {
       if (n <= this.currentLevel+1) {
         try {
           const response = await axios.post(
-            "http://localhost:8080/videos/getAllVideos"
+            "http://70.12.50.104:8080/videos/getAllVideos"
           );
           let videos = response.data;
           let hsj = 0;
